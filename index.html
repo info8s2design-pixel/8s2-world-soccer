@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>8S2 World Soccer v2.56.4 Megacampione</title>
+<title>8S2 World Soccer v2.56.5 Megacampione</title>
 <style>
 html,body{position:relative;margin:0;background:#111;color:#eee;font-family:Arial,sans-serif}
 .wrap{position:relative;max-width:560px;margin:18px auto;padding:0 12px}
@@ -377,16 +377,16 @@ html,body{min-height:100%;overflow-x:hidden}
         <span class="bootKey">←</span><span class="bootKey">↑</span><span class="bootKey">↓</span><span class="bootKey">→</span>
         &nbsp; MUOVI / MIRA
       </div>
-      <div><span class="bootKey">SPAZIO</span> &nbsp; PASSAGGIO / TIRO</div>
-      <div style="font-size:.88em;color:#aaa">TIENI PREMUTO SPAZIO PER CARICARE IL TIRO</div>
+      <div><span class="bootKey">S</span> &nbsp; PASSAGGIO / TIRO</div>
+      <div style="font-size:.88em;color:#aaa">S BREVE: PASSAGGIO • S PROLUNGATO: TIRO<br>TIRO A GIRO: TIENI S + ←/→ E RILASCIA S<br>S SENZA PALLA: SCIVOLATA</div>
     </div>
     <div class="bootChallenge">RIUSCIRAI A BATTERE <strong>STEVE8S2?</strong></div>
-    <div class="bootPress">PREMI SPAZIO</div>
+    <div class="bootPress">PREMI S</div>
   </div>
-  <div class="bootSkip">SPAZIO / CLICK PER CONTINUARE</div>
+  <div class="bootSkip">S / CLICK PER CONTINUARE</div>
 </div>
-<h2>8S2 World Soccer — v2.56.4 Megacampione</h2>
-<div class="help">Frecce/WASD: movimento • SPAZIO breve: passaggio • tieni SPAZIO: tiro • durante il caricamento ←/→ correggono la mira di 22,5° • senza palla: scivolata</div>
+<h2>8S2 World Soccer — v2.56.5 Megacampione</h2>
+<div class="help">Frecce: movimento • S breve: passaggio • tieni S: tiro • tiro a giro: tieni S e premi ←/→, mantieni la freccia mentre rilasci S • senza palla: scivolata</div>
 
 <button id="fullscreenToggle" type="button" aria-label="Attiva modalità tutto schermo">⛶ TUTTO SCHERMO</button>
 <button id="audioToggle" type="button" aria-label="Attiva o disattiva audio">♪ ON</button>
@@ -452,7 +452,7 @@ html,body{min-height:100%;overflow-x:hidden}
     </div>
   </div>
 </div>
-<div id="msg">CALCIO D'INIZIO — premi SPAZIO</div>
+<div id="msg">CALCIO D'INIZIO — premi S</div>
 <div class="controls">
 <div class="directionPad" role="group" aria-label="Movimento in otto direzioni">
 <button data-keys="ArrowUp ArrowLeft" aria-label="Muovi in alto a sinistra">↖</button><button data-keys="ArrowUp" aria-label="Muovi in alto">↑</button><button data-keys="ArrowUp ArrowRight" aria-label="Muovi in alto a destra">↗</button>
@@ -484,10 +484,10 @@ function finishBootIntro(){
 }
 BOOT.addEventListener('pointerdown',e=>{e.preventDefault();finishBootIntro()});
 BOOT.addEventListener('keydown',e=>{
- if(e.key===' '||e.key==='Enter'){e.preventDefault();finishBootIntro()}
+ if(e.key.toLowerCase()==='s'||e.key==='Enter'){e.preventDefault();finishBootIntro()}
 });
 document.addEventListener('keydown',e=>{
- if(bootActive&&(e.key===' '||e.key==='Enter')){e.preventDefault();finishBootIntro()}
+ if(bootActive&&(e.key.toLowerCase()==='s'||e.key==='Enter')){e.preventDefault();finishBootIntro()}
 },{capture:true});
 
 G.imageSmoothingEnabled=false;
@@ -570,7 +570,7 @@ function setupPenalty(){
  penaltyKeeperDir=Math.floor(Math.random()*5)-2;
  penaltySaveRoll=Math.random();
  selected=homeTurn?shootoutShooter:null;aimIndex=12;
- MSG.textContent=homeTurn?'RIGORE '+(shootoutKickH+1)+' — ←/→ 5 DIREZIONI • SPAZIO + ←/→ EFFETTO':'RIGORE 8S2 '+(shootoutKickA+1);
+ MSG.textContent=homeTurn?'RIGORE '+(shootoutKickH+1)+' — ←/→ 5 DIREZIONI • S + ←/→ EFFETTO':'RIGORE 8S2 '+(shootoutKickA+1);
  if(!homeTurn){shootoutTimer=.75}
 }
 function startShootout(){
@@ -861,7 +861,7 @@ function updateTeamEntrance(dt){
    introActive=false;state='kickoff';kickTeam='h';matchStarted=true;
    home[9].x=260;home[9].y=366;home[8].x=225;home[8].y=382;
    selected=home[9];aimIndex=12;
-   MSG.textContent="CALCIO D'INIZIO — scegli la direzione e premi SPAZIO";
+   MSG.textContent="CALCIO D'INIZIO — scegli la direzione e premi S";
  }
 }
 function setup(team='h'){
@@ -892,7 +892,7 @@ function setup(team='h'){
    home[9].x=260;home[9].y=secondHalf?334:366;
    home[8].x=secondHalf?295:225;home[8].y=secondHalf?318:382;
    restartTaker=home[9];
-   MSG.textContent="CALCIO D'INIZIO — scegli la direzione e premi SPAZIO";
+   MSG.textContent="CALCIO D'INIZIO — scegli la direzione e premi S";
  }else{
    away[9].x=260;away[9].y=secondHalf?366:334;
    away[8].x=secondHalf?225:295;away[8].y=secondHalf?382:318;
@@ -1343,7 +1343,7 @@ function setThrowIn(team,leftSide,outY){
  if(team==='h'){
    selected=restartTaker;
    aimIndex=leftSide?0:8;
-   MSG.textContent='RIMESSA LATERALE — orienta la freccia e premi SPAZIO';
+   MSG.textContent='RIMESSA LATERALE — orienta la freccia e premi S';
  }else{
    MSG.textContent='RIMESSA LATERALE AVVERSARIA';
    setTimeout(()=>cpuRestart(),500);
@@ -1387,14 +1387,14 @@ function setCorner(team,top,leftSide){
  throwInBlocked=restartTaker;
  restartTaker.x=ball.x+(leftSide?15:-15);
  restartTaker.y=ball.y+(top?15:-15);
- if(team==='h'){selected=restartTaker;aimIndex=top?4:12;MSG.textContent="CALCIO D'ANGOLO — orienta la freccia e premi SPAZIO"}
+ if(team==='h'){selected=restartTaker;aimIndex=top?4:12;MSG.textContent="CALCIO D'ANGOLO — orienta la freccia e premi S"}
  else {MSG.textContent="CALCIO D'ANGOLO AVVERSARIO";setTimeout(()=>cpuRestart(),650)}
 }
 function setGoalKick(team,top){
  state='goalkick';restartTeam=team;possession=null;ball.vx=ball.vy=0;
  const k=team==='h'?hgk:agk;restartTaker=k;
  ball.x=260;ball.y=top?68:H-68;k.x=260;k.y=top?52:H-52;
- if(team==='h'){selected=k;aimIndex=12;MSG.textContent="RINVIO DAL FONDO — orienta e premi SPAZIO"}
+ if(team==='h'){selected=k;aimIndex=12;MSG.textContent="RINVIO DAL FONDO — orienta e premi S"}
  else {MSG.textContent="RINVIO DAL FONDO AVVERSARIO";setTimeout(()=>cpuRestart(),600)}
 }
 function cpuRestart(){
@@ -1439,8 +1439,8 @@ function boundary(){
 }
 function update(dt){
  if(charging&&state!=='penalty'){
-   const curlLeft=K['ArrowLeft']||K['a'];
-   const curlRight=K['ArrowRight']||K['d'];
+   const curlLeft=K['ArrowLeft'];
+   const curlRight=K['ArrowRight'];
    if(touchCurve)ballCurve=touchCurve;
    else if(curlLeft&&!curlRight)ballCurve=-1;
    else if(curlRight&&!curlLeft)ballCurve=1;
@@ -1510,8 +1510,8 @@ function update(dt){
  if(state==='play'&&possession===hgk){
    keeperTimer=Math.max(0,keeperTimer-dt);
    let mx=0,my=0;
-   if(K['ArrowLeft']||K['a'])mx-=1;
-   if(K['ArrowRight']||K['d'])mx+=1;
+   if(K['ArrowLeft'])mx-=1;
+   if(K['ArrowRight'])mx+=1;
    if(K['ArrowUp']||K['w'])my-=1;
    if(K['ArrowDown']||K['s'])my+=1;
    if(mx||my){
@@ -1542,7 +1542,7 @@ function update(dt){
      p.x+=dx/d*150*dt;p.y+=dy/d*150*dt;if(p.x<W+30)allOut=false;
    }
    if(allOut||halftimeExitTimer>4.5){
- state='halftime_wait';halftimePhase='wait';for(const p of [...home,...away])p.moving=false;MSG.textContent='INTERVALLO — PREMI SPAZIO / AZIONE'}
+ state='halftime_wait';halftimePhase='wait';for(const p of [...home,...away])p.moving=false;MSG.textContent='INTERVALLO — PREMI S / AZIONE'}
    return;
  }
  if(state==='halftime_wait')return;
@@ -1557,14 +1557,14 @@ function update(dt){
  }
 
  if(state==='kickoff'||((state==='corner'||state==='goalkick'||state==='throwin')&&restartTeam==='h')){
-   let kmx=(K.ArrowRight||K.d?1:0)-(K.ArrowLeft||K.a?1:0);
-   let kmy=(K.ArrowDown||K.s?1:0)-(K.ArrowUp||K.w?1:0);
+   let kmx=(K.ArrowRight?1:0)-(K.ArrowLeft?1:0);
+   let kmy=(K.ArrowDown?1:0)-(K.ArrowUp?1:0);
    if(kmx||kmy)setAim(kmx,kmy);
    return;
  }
  if(state==='corner'||state==='goalkick'||state==='throwin')return;
  autoSelect();
- let mx=(K.ArrowRight||K.d?1:0)-(K.ArrowLeft||K.a?1:0),my=(K.ArrowDown||K.s?1:0)-(K.ArrowUp||K.w?1:0);
+ let mx=(K.ArrowRight?1:0)-(K.ArrowLeft?1:0),my=(K.ArrowDown?1:0)-(K.ArrowUp?1:0);
  if((mx||my)&&!charging){
    setAim(mx,my);
    // With ball in hands the keeper aims the pass but stays inside his area.
@@ -1760,7 +1760,7 @@ function updateBenchEntrance(dt){
      if(cinematicMode==='intro_in'){
        cinematicMode='';state='kickoff';kickTeam='h';matchStarted=true;
        home[9].x=260;home[9].y=366;home[8].x=225;home[8].y=382;selected=home[9];aimIndex=12;
-       MSG.textContent="CALCIO D'INIZIO — scegli la direzione e premi SPAZIO";
+       MSG.textContent="CALCIO D'INIZIO — scegli la direzione e premi S";
      }else{
        cinematicMode='';state='kickoff';kickTeam='a';matchStarted=true;
        MSG.textContent='SECONDO TEMPO — 8S2 AL CALCIO D’INIZIO';
@@ -1783,7 +1783,7 @@ function updateBenchExit(dt){
  }
  if(ready||cinematicTimer>5.5){
    state='halftime_wait';cinematicMode='halftime_wait';
-   MSG.textContent='INTERVALLO — PREMI SPAZIO / AZIONE';
+   MSG.textContent='INTERVALLO — PREMI S / AZIONE';
  }
 }
 function stadium(){
@@ -2100,7 +2100,7 @@ function draw(){
    G.restore();
    G.fillStyle='rgba(0,0,0,.72)';G.fillRect(150,710,380,58);
    G.fillStyle='#fff';G.font='bold 17px monospace';G.textAlign='center';
-   const ct=state==='halftime_wait'?'INTERVALLO — PREMI SPAZIO / AZIONE':
+   const ct=state==='halftime_wait'?'INTERVALLO — PREMI S / AZIONE':
      (state==='bench_exit'?'FINE PRIMO TEMPO':
      (benchPhase==='huddle'?'RIUNIONE DI SQUADRA':
      (benchPhase==='to_pitch'?'INGRESSO IN CAMPO':'USCITA DALLE PANCHINE')));
@@ -2278,28 +2278,28 @@ function endAction(){if(!pressStart)return;let dur=(performance.now()-pressStart
  }
  charging=false;charge=0
 }
-function keydown(e){if(bootActive)return;let k=e.key.length===1?e.key.toLowerCase():e.key;if(['ArrowUp','ArrowDown','ArrowLeft','ArrowRight',' '].includes(e.key))e.preventDefault();
+function keydown(e){if(bootActive)return;let k=e.key.length===1?e.key.toLowerCase():e.key;if(['ArrowUp','ArrowDown','ArrowLeft','ArrowRight','s'].includes(k))e.preventDefault();
  if(e.repeat)return;
  if(state==='penalty'&&shootoutTurn==='h'&&shootoutPhase==='ready'){
-   if(charging&&(k==='ArrowLeft'||k==='a')){penaltyCurve=-1;K[k]=true;return}
-   if(charging&&(k==='ArrowRight'||k==='d')){penaltyCurve=1;K[k]=true;return}
-   if(k==='ArrowLeft'||k==='a'){penaltyDir=Math.max(-2,penaltyDir-1);return}
-   if(k==='ArrowRight'||k==='d'){penaltyDir=Math.min(2,penaltyDir+1);return}
-   if(k==='ArrowUp'||k==='w'||k==='ArrowDown'||k==='s'){penaltyDir=0;return}
+   if(charging&&(k==='ArrowLeft')){penaltyCurve=-1;K[k]=true;return}
+   if(charging&&(k==='ArrowRight')){penaltyCurve=1;K[k]=true;return}
+   if(k==='ArrowLeft'){penaltyDir=Math.max(-2,penaltyDir-1);return}
+   if(k==='ArrowRight'){penaltyDir=Math.min(2,penaltyDir+1);return}
+   if(k==='ArrowUp'||k==='ArrowDown'){penaltyDir=0;return}
  }
- if(charging&&(k==='ArrowLeft'||k==='a')){K[k]=true;ballCurve=-1;return}
- if(charging&&(k==='ArrowRight'||k==='d')){K[k]=true;ballCurve=1;return}
- if(charging&&(k==='ArrowDown'||k==='s')){K[k]=true;lowShot=true;MSG.textContent='TIRO RASOTERRA';return}
- K[k]=true;if(k===' ')startAction();if(k==='r'){scoreH=0;scoreA=0;shootoutH=shootoutA=shootoutKickH=shootoutKickA=0;currentHalf=1;matchTime=halfDuration;matchStarted=false;sidesSwapped=false;setup('h');beginTeamEntrance()}
+ if(charging&&(k==='ArrowLeft')){K[k]=true;ballCurve=-1;return}
+ if(charging&&(k==='ArrowRight')){K[k]=true;ballCurve=1;return}
+ if(charging&&(k==='ArrowDown')){K[k]=true;lowShot=true;MSG.textContent='TIRO RASOTERRA';return}
+ K[k]=true;if(k==='s')startAction();if(k==='r'){scoreH=0;scoreA=0;shootoutH=shootoutA=shootoutKickH=shootoutKickA=0;currentHalf=1;matchTime=halfDuration;matchStarted=false;sidesSwapped=false;setup('h');beginTeamEntrance()}
 }
 function keyup(e){
  let k=e.key.length===1?e.key.toLowerCase():e.key;
  K[k]=false;
- if(charging&&(k==='ArrowLeft'||k==='a'||k==='ArrowRight'||k==='d')){
-   const left=K['ArrowLeft']||K['a'],right=K['ArrowRight']||K['d'];
+ if(charging&&(k==='ArrowLeft'||k==='ArrowRight')){
+   const left=K['ArrowLeft'],right=K['ArrowRight'];
    ballCurve=left&&!right?-1:right&&!left?1:0;
  }
- if(k===' ')endAction()
+ if(k==='s')endAction()
 }
 const WRAP=document.querySelector('.wrap'),FSBTN=document.getElementById('fullscreenToggle');
 function syncFullscreenUI(){
