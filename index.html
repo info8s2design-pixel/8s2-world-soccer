@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>8S2 World Soccer v2.56.2 Megacampione</title>
+<title>8S2 World Soccer v2.56.3 Megacampione</title>
 <style>
 html,body{position:relative;margin:0;background:#111;color:#eee;font-family:Arial,sans-serif}
 .wrap{position:relative;max-width:560px;margin:18px auto;padding:0 12px}
@@ -385,7 +385,7 @@ html,body{min-height:100%;overflow-x:hidden}
   </div>
   <div class="bootSkip">SPAZIO / CLICK PER CONTINUARE</div>
 </div>
-<h2>8S2 World Soccer — v2.56.2 Megacampione</h2>
+<h2>8S2 World Soccer — v2.56.3 Megacampione</h2>
 <div class="help">Frecce/WASD: movimento • SPAZIO breve: passaggio • tieni SPAZIO: tiro • durante il caricamento ←/→ correggono la mira di 22,5° • senza palla: scivolata</div>
 
 <button id="fullscreenToggle" type="button" aria-label="Attiva modalità tutto schermo">⛶ TUTTO SCHERMO</button>
@@ -413,7 +413,7 @@ html,body{min-height:100%;overflow-x:hidden}
   <option value="hard">DIFFICILE</option>
  </select>
 </div>
-<button id="teamStart" type="button" disabled>INIZIA PARTITA</button><button id="greatsInitial" type="button" hidden>Sfida le grandi</button><button id="trophyTest" type="button" style="display:block;margin:8px auto;color:#ffd35b">TEST MEGACAMPIONE</button>
+<button id="teamStart" type="button" disabled>INIZIA PARTITA</button><button id="greatsInitial" type="button" hidden>Sfida le grandi</button>
     <div id="teamError">Inserisci 3 lettere</div>
   </div>
 </div>
@@ -1126,6 +1126,7 @@ function cpu(dt){
 
   // Flank trap: when the human carries near a touchline, CPU closes much harder.
   const onFlank=carrier.x<112||carrier.x>W-112;
+  const nearCpuGoal=currentHalf===1?carrier.y<TB+80:carrier.y>BB-80;
   const press=defenders[0];
   const support=defenders[1];
 
@@ -1140,14 +1141,14 @@ function cpu(dt){
    const pressSpeed=difficulty==='hard'?(onFlank?1.30:1.18):
                     difficulty==='easy'?(onFlank?.72:.62):
                                          (onFlank?1.12:1.02);
-   if(d<tackleDist&&Math.random()<dt*tackleRate)slide(press);
-   else moveTo(press,carrier.x,carrier.y,press.speed*pressSpeed,dt);
+   if(d<tackleDist&&Math.random()<dt*tackleRate*(nearCpuGoal?1.35:1))slide(press);
+   else moveTo(press,carrier.x,carrier.y,press.speed*pressSpeed*(nearCpuGoal?1.08:1),dt);
   }
 
   if(support){
-   if(onFlank){
+   if(onFlank||nearCpuGoal){
     // Seal the escape route back toward the centre / forward lane.
-    const insideX=carrier.x<W/2?carrier.x+48:carrier.x-48;
+    const insideX=nearCpuGoal?carrier.x:carrier.x<W/2?carrier.x+48:carrier.x-48;
     const aheadY=carrier.y+(attackDown?-30:30);
     const supportSpeed=difficulty==='hard'?1.14:difficulty==='easy'?.62:.94;
     moveTo(support,insideX,aheadY,support.speed*supportSpeed,dt);
@@ -1233,7 +1234,19 @@ function keepers(dt){
     continue;
   }
 
-  // Basic line positioning. No aggressive chase toward every ball.
+  // Challenge dribblers inside the box while leaving shots on the existing save path.
+  if(k.team==='a'&&possession&&possession.team==='h'&&!possession.keeper&&ballInBox){
+    const carrier=possession;
+    const interceptX=Math.max(minX,Math.min(maxX,ball.x));
+    const interceptY=Math.max(minY,Math.min(maxY,ball.y));
+    const rushSpeed=difficulty==='hard'?1.18:difficulty==='easy'?.78:1.02;
+    moveTo(k,interceptX,interceptY,k.speed*rushSpeed,dt);
+    k.x=Math.max(minX,Math.min(maxX,k.x));k.y=Math.max(minY,Math.min(maxY,k.y));
+    const reach=difficulty==='hard'?21:difficulty==='easy'?14:18;
+    if(Math.hypot(k.x-ball.x,k.y-ball.y)<reach){capture(k);MSG.textContent='PORTIERE IN USCITA — PALLONE BLOCCATO';}
+    continue;
+  }
+  // Basic line positioning for loose balls and shots.
   let tx=Math.max(205,Math.min(315,ball.x));
   let ty=top?43:H-43;
   const lineSpeed=difficulty==='hard'?.82:difficulty==='easy'?.48:.65;
@@ -2860,6 +2873,7 @@ const againYesEl=document.getElementById('againYes');
 const againNoEl=document.getElementById('againNo');
 
 function returnToStartScreen(){
+ if(!trophyPreview&&campaignActive&&postWinner==='h'&&beatenGreats.size===12){beatenGreats.clear();greatsUnlocked=false;try{localStorage.removeItem('8s2-greats-beaten');localStorage.removeItem('8s2-greats-unlocked')}catch(e){}}
  trophyPreview=false;
  campaignPending=false;campaignActive=false;testCampaign=false;refreshGreatsAccess();
  setSteveOpponent();document.getElementById('greatsMenu').hidden=true;
@@ -2911,7 +2925,7 @@ function configurePostMatchMenu(){
  againYesEl.textContent=greatsUnlocked?'Rigioca contro Steve8s2':'SÌ';
  againNoEl.hidden=wonSteve;const challenge=document.getElementById('challengeGreats');challenge.hidden=!(greatsUnlocked||testCampaign);challenge.textContent='Sfida le grandi';
  if(trophyPreview){card.querySelector('h2').textContent='🏆 MEGACAMPIONE!';card.querySelector('p').textContent='Anteprima dell’esultanza finale. I tuoi progressi non sono stati modificati.';challenge.hidden=true;againYesEl.textContent='TORNA AL MENU';againNoEl.hidden=true;return;}
- if(campaignActive){const count=currentBeaten().size;card.querySelector('h2').textContent=count===12?'🏆 MEGACAMPIONE!':postWinner==='h'?'Avversaria battuta! 👏':'La sfida continua';card.querySelector('p').textContent=count===12?'Hai battuto tutte le 12 grandi e conquistato il trofeo di Megacampione!':count+' / 12 squadre battute. Scegli la prossima avversaria.';challenge.hidden=count===12;challenge.textContent='Scegli la prossima avversaria';againYesEl.textContent='Rigioca contro Steve8s2';againNoEl.hidden=false;}
+ if(campaignActive){const count=currentBeaten().size;card.querySelector('h2').textContent=count===12?'🏆 MEGACAMPIONE!':postWinner==='h'?'Avversaria battuta! 👏':'La sfida continua';card.querySelector('p').textContent=count===12?'Hai battuto tutte le 12 grandi e conquistato il trofeo di Megacampione!':count+' / 12 squadre battute. Scegli la prossima avversaria.';challenge.hidden=count===12;challenge.textContent='Scegli la prossima avversaria';againYesEl.textContent=count===12?'RICOMINCIA DA ZERO — CONTRO Steve8s2':'Rigioca contro Steve8s2';againNoEl.hidden=count===12;}
 }
 function showGreatsMenu(from){if(!greatsUnlocked&&!testCampaign)return;greatsReturn=from;refreshGreatsGrid();teamSetupEl.style.display='none';document.getElementById('greatsMenu').hidden=false;kitSetupEl.style.display='none';playAgainEl.style.display='none';stopVictoryAudio();stopStadiumAmbience();if(audioEnabled)startMenuMusic();document.getElementById('greatsBack').focus();}
 document.getElementById('greatsAccess').onclick=()=>showGreatsMenu('kit');
@@ -2929,12 +2943,6 @@ function currentBeaten(){return testCampaign?testBeatenGreats:beatenGreats;}
 function recordGreatVictory(){if(!campaignActive||postWinner!=='h'||!GREAT_TEAMS.some(t=>t[1]===cpuTeam))return;const progress=currentBeaten();if(progress.has(cpuTeam))return;progress.add(cpuTeam);if(!testCampaign){try{localStorage.setItem('8s2-greats-beaten',JSON.stringify([...progress]))}catch(e){}}}
 function refreshGreatsGrid(){const progress=currentBeaten();document.querySelector('#greatsMenu p').textContent=(testCampaign?'TEST — ':'')+progress.size+' / 12 squadre battute'+(progress.size===12?' — 🏆 MEGACAMPIONE!':' — Scegli la prossima avversaria');document.querySelectorAll('.greatOption').forEach(b=>{const done=progress.has(b.dataset.code);b.disabled=done;b.classList.toggle('beaten',done);b.querySelector('small').textContent=b.dataset.code+(done?' ✓ BATTUTA':'');});}
 document.getElementById('greatsInitial').onclick=()=>{if(!greatsUnlocked)return;if(!validateTeamCode())return;testCampaign=false;campaignPending=true;teamStartEl.click();};
-document.getElementById('trophyTest').onclick=()=>{
- trophyPreview=true;campaignActive=false;campaignPending=false;testCampaign=false;
- userTeam=teamCodeEl.value.toUpperCase().replace(/[^A-Z]/g,'').slice(0,3)||'YOU';
- teamSetupEl.style.display='none';kitSetupEl.style.display='none';document.getElementById('greatsMenu').hidden=true;playAgainEl.style.display='none';stopMenuMusic();stopStadiumAmbience();
- setup('h');scoreH=1;scoreA=0;whistleFT=true;startPostMatch();postMatchTimer=2;MSG.textContent='TEST MEGACAMPIONE — ANTEPRIMA ESULTANZA';
-};
 refreshGreatsAccess();
 
 })();
