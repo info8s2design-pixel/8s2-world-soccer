@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>8S2 World Soccer v2.56.10 Megacampione</title>
+<title>8S2 World Soccer v2.56.11 Megacampione</title>
 <style>
 html,body{position:relative;margin:0;background:#111;color:#eee;font-family:Arial,sans-serif}
 .wrap{position:relative;max-width:560px;margin:18px auto;padding:0 12px}
@@ -353,7 +353,7 @@ html,body{min-height:100%;overflow-x:hidden}
 <link rel="icon" type="image/png" sizes="32x32" href="app-icon-32.png"><style>.curveAction{display:none}
 @media(pointer:coarse){.curveAction{display:block;font-size:12px;padding:10px 4px}.controls #action{grid-column:auto;font-size:14px}.controls button{touch-action:none}.curveAction.active{background:#287c3d;border-color:#ffd84a}}
 </style><style>
-/* v2.56.10: one draggable thumbstick, beside the existing actions. */
+/* v2.56.11: one draggable thumbstick, beside the existing actions. */
 .controls{display:flex;flex-direction:row;align-items:center;justify-content:center;max-width:420px;gap:14px;padding:4px 8px;box-sizing:border-box}
 .directionPad{position:relative;width:144px;height:144px;flex:0 0 144px;border-radius:50%;box-sizing:border-box;border:6px solid #c7423b;background:radial-gradient(circle,#9c2824 0 49%,#4c1516 50% 54%,#e76a61 55% 59%,#7e211e 60% 67%,#ffb0a3 68%);box-shadow:0 3px 0 #350c0e,0 0 0 2px #581617,inset 0 0 0 2px #ffc4b8;touch-action:none;user-select:none;-webkit-user-select:none;-webkit-touch-callout:none;cursor:grab}
 .directionPad::before{content:"";position:absolute;inset:20px;border:2px solid #ffaca2;border-radius:50%;opacity:.7;pointer-events:none}
@@ -420,7 +420,7 @@ html,body{min-height:100%;overflow-x:hidden}
   </div>
   <div class="bootSkip">S / CLICK PER CONTINUARE</div>
 </div>
-<h2>8S2 World Soccer — v2.56.10 Megacampione</h2>
+<h2>8S2 World Soccer — v2.56.11 Megacampione</h2>
 <div class="help">Frecce: movimento • S breve: passaggio • tieni S: tiro • tiro a giro: tieni S e premi ←/→, mantieni la freccia mentre rilasci S • senza palla: scivolata</div>
 
 <button id="fullscreenToggle" type="button" aria-label="Attiva modalità tutto schermo">⛶ TUTTO SCHERMO</button>
@@ -1873,7 +1873,7 @@ function stadium(){
  for(let x=463;x<545;x+=14){G.fillStyle='#333';G.fillRect(x,817,8,7)}
 }
 function goalNet(top){
- const gx=OX+190, gy=top?OY-1:OY+H-16, gw=140, gh=18;
+ const gx=OX+190, gw=140, gh=36, gy=top?OY+10-gh:OY+H-10;
  G.fillStyle='rgba(230,230,230,.18)';G.fillRect(gx,gy,gw,gh);
  G.strokeStyle='#eee';G.lineWidth=2;G.strokeRect(gx,gy,gw,gh);
  G.lineWidth=.6;G.strokeStyle='rgba(255,255,255,.55)';
@@ -2277,15 +2277,16 @@ function draw(){
  G.restore();
  if(state!=='penalty'){goalNet(true);goalNet(false);}
  // scoreboard
- G.fillStyle='#090909';G.fillRect(235,20,210,40);G.strokeStyle='#777';G.strokeRect(235,20,210,40);
+ const scoreX=SW-125,scoreY=10;
+ G.fillStyle='#090909';G.fillRect(scoreX-105,scoreY,210,state==='penalty'?56:40);G.strokeStyle='#777';G.strokeRect(scoreX-105,scoreY,210,state==='penalty'?56:40);
  G.fillStyle='#fff';G.font='bold 15px monospace';G.textAlign='center';
- G.fillText(userTeam+'  '+scoreH+' - '+scoreA+'  '+cpuTeam,340,39);
+ G.fillText(userTeam+'  '+scoreH+' - '+scoreA+'  '+cpuTeam,scoreX,scoreY+19);
  if(state==='penalty'){
-   G.font='bold 10px monospace';G.fillText('RIGORI  '+shootoutH+' - '+shootoutA,340,54);
+   G.font='bold 10px monospace';G.fillText('RIGORI  '+shootoutH+' - '+shootoutA,scoreX,scoreY+34);
    G.font='bold 8px monospace';
-   G.fillText(shootoutMarksH.join(' ')+'   /   '+shootoutMarksA.join(' '),340,65);
+   G.fillText(shootoutMarksH.join(' ')+'   /   '+shootoutMarksA.join(' '),scoreX,scoreY+45);
  }
- G.font='bold 11px monospace';if(state!=='penalty')G.fillText(currentHalf+'° TEMPO   '+formatClock(matchTime),340,54);G.textAlign='left';
+ G.font='bold 11px monospace';if(state!=='penalty')G.fillText(currentHalf+'° TEMPO   '+formatClock(matchTime),scoreX,scoreY+34);G.textAlign='left';
  if(state==='postmatch'){if(isMegachampionFinal()&&postMatchTimer>=2&&postMatchTimer<22)drawMegachampion();else drawFinalStats();}
  if(crowdFlash>0){G.fillStyle='rgba(255,255,255,'+(crowdFlash*.10)+')';G.fillRect(0,0,SW,SH)}
 }
