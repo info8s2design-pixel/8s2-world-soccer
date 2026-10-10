@@ -1,4 +1,4 @@
-const CACHE='8s2-mobile-v256184';
+const CACHE='8s2-mobile-v256185';
 const FILES=['./','./index.html','./manifest.webmanifest','./app-icon-192.png','./app-icon-512.png','./app-icon-180.png','./app-icon-32.png'];
 self.addEventListener('install',e=>e.waitUntil(caches.open(CACHE).then(async c=>{for(const path of FILES){const r=await fetch(new Request(path,{cache:'reload'}));if(!r.ok)throw Error('Offline download failed');await c.put(path,r);}}).then(()=>self.skipWaiting())));
 self.addEventListener('activate',e=>e.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(k=>k.startsWith('8s2-mobile-')&&k!==CACHE).map(k=>caches.delete(k)))).then(()=>self.clients.claim())));
