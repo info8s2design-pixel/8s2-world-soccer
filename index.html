@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>8S2 World Soccer v2.56.460 Megacampione</title>
+<title>8S2 World Soccer v2.56.462 Megacampione</title>
 <style>
 html,body{position:relative;margin:0;background:#111;color:#eee;font-family:Arial,sans-serif}
 .wrap{position:relative;max-width:560px;margin:18px auto;padding:0 12px}
@@ -1118,6 +1118,13 @@ body #challengePicker .challengeCard .challengeTiles button[data-challenge]{gap:
 <style id="trainingFont459">body #teamSetup #directTraining{font:bold 11px monospace!important;letter-spacing:normal!important;text-transform:none!important}</style>
 <style id="smartphoneMatchControls412">
 body.smartphoneMatch412.futsalBeach #matchMenuButton .controlsSettingsIcon g{stroke:#111!important}
+</style><style id="smartphoneLargeControls461">
+body.touchLargeMatchControls:not(.gameMenuOpen) .wrap .controls .directionPad{width:var(--phone-joy,144px)!important;height:var(--phone-joy,144px)!important}
+body.touchLargeMatchControls:not(.gameMenuOpen) .wrap .controls .shotControls{--curve-size:var(--phone-curve,76px);--action-size:var(--phone-action,88px);column-gap:8px!important;row-gap:8px!important;width:calc(var(--curve-size)*2 + 8px)!important}
+body.touchLargeMatchControls.phoneSideSpace:not(.gameMenuOpen) .wrap .controls{top:0!important;bottom:0!important;padding:12px!important;align-items:center!important}
+body.touchLargeMatchControls:not(.gameMenuOpen) .controls .shotControls .curveLabel{font-size:clamp(12px,2.1vw,18px)!important}
+body.touchLargeMatchControls:not(.gameMenuOpen) .controls .shotControls .curveSymbol{font-size:clamp(22px,3.2vw,30px)!important}
+body.touchLargeMatchControls:not(.gameMenuOpen) .controls .shotControls #action{font-size:clamp(14px,2.3vw,21px)!important}
 </style></head>
 <body class="gameMenuOpen">
 <div class="wrap"><section id="challengePicker" hidden role="dialog" aria-label="Sfida 8S2"><div class="challengeCard"><img id="challengeLogo" alt="8S2 World Soccer"><h1>SFIDA 8S2</h1><p>Vinci una delle due sfide per sbloccare tutte le modalità!</p><div class="challengeTiles"><button data-challenge="beachchallenge"><span>BEACH SOCCER 5 VS 5</span><small>In caso di pareggio, chi segna vince!</small></button><button data-challenge="match"><span>CALCIO 11 VS 11</span><small>In caso di pareggio, si va ai rigori!</small></button></div><button id="challengeBack">Torna al menu</button><img class="challengeBrand" src="./asset459-98985cbbda62.jpg" alt="S8S2"></div></section><section id="beachHubPanel" hidden role="dialog" aria-modal="true" aria-label="Scegli modalità Beach Soccer"><div class="beachHubCard"><img id="beachHubLogo" alt="8S2 World Soccer"><h1>BEACH SOCCER</h1><h2>SCEGLI LA MODALITÀ</h2><div class="beachHubChoices"><button id="beachFriendlyChoice" type="button">AMICHEVOLE<small>Una partita sulla sabbia</small></button><button id="beachCupChoice" type="button">SUDAMERICA BEACH CUP<small>La tua squadra e 31 club sudamericani</small></button></div><button id="beachHubBack" type="button">TORNA AL MENU</button></div></section><section id="beachCupPanel" hidden role="dialog" aria-modal="true" aria-label="Sudamerica Beach Cup"><svg id="beachCupLogo" viewBox="0 0 64 64" role="img" aria-label="Stella della Sudamerica Beach Cup"><path d="M32 4 40 23 60 25 45 39 49 59 32 49 15 59 19 39 4 25 24 23Z" fill="#ffd54a" stroke="#fff0a0" stroke-width="2"/></svg><h1>SUDAMERICA BEACH CUP</h1><div id="beachCupBody"></div><div class="bcFooter"><button id="beachCupPlay" type="button">GIOCA</button><button id="beachCupNew" type="button">NUOVA CUP</button><button id="beachCupBack" type="button">TORNA AL MENU</button></div></section>
@@ -1155,7 +1162,7 @@ body.smartphoneMatch412.futsalBeach #matchMenuButton .controlsSettingsIcon g{str
     <img class="bootLogo" src="./asset459-29b794414045.png" alt="8S2 World Soccer">
     <div class="bootBall"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="100%" height="100%" aria-hidden="true"><circle cx="16" cy="16" r="14" fill="#fff" stroke="#000" stroke-width="1.5"/><g fill="#000"><path d="M16 10l6 4-2 7h-8l-2-7zM10 3l1 5-6 4-3-2zM22 3l8 7-3 2-6-4zM3 21l5-1 4 6-2 3zM29 21l-7-1-4 6 4 3z"/></g><g fill="none" stroke="#000" stroke-width=".8"><path d="M11 8l5 2 5-2M5 12l5 2M27 12l-5 2M8 20l4 1M22 20l-2 1M12 26h6"/></g></svg></div>
     <div class="bootTitle">8s2 World Soccer</div>
-    <div class="bootVersion">v2.56.460</div><div class="globalMatchCounter" aria-live="polite"><div class="counterReveal">PARTITE GIOCATE NEL MONDO: <span data-global-match-total>…</span></div><div class="counterReveal">GOL FATTI: <span data-global-goals-for>…</span> · GOL SUBITI: <span data-global-goals-against>…</span></div></div>
+    <div class="bootVersion">v2.56.462</div><div class="globalMatchCounter" aria-live="polite"><div class="counterReveal">PARTITE GIOCATE NEL MONDO: <span data-global-match-total>…</span></div><div class="counterReveal">GOL FATTI: <span data-global-goals-for>…</span> · GOL SUBITI: <span data-global-goals-against>…</span></div></div>
     <div class="bootControls bootControlPanels">
       <div class="bootComputerHelp bootControlPanel">
         <div class="bootControlLabel">COMPUTER</div>
@@ -4848,7 +4855,29 @@ function isSmartphoneControls412(){
  const tablet=/iPad|Tablet/i.test(ua)||(/Macintosh/i.test(ua)&&navigator.maxTouchPoints>1)||(/Android/i.test(ua)&&!/Mobile/i.test(ua));
  return !tablet&&(/iPhone|iPod|Android.*Mobile/i.test(ua)||(window.matchMedia('(pointer: coarse)').matches&&Math.min(screen.width,screen.height)<600));
 }
+function isTouchLargeMatchControls(){
+ const ua=navigator.userAgent;
+ return /iPhone|iPod|iPad|Android|Tablet/i.test(ua)||(/Macintosh/i.test(ua)&&navigator.maxTouchPoints>1)||window.matchMedia('(pointer: coarse)').matches;
+}
+let phoneControlsGeometryKey='';
+function fitSmartphoneControls(){
+ const touch=isTouchLargeMatchControls()&&!trainingMode;document.body.classList.toggle('touchLargeMatchControls',touch);
+ const phone=touch&&!document.body.classList.contains('gameMenuOpen');
+ if(!phone){document.body.classList.remove('phoneSideSpace');return;}
+ const r=C.getBoundingClientRect(),vw=window.innerWidth,vh=window.innerHeight;
+ const key=[vw,vh,Math.round(r.left),Math.round(r.right),Math.round(r.bottom)].join(':');
+ if(key===phoneControlsGeometryKey)return;phoneControlsGeometryKey=key;
+ const side=Math.min(r.left,vw-r.right)-24,landscape=vw>vh&&side>=110;
+ document.body.classList.toggle('phoneSideSpace',landscape);
+ const space=landscape?side:(vw-36)/2;
+ const availableHeight=landscape?vh-32:Math.max(150,vh-r.bottom-24);
+ const joy=Math.floor(Math.min(space,availableHeight,270));
+ const curve=Math.floor(Math.min((space-8)/2,(availableHeight-8)/2.16,124));
+ const action=Math.floor(curve*1.16);
+ document.body.style.setProperty('--phone-joy',joy+'px');document.body.style.setProperty('--phone-curve',curve+'px');document.body.style.setProperty('--phone-action',action+'px');
+}
 function draw(){
+ fitSmartphoneControls();
  document.body.classList.toggle('smartphoneMatch412',isSmartphoneControls412()&&!trainingMode);
  document.body.classList.toggle('futsalBeach',futsalMode);
  positionSkipEntranceButton();
