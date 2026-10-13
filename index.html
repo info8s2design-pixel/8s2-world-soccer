@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>8S2 World Soccer v2.56.512 Megacampione</title>
+<title>8S2 World Soccer v2.56.513 Megacampione</title>
 <style>
 html,body{position:relative;margin:0;background:#111;color:#eee;font-family:Arial,sans-serif}
 .wrap{position:relative;max-width:560px;margin:18px auto;padding:0 12px}
@@ -1268,7 +1268,7 @@ body #careerPanel.careerCreating .careerCard,body #careerPanel.careerHomeFit .ca
     <img class="bootLogo" src="./asset488-8b683502551b.webp" alt="8S2 World Soccer">
     <div class="bootBall"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="100%" height="100%" aria-hidden="true"><circle cx="16" cy="16" r="14" fill="#fff" stroke="#000" stroke-width="1.5"/><g fill="#000"><path d="M16 10l6 4-2 7h-8l-2-7zM10 3l1 5-6 4-3-2zM22 3l8 7-3 2-6-4zM3 21l5-1 4 6-2 3zM29 21l-7-1-4 6 4 3z"/></g><g fill="none" stroke="#000" stroke-width=".8"><path d="M11 8l5 2 5-2M5 12l5 2M27 12l-5 2M8 20l4 1M22 20l-2 1M12 26h6"/></g></svg></div>
     <div class="bootTitle">8s2 World Soccer</div>
-    <div class="bootVersion">v2.56.512</div><div class="globalMatchCounter" aria-live="polite"><div class="counterReveal">PARTITE GIOCATE NEL MONDO: <span data-global-match-total>…</span></div><div class="counterReveal">GOL FATTI: <span data-global-goals-for>…</span> · GOL SUBITI: <span data-global-goals-against>…</span></div></div>
+    <div class="bootVersion">v2.56.513</div><div class="globalMatchCounter" aria-live="polite"><div class="counterReveal">PARTITE GIOCATE NEL MONDO: <span data-global-match-total>…</span></div><div class="counterReveal">GOL FATTI: <span data-global-goals-for>…</span> · GOL SUBITI: <span data-global-goals-against>…</span></div></div>
     <div class="bootControls bootControlPanels"><div class="bootTapBall" aria-hidden="true"><span class="bootTapBallRing"></span><div class="bootTapBallCrop"><img src="./asset488-8722caeb8f3b.webp" alt=""></div></div>
       <div class="bootComputerHelp bootControlPanel">
         <div class="bootControlLabel">COMPUTER</div>
@@ -1323,7 +1323,7 @@ body #careerPanel.careerCreating .careerCard,body #careerPanel.careerHomeFit .ca
  </div>
  <div class="setupChoice">
   <button id="challenge8s2" type="button">Sfida Steve8s2</button><button id="directTraining" type="button">Allenamento</button><label for="gameMode">MODALITÀ</label>
-  <select id="gameMode" aria-label="Scegli la modalità di gioco"><option value="" selected hidden>Scegli la modalità di gioco</option><option value="playercareer">Carriera Giocatore — TEST</option><option id="beachCupModeOption" value="futsal" disabled>SUDAMERICA BEACH CUP — DA SBLOCCARE</option><option id="serieAModeOption" value="championships" disabled>CAMPIONATI — DA SBLOCCARE</option><option id="championsModeOption" value="champions" disabled>Champions League — da sbloccare</option><option id="worldCupModeOption" value="worldcup" disabled>WORLD CUP — DA SBLOCCARE</option><option id="greatsModeOption" value="greats" disabled>SFIDA LE GRANDI — DA SBLOCCARE</option></select>
+  <select id="gameMode" aria-label="Scegli la modalità di gioco"><option value="" selected hidden>Scegli la modalità di gioco</option><option id="careerModeOption" value="playercareer" disabled>Carriera Giocatore — da sbloccare</option><option id="beachCupModeOption" value="futsal" disabled>SUDAMERICA BEACH CUP — DA SBLOCCARE</option><option id="serieAModeOption" value="championships" disabled>CAMPIONATI — DA SBLOCCARE</option><option id="championsModeOption" value="champions" disabled>Champions League — da sbloccare</option><option id="worldCupModeOption" value="worldcup" disabled>WORLD CUP — DA SBLOCCARE</option><option id="greatsModeOption" value="greats" disabled>SFIDA LE GRANDI — DA SBLOCCARE</option></select>
  </div>
 </div>
 <div id="trainingHint" hidden style="font-size:12px;margin:8px">Campo libero con compagni e portiere. Nessun limite di tempo.</div><button id="teamStart" type="button" disabled>INIZIA PARTITA</button><button id="greatsInitial" type="button" hidden>Sfida le grandi</button>
@@ -1557,7 +1557,7 @@ function careerSave(){if(career)boardTournamentId(career);try{localStorage.setIt
 
 function careerRating(g){const role=careerRoleCode();const value=role==='def'?6+g.goals*.7+g.assists*.5+Math.min(.6,g.passes*.06)+Math.min(1.8,g.recoveries*.45):role==='mid'?6+g.goals*.7+g.assists*.9+Math.min(1.2,g.passes*.1)+Math.min(1,g.recoveries*.25)+Math.min(.3,g.shots*.05):6+g.goals*.9+g.assists*.7+Math.min(.6,g.passes*.05)+Math.min(.6,g.recoveries*.15)+Math.min(.4,g.shots*.08);return Math.max(1,Math.min(10,value)-(g.ownGoals||0)*1.5);}
 function careerNew(){const name=document.getElementById('careerName').value.trim().slice(0,18);if(!name){document.getElementById('careerNote').textContent='Inserisci il nome del calciatore.';return;}career={version:1,name,number:Math.max(1,Math.min(99,Math.round(Number(document.getElementById('careerNumber').value)||9))),appearance:Math.max(0,Math.min(4,Number(document.getElementById('careerAppearance').value)||0)),role:['def','mid','att'].includes(document.getElementById('careerRole').value)?document.getElementById('careerRole').value:'att',xp:0,results:[],attributes:{speed:50,shot:50,pass:50},league:document.getElementById('careerLeague').value};careerNewSeason();careerSave();careerDashboard();}
-function careerOpen(){document.body.classList.remove('careerStatsBar');careerTab='home';careerLoad();careerActive=false;document.getElementById('teamSetup').style.display='none';document.getElementById('playAgain').style.display='none';stopStadiumAmbience();stopVictoryAudio();startMenuMusic();const panel=document.getElementById('careerPanel');panel.style.backgroundImage=getComputedStyle(document.getElementById('teamSetup')).backgroundImage;panel.hidden=false;careerDashboard();startMenuMusic();}
+function careerOpen(){if(!greatsUnlocked)return;document.body.classList.remove('careerStatsBar');careerTab='home';careerLoad();careerActive=false;document.getElementById('teamSetup').style.display='none';document.getElementById('playAgain').style.display='none';stopStadiumAmbience();stopVictoryAudio();startMenuMusic();const panel=document.getElementById('careerPanel');panel.style.backgroundImage=getComputedStyle(document.getElementById('teamSetup')).backgroundImage;panel.hidden=false;careerDashboard();startMenuMusic();}
 let careerTab='home',careerViewDay=0;
 function careerSeasonAssessment(){const n=Math.max(1,career.results.length),mean=k=>career.results.reduce((sum,r)=>sum+(r[k]||0),0)/n,role=careerRoleCode(),rating=mean('rating'),impact=role==='def'?mean('recoveries')/4:role==='mid'?(mean('assists')*.7+mean('passes')/12):(mean('goals')*.7+mean('assists')*.3),attributes=(career.attributes.speed+career.attributes.shot+career.attributes.pass)/3;return {rating,quality:rating+Math.min(.3,impact*.15),role,attributes};}
 function careerMakeOffers(){
@@ -1602,7 +1602,7 @@ function careerDashboard(){
  if(pending){careerNormalizeAttributes();document.getElementById('careerCreate').hidden=true;document.getElementById('careerPlay').hidden=true;document.getElementById('careerNewSeason').hidden=true;document.getElementById('careerReset').hidden=false;add('h3',career.name+' · Scegli il campionato');add('p','Mantieni il tuo calciatore e i suoi progressi. Le partite della precedente prova rimangono archiviate; il nuovo campionato parte dalla prima giornata.');return;}
  if(career){careerNormalizeAttributes();careerEnsureSeason();}
  const total=career?career.days.length:0,finished=career&&career.results.length>=total;if(finished)careerMakeOffers();document.getElementById('careerNewSeason').textContent='RESTA NELLA TUA SQUADRA';
- document.getElementById('careerCreate').hidden=!!career;document.getElementById('careerPlay').hidden=!career||finished||careerTab!=='home';document.getElementById('careerNewSeason').hidden=!finished||careerTab!=='home';document.getElementById('careerReset').hidden=!career||careerTab!=='home';document.getElementById('careerNote').textContent=careerSaveFailed?'Salvataggio non disponibile: mantieni aperta questa pagina.':'Salvataggio automatico su questo dispositivo. Versione di test.';
+ document.getElementById('careerCreate').hidden=!!career;document.getElementById('careerPlay').hidden=!career||finished||careerTab!=='home';document.getElementById('careerNewSeason').hidden=!finished||careerTab!=='home';document.getElementById('careerReset').hidden=!career||careerTab!=='home';document.getElementById('careerNote').textContent=careerSaveFailed?'Salvataggio non disponibile: mantieni aperta questa pagina.':'Salvataggio automatico su questo dispositivo.';
  if(!career){add('p','Scegli il campionato e inizia dal basso, cresci e migliora e fatti notare!');return;}
  const l=careerLeague(),club=l.teams.find(t=>t[0]===career.club),label=code=>l.teams.find(t=>t[0]===code)[1];const summary=add('p',career.name+' · N° '+career.number+' · '+careerRoleLabel(careerRoleCode())+' · '+club[1]+' · '+l.name+' · Stagione '+career.seasonNumber);summary.className='careerSummaryLine';
  if(careerTab==='home'){
@@ -1624,7 +1624,7 @@ function careerDashboard(){
  document.getElementById('careerPlay').textContent='GIOCA PROSSIMA PARTITA';body.scrollTop=0;
 }
 
-function careerLaunch(){if(!career||!careerLeagues().some(l=>l.id===career.league))return;careerEnsureSeason();if(career.results.length>=career.days.length)return;careerActive=true;careerGame={goals:0,assists:0,shots:0,passes:0,recoveries:0,lastPass:null,lastKick:null,recorded:false};careerCallUntil=careerCallCooldown=careerRestartWait=0;
+function careerLaunch(){if(!greatsUnlocked||!career||!careerLeagues().some(l=>l.id===career.league))return;careerEnsureSeason();if(career.results.length>=career.days.length)return;careerActive=true;careerGame={goals:0,assists:0,shots:0,passes:0,recoveries:0,lastPass:null,lastKick:null,recorded:false};careerCallUntil=careerCallCooldown=careerRestartWait=0;
  trainingMode=futsalMode=campaignActive=campaignPending=testCampaign=wcActive=saActive=clActive=bcActive=bcPending=steveBeachChallenge=trophyPreview=false;directGameMode=null;clMusicStop();bcGolden=bcGoldenPending=false;saVictoryScreen=false;
  const opponent=careerOpponent(career.results.length),club=careerLeague().teams.find(t=>t[0]===career.club);userTeam=club[0];cpuTeam=opponent[0];userKit=careerKit(club);cpuKit=careerKit(opponent);if(userKit.shirt===cpuKit.shirt)cpuKit={shirt:userKit.shirt==='#fff'?'#252c45':'#fff',shorts:opponent[3],socks:'#fff'};difficulty=document.getElementById('difficultySelect').value||'normal';halfDuration=60;
  for(const id of ['careerPanel','formationDialog','beachCupPanel','beachHubPanel','worldCupPanel','serieAPanel'])document.getElementById(id).hidden=true;
@@ -6365,7 +6365,7 @@ function updateModeDescription(){
  const mode=selectedGameMode();document.getElementById('teamStart').hidden=['','match','training','beachchallenge'].includes(mode);const hint=document.getElementById('trainingHint');hint.textContent=descriptions[selectedGameMode()]||'';hint.hidden=!hint.textContent;
 }
 function validateTeamCode(){
- if(selectedGameMode()==='playercareer'){teamStartEl.disabled=false;teamErrorEl.textContent='';return true;}
+ if(selectedGameMode()==='playercareer'){teamStartEl.disabled=!greatsUnlocked;teamErrorEl.textContent=greatsUnlocked?'':'Vinci contro Steve8s2 per sbloccare';return greatsUnlocked;}
  updateModeDescription();
  if(selectedGameMode()==='futsal'&&beachSubmode==='cup'&&bcTournament){teamStartEl.disabled=false;teamErrorEl.textContent='';return true;}
  syncMatchDurationAvailability();
@@ -6387,7 +6387,7 @@ teamCodeEl.addEventListener('keydown',e=>{
  if(e.key==='Enter' && validateTeamCode()) teamStartEl.click();
 });
 teamStartEl.addEventListener('click',()=>{
- if(selectedGameMode()==='playercareer'){careerOpen();return;}
+ if(selectedGameMode()==='playercareer'){if(!greatsUnlocked)return;careerOpen();return;}
  careerActive=false;
  if(selectedGameMode()==='futsal'){if(!greatsUnlocked)return;beachSubmode='cup';}
  if(selectedGameMode()==='futsal'&&beachSubmode==='cup'&&bcTournament){bcDashboard();return;}
@@ -6630,7 +6630,7 @@ const GREAT_TEAMS=[
 ];
 let greatsReturn='kit';
 function setSteveOpponent(){campaignActive=false;cpuTeam='8S2';cpuKit={shirt:'#171717',shorts:'#171717',socks:'#171717'};}
-function refreshGreatsAccess(){const beachOption=document.getElementById('beachCupModeOption');beachOption.disabled=!greatsUnlocked;beachOption.textContent=greatsUnlocked?'SUDAMERICA BEACH CUP':'SUDAMERICA BEACH CUP — DA SBLOCCARE';const champions=document.getElementById('championsModeOption');champions.disabled=!greatsUnlocked;champions.textContent=greatsUnlocked?'Champions League':'Champions League — da sbloccare';document.getElementById('greatsInitial').hidden=true;const option=document.getElementById('greatsModeOption');option.disabled=!greatsUnlocked;option.textContent=greatsUnlocked?'SFIDA LE GRANDI':'SFIDA LE GRANDI — DA SBLOCCARE';const worldCup=document.getElementById('worldCupModeOption');worldCup.disabled=!greatsUnlocked;worldCup.textContent=greatsUnlocked?'WORLD CUP':'WORLD CUP — DA SBLOCCARE';const serieA=document.getElementById('serieAModeOption');serieA.disabled=!greatsUnlocked;serieA.textContent=greatsUnlocked?'CAMPIONATI':'CAMPIONATI — DA SBLOCCARE';}
+function refreshGreatsAccess(){const careerOption=document.getElementById('careerModeOption');careerOption.disabled=!greatsUnlocked;careerOption.textContent=greatsUnlocked?'Carriera Giocatore':'Carriera Giocatore — da sbloccare';const beachOption=document.getElementById('beachCupModeOption');beachOption.disabled=!greatsUnlocked;beachOption.textContent=greatsUnlocked?'SUDAMERICA BEACH CUP':'SUDAMERICA BEACH CUP — DA SBLOCCARE';const champions=document.getElementById('championsModeOption');champions.disabled=!greatsUnlocked;champions.textContent=greatsUnlocked?'Champions League':'Champions League — da sbloccare';document.getElementById('greatsInitial').hidden=true;const option=document.getElementById('greatsModeOption');option.disabled=!greatsUnlocked;option.textContent=greatsUnlocked?'SFIDA LE GRANDI':'SFIDA LE GRANDI — DA SBLOCCARE';const worldCup=document.getElementById('worldCupModeOption');worldCup.disabled=!greatsUnlocked;worldCup.textContent=greatsUnlocked?'WORLD CUP':'WORLD CUP — DA SBLOCCARE';const serieA=document.getElementById('serieAModeOption');serieA.disabled=!greatsUnlocked;serieA.textContent=greatsUnlocked?'CAMPIONATI':'CAMPIONATI — DA SBLOCCARE';}
 function configurePostMatchMenu(){
  if(bcActive){const card=document.querySelector('#playAgain .againCard');card.querySelector('h2').textContent=bcTournament.status==='won'?'CAMPIONI DELLA COPA BEACH!':bcTournament.status==='eliminated'?'ELIMINATI':'TURNO SUPERATO!';card.querySelector('p').textContent='Consulta risultati e prossimo incontro nel tabellone.';againYesEl.textContent='TABELLONE';againYesEl.hidden=false;againNoEl.hidden=true;for(const id of ['challengeGreats','postWorldCup','postExit'])document.getElementById(id).hidden=true;return;}
  const card=document.querySelector('#playAgain .againCard');

@@ -1,4 +1,4 @@
-const CACHE='8s2-mobile-v256512';
+const CACHE='8s2-mobile-v256513';
 self.addEventListener('install',event=>{event.waitUntil(caches.open(CACHE).then(cache=>cache.addAll(['./','./index.html','./manifest.webmanifest','./app-icon-180.png','./app-icon-32.png'])).then(()=>self.skipWaiting()));});
 self.addEventListener('activate',event=>event.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(k=>k.startsWith('8s2-mobile-')&&k!==CACHE).map(k=>caches.delete(k)))).then(()=>self.clients.claim())));
 self.addEventListener('fetch',event=>{const req=event.request;if(req.method!=='GET'||new URL(req.url).origin!==self.location.origin)return;event.respondWith(caches.open(CACHE).then(async cache=>{if(req.mode==='navigate'){try{const response=await fetch(req);if(response.ok)cache.put(req,response.clone());return response;}catch(e){return await cache.match(req)||await cache.match('./index.html');}}const saved=await cache.match(req);if(saved)return saved;const response=await fetch(req);if(response.ok&&response.status===200)cache.put(req,response.clone());return response;}));});
