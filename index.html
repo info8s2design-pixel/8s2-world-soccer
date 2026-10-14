@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>8S2 World Soccer v2.56.514 Megacampione</title>
+<title>8S2 World Soccer v2.56.517 Megacampione</title>
 <style>
 html,body{position:relative;margin:0;background:#111;color:#eee;font-family:Arial,sans-serif}
 .wrap{position:relative;max-width:560px;margin:18px auto;padding:0 12px}
@@ -1268,7 +1268,7 @@ body #careerPanel.careerCreating .careerCard,body #careerPanel.careerHomeFit .ca
     <img class="bootLogo" src="./asset488-8b683502551b.webp" alt="8S2 World Soccer">
     <div class="bootBall"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="100%" height="100%" aria-hidden="true"><circle cx="16" cy="16" r="14" fill="#fff" stroke="#000" stroke-width="1.5"/><g fill="#000"><path d="M16 10l6 4-2 7h-8l-2-7zM10 3l1 5-6 4-3-2zM22 3l8 7-3 2-6-4zM3 21l5-1 4 6-2 3zM29 21l-7-1-4 6 4 3z"/></g><g fill="none" stroke="#000" stroke-width=".8"><path d="M11 8l5 2 5-2M5 12l5 2M27 12l-5 2M8 20l4 1M22 20l-2 1M12 26h6"/></g></svg></div>
     <div class="bootTitle">8s2 World Soccer</div>
-    <div class="bootVersion">v2.56.514</div><div class="globalMatchCounter" aria-live="polite"><div class="counterReveal">PARTITE GIOCATE NEL MONDO: <span data-global-match-total>…</span></div><div class="counterReveal">GOL FATTI: <span data-global-goals-for>…</span> · GOL SUBITI: <span data-global-goals-against>…</span></div></div>
+    <div class="bootVersion">v2.56.517</div><div class="globalMatchCounter" aria-live="polite"><div class="counterReveal">PARTITE GIOCATE NEL MONDO: <span data-global-match-total>…</span></div><div class="counterReveal">GOL FATTI: <span data-global-goals-for>…</span> · GOL SUBITI: <span data-global-goals-against>…</span></div></div>
     <div class="bootControls bootControlPanels"><div class="bootTapBall" aria-hidden="true"><span class="bootTapBallRing"></span><div class="bootTapBallCrop"><img src="./asset488-8722caeb8f3b.webp" alt=""></div></div>
       <div class="bootComputerHelp bootControlPanel">
         <div class="bootControlLabel">COMPUTER</div>
@@ -1557,7 +1557,8 @@ function careerSave(){if(career)boardTournamentId(career);try{localStorage.setIt
 
 function careerRating(g){const role=careerRoleCode();const value=role==='def'?6+g.goals*.7+g.assists*.5+Math.min(.6,g.passes*.06)+Math.min(1.8,g.recoveries*.45):role==='mid'?6+g.goals*.7+g.assists*.9+Math.min(1.2,g.passes*.1)+Math.min(1,g.recoveries*.25)+Math.min(.3,g.shots*.05):6+g.goals*.9+g.assists*.7+Math.min(.6,g.passes*.05)+Math.min(.6,g.recoveries*.15)+Math.min(.4,g.shots*.08);return Math.max(1,Math.min(10,value)-(g.ownGoals||0)*1.5);}
 function careerNew(){const name=document.getElementById('careerName').value.trim().slice(0,18);if(!name){document.getElementById('careerNote').textContent='Inserisci il nome del calciatore.';return;}career={version:1,name,number:Math.max(1,Math.min(99,Math.round(Number(document.getElementById('careerNumber').value)||9))),appearance:Math.max(0,Math.min(4,Number(document.getElementById('careerAppearance').value)||0)),role:['def','mid','att'].includes(document.getElementById('careerRole').value)?document.getElementById('careerRole').value:'att',xp:0,results:[],attributes:{speed:50,shot:50,pass:50},league:document.getElementById('careerLeague').value};careerNewSeason();careerSave();careerDashboard();}
-function careerOpen(){if(!greatsUnlocked)return;document.body.classList.remove('careerStatsBar');careerTab='home';careerLoad();careerActive=false;document.getElementById('teamSetup').style.display='none';document.getElementById('playAgain').style.display='none';stopStadiumAmbience();stopVictoryAudio();startMenuMusic();const panel=document.getElementById('careerPanel');panel.style.backgroundImage=getComputedStyle(document.getElementById('teamSetup')).backgroundImage;panel.hidden=false;careerDashboard();startMenuMusic();}
+function careerOpen(){careerChampionCelebration=false;if(!greatsUnlocked)return;document.body.classList.remove('careerStatsBar');careerTab='home';careerLoad();careerActive=false;document.getElementById('teamSetup').style.display='none';document.getElementById('playAgain').style.display='none';stopStadiumAmbience();stopVictoryAudio();startMenuMusic();const panel=document.getElementById('careerPanel');panel.style.backgroundImage=getComputedStyle(document.getElementById('teamSetup')).backgroundImage;panel.hidden=false;careerDashboard();startMenuMusic();}
+let careerChampionCelebration=false;
 let careerTab='home',careerViewDay=0;
 function careerSeasonAssessment(){const n=Math.max(1,career.results.length),mean=k=>career.results.reduce((sum,r)=>sum+(r[k]||0),0)/n,role=careerRoleCode(),rating=mean('rating'),impact=role==='def'?mean('recoveries')/4:role==='mid'?(mean('assists')*.7+mean('passes')/12):(mean('goals')*.7+mean('assists')*.3),attributes=(career.attributes.speed+career.attributes.shot+career.attributes.pass)/3;return {rating,quality:rating+Math.min(.3,impact*.15),role,attributes};}
 function careerMakeOffers(){
@@ -1624,7 +1625,7 @@ function careerDashboard(){
  document.getElementById('careerPlay').textContent='GIOCA PROSSIMA PARTITA';body.scrollTop=0;
 }
 
-function careerLaunch(){if(!greatsUnlocked||!career||!careerLeagues().some(l=>l.id===career.league))return;careerEnsureSeason();if(career.results.length>=career.days.length)return;careerActive=true;careerGame={goals:0,assists:0,shots:0,passes:0,recoveries:0,lastPass:null,lastKick:null,recorded:false};careerCallUntil=careerCallCooldown=careerRestartWait=0;
+function careerLaunch(){careerChampionCelebration=false;if(!greatsUnlocked||!career||!careerLeagues().some(l=>l.id===career.league))return;careerEnsureSeason();if(career.results.length>=career.days.length)return;careerActive=true;careerGame={goals:0,assists:0,shots:0,passes:0,recoveries:0,lastPass:null,lastKick:null,recorded:false};careerCallUntil=careerCallCooldown=careerRestartWait=0;
  trainingMode=futsalMode=campaignActive=campaignPending=testCampaign=wcActive=saActive=clActive=bcActive=bcPending=steveBeachChallenge=trophyPreview=false;directGameMode=null;clMusicStop();bcGolden=bcGoldenPending=false;saVictoryScreen=false;
  const opponent=careerOpponent(career.results.length),club=careerLeague().teams.find(t=>t[0]===career.club);userTeam=club[0];cpuTeam=opponent[0];userKit=careerKit(club);cpuKit=careerKit(opponent);if(userKit.shirt===cpuKit.shirt)cpuKit={shirt:userKit.shirt==='#fff'?'#252c45':'#fff',shorts:opponent[3],socks:'#fff'};difficulty=document.getElementById('difficultySelect').value||'normal';halfDuration=60;
  for(const id of ['careerPanel','formationDialog','beachCupPanel','beachHubPanel','worldCupPanel','serieAPanel'])document.getElementById(id).hidden=true;
@@ -2629,7 +2630,7 @@ function updatePenalty(dt){
  if(ball.x<120||ball.x>400||ball.y<0){resolvePenalty(false,'miss')}
 }
 function startPostMatch(){
- if(careerActive){matchStarted=false;possession=null;ball.vx=ball.vy=0;charging=false;pressStart=0;postWinner=scoreH>scoreA?'h':scoreH<scoreA?'a':null;countCompletedGlobalMatch();recordPersonalResult();careerFinish();if(!whistleFT){refereeTripleWhistle();whistleFT=true;}state='postmatch';postMatchTimer=0;postMatchPhase='draw';playAgainShown=true;MSG.textContent='FINE PARTITA — '+scoreH+' - '+scoreA;return;}
+ if(careerActive){matchStarted=false;possession=null;ball.vx=ball.vy=0;charging=false;pressStart=0;postWinner=scoreH>scoreA?'h':scoreH<scoreA?'a':null;countCompletedGlobalMatch();recordPersonalResult();careerFinish();careerChampionCelebration=career.results.length===career.days.length&&careerRows()[0].code===career.club;for(const p of [...home,...away]){p.slide=0;p.dive=0;p.moving=false;p.celebrating=false;}if(postWinner||careerChampionCelebration)setTimeout(()=>{if(state==='postmatch'&&careerActive)playVictoryAudio();},1250);if(!whistleFT){refereeTripleWhistle();whistleFT=true;}state='postmatch';postMatchTimer=0;postMatchPhase=postWinner||careerChampionCelebration?'move':'draw';playAgainShown=true;MSG.textContent='FINE PARTITA — '+scoreH+' - '+scoreA;return;}
 
  if((bcActive||steveBeachChallenge)&&!bcGolden&&scoreH===scoreA){bcGoldenPending=true;matchStarted=false;possession=null;ball.vx=ball.vy=0;resetTouchJoystick();cancelTouchAction();if(!whistleFT){refereeTripleWhistle();whistleFT=true;}beginBeachHalftime();return;}
  if(clNeedsTieBreak()){
@@ -2673,7 +2674,7 @@ function postMatchTarget(p,i,winner){
  }
 }
 function updatePostMatch(dt){
- if(careerActive){postMatchTimer+=dt;if(postMatchTimer>3)careerOpen();return;}
+ if(careerActive&&postMatchTimer+dt>=(careerChampionCelebration?22:10)){careerOpen();return;}
  if(saVictoryScreen){if(postMatchTimer>=22){saVictoryScreen=false;saDashboard();}return;}
 
 
@@ -2688,17 +2689,18 @@ function updatePostMatch(dt){
    const pa=document.getElementById('playAgain');
    if(pa){configurePostMatchMenu();pa.style.display='flex';}
  }
- if(!postWinner){
+ const celebrationWinner=careerActive&&careerChampionCelebration?'h':postWinner;
+ if(!celebrationWinner){
    for(const p of [...home,...away])p.moving=false;
    return;
  }
 
- const winners=postWinner==='h'?home:away;
- const losers=postWinner==='h'?away:home;
+ const winners=celebrationWinner==='h'?home:away;
+ const losers=celebrationWinner==='h'?away:home;
  let settled=true;
 
  winners.forEach((p,i)=>{
-   const t=postMatchTarget(p,i,postWinner),dx=t.x-p.x,dy=t.y-p.y,d=Math.hypot(dx,dy);
+   const t=postMatchTarget(p,i,celebrationWinner),dx=t.x-p.x,dy=t.y-p.y,d=Math.hypot(dx,dy);
    p.celebrating=true;
    if(d>18){
      settled=false;p.moving=true;
@@ -2714,7 +2716,7 @@ function updatePostMatch(dt){
  });
 
  losers.forEach((p,i)=>{
-   const t=postMatchTarget(p,i,postWinner),dx=t.x-p.x,dy=t.y-p.y,d=Math.hypot(dx,dy);
+   const t=postMatchTarget(p,i,celebrationWinner),dx=t.x-p.x,dy=t.y-p.y,d=Math.hypot(dx,dy);
    p.celebrating=false;p.slide=0;
    if(p.keeper){p.dive=0;p.diveX=0;p.diveY=0;}
    if(d>3){
@@ -2915,7 +2917,7 @@ function capture(p){
  if(p===keeperRecatchBlocked)return;
  if(keeperRecatchBlocked && p!==keeperRecatchBlocked)keeperRecatchBlocked=null;
  if(p===restartFreezePlayer){restartFreezeTimer=0;restartFreezePlayer=null;}
- possession=p;ball.vx=ball.vy=0;ball.z=ball.vz=0;ball.motion='loose';ball.lastTeam=p.team;if(throwInBlocked&&p!==throwInBlocked)throwInBlocked=null;if(p.keeper){
+ possession=p;if(p.keeper)p.regroupHold=2;ball.vx=ball.vy=0;ball.z=ball.vz=0;ball.motion='loose';ball.lastTeam=p.team;if(throwInBlocked&&p!==throwInBlocked)throwInBlocked=null;if(p.keeper){
  const opp=p.team==='h'?'a':'h';
  if(lastShotTeam===opp){stats[p.team].saves++;stats[opp].on++;lastShotTeam=null;crowdReaction('save')}
  p.dive=0;p.diveX=0;p.diveY=0;p.moving=false;p.hold=.55;keeperTimer=5;sfxKeeper()
@@ -3157,6 +3159,17 @@ function keeperPass(k){
  if(best){
    keeperRecatchBlocked=k;
    send(k,best,215);
+ }
+}
+function regroupDuringKeeperHold(dt){
+ for(const team of [home,away]){
+  const players=team.filter(p=>!p.keeper),ownTop=team===home?currentHalf===2:currentHalf===1;
+  players.forEach((p,i)=>{
+   p.slide=0;p.slideRecovery=0;p.dive=0;
+   const x=Math.max(BL+20,Math.min(BR-20,p.hx==null?BL+(BR-BL)*(i+1)/(players.length+1):p.hx));
+   const y=MID+(ownTop?-1:1)*(35+(i%3)*22);
+   moveTo(p,x,y,p.speed*.9,dt);
+  });
  }
 }
 function cpuKeeperDistribution(dt){
@@ -3741,7 +3754,7 @@ function clampPlayersToPitch(){
   p.x=Math.max(30,Math.min(W-30,p.x));p.y=Math.max(30,Math.min(H-30,p.y));
  }
 }
-function update(dt){if(inMatchFormationPicker||!document.getElementById('careerPanel').hidden)return;try{if(careerActive){careerEnsurePlayer();careerTeammates(dt);}updateSimulation(dt);}finally{if(careerActive)selected=careerPlayer;clampPlayersToPitch();}}
+function update(dt){if(inMatchFormationPicker||!document.getElementById('careerPanel').hidden)return;try{if(careerActive){careerEnsurePlayer();if(!(possession&&possession.keeper))careerTeammates(dt);}updateSimulation(dt);}finally{if(careerActive)selected=careerPlayer;clampPlayersToPitch();}}
 function changeMatchFormation(){
  closeMatchTools();resetTouchJoystick();cancelTouchAction();for(const k of Object.keys(K))delete K[k];
  inMatchFormationPicker=true;
@@ -3875,12 +3888,15 @@ function updateSimulation(dt){
  }
  if(state==='halftime_wait')return;
 
- // Exclusive CPU goalkeeper possession state.
- // Nothing else may move/control/re-capture the keeper until he releases the ball.
- if(state==='play'&&possession===agk){
-   for(const p of [...home,...away])p.moving=false;
-   if(careerActive)careerMoveDuringKeeperHold(dt);
-   cpuKeeperDistribution(dt);
+ // Both teams regroup while the keeper holds the ball, including the controlled player.
+ if(state==='play'&&possession&&possession.keeper){
+   const keeper=possession;
+   regroupDuringKeeperHold(dt);
+   if(keeper===agk||careerActive){
+     keeper.regroupHold=Math.max(0,(keeper.regroupHold||0)-dt);
+     ball.x=keeper.x;ball.y=keeper.y+((keeper.team==='h'?currentHalf===2:currentHalf===1)?8:-8);ball.vx=ball.vy=0;
+     if(keeper.regroupHold===0){if(keeper===agk)cpuKeeperDistribution(dt);else keeperPass(keeper);}
+   }else{const direction=movementVector();if(direction.x||direction.y)setAim(direction.x,direction.y);}
    autoSelect();
    return;
  }
@@ -5205,13 +5221,13 @@ function drawPixelWorldCup(){
  pixel(-48,120,96,16,'#175c42');pixel(-48,120,96,4,'#f4d46f');pixel(-56,136,112,8,'#ba851c');
  pixel(-32,124,8,8,'#4b9876');pixel(24,124,8,8,'#0b3b2a');
 }
-function drawLeagueVictoryShield(){
+function drawLeagueVictoryShield(league=saLeague){
  const shape=()=>{G.beginPath();G.moveTo(-83,-102);G.lineTo(83,-102);G.lineTo(83,3);G.quadraticCurveTo(83,74,0,118);G.quadraticCurveTo(-83,74,-83,3);G.closePath();};
  G.save();shape();G.clip();G.fillStyle='#fff';G.fillRect(-90,-110,180,240);
- if(saLeague==='premier'){G.fillStyle='#ce2435';G.fillRect(-17,-110,34,240);G.fillRect(-90,-25,180,34);}
- else if(saLeague==='bundesliga'){for(const [y,color] of [[-110,'#111'],[-30,'#dd2435'],[50,'#ffce00']]){G.fillStyle=color;G.fillRect(-90,y,180,80);}}
- else if(saLeague==='laliga'){G.fillStyle='#aa151b';G.fillRect(-90,-110,180,240);G.fillStyle='#f1bf00';G.fillRect(-90,-50,180,120);G.fillStyle='#aa151b';G.fillRect(-48,-12,22,34);G.fillStyle='#f1bf00';G.fillRect(-46,-18,18,8);}
- else{G.fillStyle=saLeague==='ligue1'?'#002395':'#009246';G.fillRect(-90,-110,60,240);G.fillStyle=saLeague==='ligue1'?'#ed2939':'#ce2b37';G.fillRect(30,-110,60,240);}
+ if(league==='premier'){G.fillStyle='#ce2435';G.fillRect(-17,-110,34,240);G.fillRect(-90,-25,180,34);}
+ else if(league==='bundesliga'){for(const [y,color] of [[-110,'#111'],[-30,'#dd2435'],[50,'#ffce00']]){G.fillStyle=color;G.fillRect(-90,y,180,80);}}
+ else if(league==='laliga'){G.fillStyle='#aa151b';G.fillRect(-90,-110,180,240);G.fillStyle='#f1bf00';G.fillRect(-90,-50,180,120);G.fillStyle='#aa151b';G.fillRect(-48,-12,22,34);G.fillStyle='#f1bf00';G.fillRect(-46,-18,18,8);}
+ else{G.fillStyle=league==='ligue1'?'#002395':'#009246';G.fillRect(-90,-110,60,240);G.fillStyle=league==='ligue1'?'#ed2939':'#ce2b37';G.fillRect(30,-110,60,240);}
  G.restore();shape();G.strokeStyle='#e5bc55';G.lineWidth=8;G.stroke();
 }
 function isSteveVictory(){
@@ -5244,16 +5260,16 @@ function drawSteveVictory(){
  G.restore();
 }
 function drawMegachampion(){
- const t=postMatchTimer,worldCupVictory=isWorldCupFinalVictory(),leagueVictory=saVictoryScreen;G.save();
+ const t=postMatchTimer,worldCupVictory=isWorldCupFinalVictory(),leagueVictory=saVictoryScreen||careerActive&&careerChampionCelebration;G.save();
  G.fillStyle='rgba(4,12,25,.83)';G.fillRect(0,0,680,800);
  const glow=G.createRadialGradient(340,355,12,340,355,260);glow.addColorStop(0,'rgba(255,205,65,.38)');glow.addColorStop(1,'rgba(255,205,65,0)');G.fillStyle=glow;G.fillRect(40,110,600,570);
  for(let i=0;i<90;i++){const x=(i*97+Math.sin(t+i)*22)%680,y=((i*53+t*(32+i%17))%820)-20;G.fillStyle=['#ffd35b','#fff4c6','#e54848','#64b7ff','#68d790'][i%5];G.save();G.translate(x,y);G.rotate(t+i);G.fillRect(-3,-5,6,10);G.restore();}
- G.textAlign='center';G.fillStyle='#ffe49c';G.font='bold 19px monospace';G.fillText(leagueVictory?saLeagueName().toUpperCase():worldCupVictory?'32 NAZIONALI. UNA COPPA.':'12 GRANDI. 12 VITTORIE.',340,180);G.fillStyle='#ffd35b';G.font='bold 39px monospace';G.fillText(leagueVictory?'CAMPIONI!':worldCupVictory?'CAMPIONI DEL MONDO':'MEGACAMPIONE',340,235,640);
- if(leagueVictory){G.save();G.translate(340,360+Math.sin(t*2)*5);drawLeagueVictoryShield();G.restore();}else if(worldCupVictory){G.save();G.translate(340,350+Math.sin(t*2)*5);drawPixelWorldCup();G.restore();}else{G.save();G.translate(340,350+Math.sin(t*2)*5);const gold=G.createLinearGradient(-70,0,70,0);gold.addColorStop(0,'#b87513');gold.addColorStop(.45,'#fff2a4');gold.addColorStop(1,'#d5931b');G.fillStyle=gold;G.strokeStyle='#ffdc70';G.lineWidth=12;
+ G.textAlign='center';G.fillStyle='#ffe49c';G.font='bold 19px monospace';G.fillText(leagueVictory?(careerActive&&careerChampionCelebration?careerLeague().name:saLeagueName()).toUpperCase():worldCupVictory?'32 NAZIONALI. UNA COPPA.':'12 GRANDI. 12 VITTORIE.',340,180);G.fillStyle='#ffd35b';G.font='bold 39px monospace';G.fillText(leagueVictory?'CAMPIONI!':worldCupVictory?'CAMPIONI DEL MONDO':'MEGACAMPIONE',340,235,640);
+ if(leagueVictory){G.save();G.translate(340,360+Math.sin(t*2)*5);drawLeagueVictoryShield(careerActive&&careerChampionCelebration?career.league:saLeague);G.restore();}else if(worldCupVictory){G.save();G.translate(340,350+Math.sin(t*2)*5);drawPixelWorldCup();G.restore();}else{G.save();G.translate(340,350+Math.sin(t*2)*5);const gold=G.createLinearGradient(-70,0,70,0);gold.addColorStop(0,'#b87513');gold.addColorStop(.45,'#fff2a4');gold.addColorStop(1,'#d5931b');G.fillStyle=gold;G.strokeStyle='#ffdc70';G.lineWidth=12;
  for(const side of [-1,1]){G.beginPath();G.moveTo(side*53,-46);G.bezierCurveTo(side*122,-75,side*107,52,side*39,30);G.stroke();}
  G.beginPath();G.moveTo(-65,-65);G.lineTo(65,-65);G.lineTo(49,25);G.quadraticCurveTo(0,82,-49,25);G.closePath();G.fill();G.fillRect(-11,52,22,56);G.fillRect(-43,101,86,14);G.fillRect(-57,115,114,20);G.fillStyle='#17304b';G.font='bold 21px monospace';G.fillText('8S2',0,-5);G.restore();
 }
- G.fillStyle='#fff';G.font='bold 22px monospace';G.fillText(leagueVictory?saLabel(saSeason.user).toUpperCase():userTeam+' SUL TETTO DEL MONDO!',340,535);G.font='14px monospace';G.fillStyle='#ffe49c';G.fillText(leagueVictory?'Hai vinto il campionato '+saLeagueName()+'!':worldCupVictory?'Hai conquistato la World Cup!':'Hai conquistato il trofeo di Megacampione',340,566);
+ G.fillStyle='#fff';G.font='bold 22px monospace';G.fillText(leagueVictory?(careerActive&&careerChampionCelebration?careerLeague().teams.find(t=>t[0]===career.club)[1]:saLabel(saSeason.user)).toUpperCase():userTeam+' SUL TETTO DEL MONDO!',340,535);G.font='14px monospace';G.fillStyle='#ffe49c';G.fillText(leagueVictory?'Hai vinto il campionato '+(careerActive&&careerChampionCelebration?careerLeague().name:saLeagueName())+'!':worldCupVictory?'Hai conquistato la World Cup!':'Hai conquistato il trofeo di Megacampione',340,566);
  G.save();G.translate(0,110);home.forEach((p,i)=>{G.save();G.translate(140+i*48-p.x,530-Math.abs(Math.sin(t*4+i))*15-p.y);sprite(p);G.restore();});G.restore();
  G.restore();
 }
@@ -5280,15 +5296,17 @@ function drawFinalStats(){
  G.textAlign='left';
 }
 const skipEntranceButton=document.createElement('button');
-skipEntranceButton.textContent='Entra in campo';skipEntranceButton.type='button';skipEntranceButton.style.cssText='display:none;position:fixed;z-index:90;background:linear-gradient(#292929,#151515);border:1px solid #858585;border-radius:9px;color:#ffd329;font:bold 13px monospace;padding:12px 14px;min-height:44px;cursor:pointer;transform:translate(-50%,-50%);animation:entranceButtonBlink 1.3s ease-in-out infinite;';document.body.appendChild(skipEntranceButton);
+skipEntranceButton.textContent='Entra in campo';skipEntranceButton.type='button';skipEntranceButton.style.cssText='display:none;position:absolute;z-index:90;background:linear-gradient(#292929,#151515);border:1px solid #858585;border-radius:9px;color:#ffd329;font:bold 13px monospace;padding:12px 14px;min-height:44px;cursor:pointer;transform:translate(-50%,-50%);animation:entranceButtonBlink 1.3s ease-in-out infinite;';C.closest('.wrap').appendChild(skipEntranceButton);
 const entranceButtonStyle=document.createElement('style');entranceButtonStyle.textContent='@keyframes entranceButtonBlink{0%,100%{color:#ffd329;box-shadow:0 0 0 rgba(255,211,41,0)}50%{color:#fff1a0;box-shadow:0 0 9px rgba(255,211,41,.35)}}';document.head.appendChild(entranceButtonStyle);
 skipEntranceButton.onclick=e=>{e.preventDefault();e.stopPropagation();if(state==='beach_golden_wait'){beginBeachGoldenGoal();skipEntranceButton.style.display='none';C.focus();return;}if(state==='halftime_wait'||state==='beach_halftime'){startSecondHalf();skipEntranceButton.style.display='none';C.focus();return;}if(state!=='bench_entrance')return;if(cinematicMode==='intro_in'&&benchPhase!=='to_pitch')playEntranceHorn();benchPhase='to_pitch';benchPhaseTimer=10;updateBenchEntrance(0);skipEntranceButton.style.display='none';C.focus();};
 let skipEntranceUiKey='',skipEntrancePositionAt=-Infinity;
 function positionSkipEntranceButton(){
- const show=(state==='bench_entrance'&&cinematicMode==='intro_in')||state==='halftime_wait'||state==='beach_halftime'||state==='beach_golden_wait',label=state==='beach_golden_wait'?'CHI SEGNA VINCE':state==='beach_halftime'?'Inizia secondo tempo':state==='halftime_wait'?'Rientra in campo':'Entra in campo',key=show+':'+label;
+ const show=(state==='bench_entrance'&&cinematicMode==='intro_in')||state==='halftime_wait'||state==='beach_halftime'||state==='beach_golden_wait',label=state==='beach_golden_wait'?'CHI SEGNA VINCE':state==='beach_halftime'?'Inizia secondo tempo':state==='halftime_wait'?(careerActive?'Inizia secondo tempo':'Rientra in campo'):'Entra in campo',key=show+':'+label;
  if(key!==skipEntranceUiKey){skipEntranceUiKey=key;if(skipEntranceButton.textContent!==label)skipEntranceButton.textContent=label;skipEntranceButton.style.display=show?'block':'none';skipEntrancePositionAt=-Infinity;}
  if(!show)return;const now=performance.now();if(now-skipEntrancePositionAt<250)return;skipEntrancePositionAt=now;
- const r=C.getBoundingClientRect();skipEntranceButton.style.left=(r.left+r.width*(['beach_halftime','beach_golden_wait'].includes(state)?OX+W/2:180)/SW)+'px';skipEntranceButton.style.top=(r.top+r.height*(['beach_halftime','beach_golden_wait'].includes(state)?OY+MID:752)/SH)+'px';skipEntranceButton.style.fontSize=Math.max(10,Math.min(13,r.width/SW*15))+'px';
+ const r=C.getBoundingClientRect(),parent=C.closest('.wrap'),p=parent.getBoundingClientRect(),sx=p.width/parent.offsetWidth||1,sy=p.height/parent.offsetHeight||1;
+ const centre=['beach_halftime','beach_golden_wait'].includes(state),x=r.left+r.width*(centre?OX+W/2:180)/SW,y=r.top+r.height*(centre?OY+MID:752)/SH;
+ skipEntranceButton.style.left=((x-p.left)/sx+(parent.scrollLeft||0)-(parent.clientLeft||0))+'px';skipEntranceButton.style.top=((y-p.top)/sy+(parent.scrollTop||0)-(parent.clientTop||0))+'px';skipEntranceButton.style.fontSize=Math.max(10,Math.min(13,r.width/SW*15))+'px';
 }
 function isSmartphoneControls412(){
  const ua=navigator.userAgent;
@@ -5498,7 +5516,7 @@ function draw(){
  G.font='bold 11px monospace';if(state!=='penalty')G.fillText(currentHalf+'° TEMPO   '+formatClock(matchTime),scoreX,scoreY+34);G.textAlign='left';
  }
  }
- if(state==='postmatch'){if(bcChampionCelebration&&postMatchTimer>=2&&postMatchTimer<22)drawBeachCupVictory();else if(isSteveVictory()&&postMatchTimer>=2&&postMatchTimer<22)drawSteveVictory();else if(isMegachampionFinal()&&postMatchTimer>=2&&postMatchTimer<22)drawMegachampion();else drawFinalStats();}
+ if(state==='postmatch'){if(careerActive&&careerChampionCelebration&&postMatchTimer>=2)drawMegachampion();else if(bcChampionCelebration&&postMatchTimer>=2&&postMatchTimer<22)drawBeachCupVictory();else if(isSteveVictory()&&postMatchTimer>=2&&postMatchTimer<22)drawSteveVictory();else if(isMegachampionFinal()&&postMatchTimer>=2&&postMatchTimer<22)drawMegachampion();else drawFinalStats();}
  if(crowdFlash>0){G.fillStyle='rgba(255,255,255,'+(crowdFlash*.10)+')';G.fillRect(0,0,SW,SH)}
 }
 let lastDrawTime=-Infinity;
@@ -5582,7 +5600,7 @@ function syncFullscreenUI(){
  syncAppFullscreenControl();
  const active=!!document.fullscreenElement||WRAP.classList.contains('fallbackFullscreen');
  WRAP.classList.toggle('isFullscreen',active);
- if(careerActive||WRAP.contains(skipEntranceButton)){const parent=active?WRAP:document.body;if(skipEntranceButton.parentElement!==parent)parent.appendChild(skipEntranceButton);}
+ if(skipEntranceButton.parentElement!==WRAP)WRAP.appendChild(skipEntranceButton);skipEntrancePositionAt=-Infinity;
  FSBTN.textContent=active?'⛶ ESCI':'⛶ Tutto schermo (pc/tablet)';
  setTimeout(resizeRenderSurface,30);
 }
