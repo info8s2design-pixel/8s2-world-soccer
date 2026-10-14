@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>8S2 World Soccer v2.56.563 Megacampione</title>
+<title>8S2 World Soccer v2.56.565 Megacampione</title>
 <style>
 html,body{position:relative;margin:0;background:#111;color:#eee;font-family:Arial,sans-serif}
 .wrap{position:relative;max-width:560px;margin:18px auto;padding:0 12px}
@@ -1268,6 +1268,22 @@ body.tabletWideMenus562.initialScreenFit #bootIntro .bootCenter{width:min(860px,
 body.tabletWideMenus562 #careerPanel .careerCard{width:min(780px,calc(100vw - 48px))!important}
 body.tabletWideMenus562 #careerPanel #careerCreate{width:min(540px,100%)!important;margin-left:auto!important;margin-right:auto!important}
 body.tabletFullscreenControls561:not(.gameMenuOpen) .wrap .controls{padding-left:calc(10px + var(--phone-joy)*.2142857)!important;padding-right:calc(10px + (var(--phone-curve)*2 + 8px)*.2142857)!important}
+</style><style id="tabletFillMenus564">
+body.tabletFit560.initialScreenFit #bootIntro .bootCenter{width:560px!important;max-width:calc(100vw - 32px)!important;box-sizing:border-box!important}
+body.tabletFit560.initialScreenFit #teamSetup .teamCard{width:440px!important;max-width:calc(100vw - 32px)!important;box-sizing:border-box!important}
+body.tabletFit560 .tabletMenu560>.tabletCard560{width:620px!important;max-width:calc(100vw - 48px)!important;box-sizing:border-box!important}
+body.tabletFit560 #careerPanel .careerCard{width:520px!important;max-width:calc(100vw - 48px)!important}
+body.tabletFit560 #bootIntro .bootLogo{width:86%!important;max-width:480px!important}
+body.tabletFit560 #bootIntro .bootControlPanels{width:100%!important}
+</style><style id="tabletSettings565">
+body.tabletFit560.matchToolsOpen:not(.gameMenuOpen) .wrap #matchTools.controlsTools{width:min(680px,calc(100vw - 48px))!important;max-height:calc(100dvh - 32px)!important;box-sizing:border-box!important;padding:66px 24px 24px!important;gap:14px!important;left:50%!important;top:50%!important;transform:translate(-50%,-50%)!important}
+body.tabletFit560.matchToolsOpen .wrap #matchTools.controlsTools button,body.tabletFit560.matchToolsOpen .wrap #matchTools.controlsTools #audioToggle label,body.tabletFit560.matchToolsOpen .wrap #matchTools.controlsTools #audioToggle #fullscreenToggle{height:58px!important;min-height:58px!important;max-height:58px!important;font:bold 18px monospace!important;padding:10px 16px!important;flex-shrink:0!important}
+body.tabletFit560.matchToolsOpen .wrap #matchTools.controlsTools #audioToggle{gap:14px!important}
+body.tabletFit560.matchToolsOpen .wrap #matchTools.controlsTools #audioToggle input{width:22px!important;height:22px!important;margin-right:8px!important}
+body.tabletFit560.matchToolsOpen .wrap #matchTools.controlsTools #closeMatchTools{width:44px!important;min-width:44px!important;height:44px!important;min-height:44px!important;max-height:44px!important;top:10px!important;right:14px!important;padding:0!important;font-size:32px!important}
+body.tabletFit560:not(.gameMenuOpen) .wrap .controls .shotControls #matchMenuButton{width:46px!important;min-width:46px!important;max-width:46px!important;height:46px!important;min-height:46px!important;max-height:46px!important;padding:6px!important}
+body.tabletFit560:not(.gameMenuOpen) .wrap .controls .shotControls #matchMenuButton svg{width:32px!important;height:32px!important}
+@media(max-height:650px){body.tabletFit560.matchToolsOpen:not(.gameMenuOpen) .wrap #matchTools.controlsTools{padding:54px 20px 16px!important;gap:8px!important}body.tabletFit560.matchToolsOpen .wrap #matchTools.controlsTools button,body.tabletFit560.matchToolsOpen .wrap #matchTools.controlsTools #audioToggle label,body.tabletFit560.matchToolsOpen .wrap #matchTools.controlsTools #audioToggle #fullscreenToggle{height:46px!important;min-height:46px!important;max-height:46px!important;font-size:16px!important}}
 </style></head>
 <body class="gameMenuOpen">
 <div class="wrap"><section id="personalBoardPanel" hidden role="dialog" aria-modal="true" aria-labelledby="personalBoardTitle"><div class="personalBoardCard"><h1 id="personalBoardTitle">Palmarès</h1><div id="personalBoardBody"></div><button id="personalBoardBack" type="button">Torna al menu</button></div></section><section id="challengePicker" hidden role="dialog" aria-label="Sfida Steve8s2"><div class="challengeCard"><img id="challengeLogo" alt="8S2 World Soccer"><h1>Sfida Steve8s2</h1><p>Vinci una delle due sfide per sbloccare tutte le modalità!</p><div class="challengeTiles"><button data-challenge="beachchallenge"><span>BEACH SOCCER 5 VS 5</span><small>In caso di pareggio, chi segna vince!</small></button><button data-challenge="match"><span>CALCIO 11 VS 11</span><small>In caso di pareggio, si va ai rigori!</small></button><button data-challenge="streetchallenge"><span>STREET SOCCER 5 VS 5</span><small>In caso di pareggio, chi segna vince!</small></button></div><button id="challengeBack">Torna al menu</button><img class="challengeBrand" src="./asset459-98985cbbda62.jpg" alt="S8S2"></div></section><section id="beachHubPanel" hidden role="dialog" aria-modal="true" aria-label="Scegli modalità Beach Soccer"><div class="beachHubCard"><img id="beachHubLogo" alt="8S2 World Soccer"><h1>BEACH SOCCER</h1><h2>SCEGLI LA MODALITÀ</h2><div class="beachHubChoices"><button id="beachFriendlyChoice" type="button">AMICHEVOLE<small>Una partita sulla sabbia</small></button><button id="beachCupChoice" type="button">SUDAMERICA BEACH CUP<small>La tua squadra e 31 club sudamericani</small></button></div><button id="beachHubBack" type="button">TORNA AL MENU</button></div></section><section id="beachCupPanel" hidden role="dialog" aria-modal="true" aria-label="Sudamerica Beach Cup"><svg id="beachCupLogo" viewBox="0 0 64 64" role="img" aria-label="Stella della Sudamerica Beach Cup"><path d="M32 4 40 23 60 25 45 39 49 59 32 49 15 59 19 39 4 25 24 23Z" fill="#ffd54a" stroke="#fff0a0" stroke-width="2"/></svg><h1>SUDAMERICA BEACH CUP</h1><div id="beachCupBody"></div><div class="bcFooter"><button id="beachCupPlay" type="button">Gioca</button><button id="beachCupNew" type="button">Nuova Cup</button><button id="beachCupBack" type="button">Torna al menu</button></div></section>
@@ -1306,7 +1322,7 @@ body.tabletFullscreenControls561:not(.gameMenuOpen) .wrap .controls{padding-left
     <img class="bootLogo" src="./asset488-8b683502551b.webp" alt="8S2 World Soccer">
     <div class="bootBall"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="100%" height="100%" aria-hidden="true"><circle cx="16" cy="16" r="14" fill="#fff" stroke="#000" stroke-width="1.5"/><g fill="#000"><path d="M16 10l6 4-2 7h-8l-2-7zM10 3l1 5-6 4-3-2zM22 3l8 7-3 2-6-4zM3 21l5-1 4 6-2 3zM29 21l-7-1-4 6 4 3z"/></g><g fill="none" stroke="#000" stroke-width=".8"><path d="M11 8l5 2 5-2M5 12l5 2M27 12l-5 2M8 20l4 1M22 20l-2 1M12 26h6"/></g></svg></div>
     <div class="bootTitle">8s2 World Soccer</div>
-    <div class="bootVersion">v2.56.563</div><div class="globalMatchCounter" aria-live="polite"><div class="counterReveal">PARTITE GIOCATE NEL MONDO: <span data-global-match-total>…</span></div><div class="counterReveal">GOL FATTI: <span data-global-goals-for>…</span> · GOL SUBITI: <span data-global-goals-against>…</span></div></div>
+    <div class="bootVersion">v2.56.565</div><div class="globalMatchCounter" aria-live="polite"><div class="counterReveal">PARTITE GIOCATE NEL MONDO: <span data-global-match-total>…</span></div><div class="counterReveal">GOL FATTI: <span data-global-goals-for>…</span> · GOL SUBITI: <span data-global-goals-against>…</span></div></div>
     <div class="bootControls bootControlPanels"><div class="bootTapBall" aria-hidden="true"><span class="bootTapBallRing"></span><div class="bootTapBallCrop"><img src="./asset488-8722caeb8f3b.webp" alt=""></div></div>
       <div class="bootComputerHelp bootControlPanel">
         <div class="bootControlLabel">COMPUTER</div>
@@ -7146,7 +7162,7 @@ button.onclick=async()=>{if(prompt){await prompt.prompt();prompt=null;}else aler
 window.addEventListener('appinstalled',()=>{installedThisSession=true;try{localStorage.setItem('8s2-installed-device','1');}catch(e){}prompt=null;syncInstallButton();});
 if('serviceWorker' in navigator&&location.protocol!=='file:'){
  let pendingUpdate=false,reloading=false,registration=null,lastCheck=0;
- const build='2.56.563';
+ const build='2.56.565';
  const safeToReload=()=>!document.hidden&&document.body.classList.contains('gameMenuOpen')&&!document.activeElement?.matches('input,textarea,select');
  function applyUpdate(){if(!pendingUpdate||reloading||!safeToReload())return;reloading=true;location.reload();}
  navigator.serviceWorker.addEventListener('message',event=>{if(event.data?.type==='GAME_VERSION'&&event.data.version!==build){pendingUpdate=true;applyUpdate();}});
@@ -7266,7 +7282,7 @@ if('serviceWorker' in navigator&&location.protocol!=='file:'){
   const card=active.querySelector(active===team?'.teamCard':'.bootCenter');if(!card)return;
   const availableHeight=Math.max(80,active.clientHeight-16);
   const availableWidth=Math.max(80,active.clientWidth-16);
-  const scale=Math.min(1,availableHeight/Math.max(1,card.offsetHeight),availableWidth/Math.max(1,card.offsetWidth));
+  const tablet=document.body.classList.contains('tabletFit560');const scale=Math.min(tablet?2.5:1,availableHeight/Math.max(1,card.offsetHeight),availableWidth/Math.max(1,card.offsetWidth));
   const value=scale.toFixed(4);
   if(card.style.getPropertyValue('--initial-fit')!==value)card.style.setProperty('--initial-fit',value);
  }
@@ -7294,11 +7310,11 @@ function schedule(){if(!pending){pending=true;requestAnimationFrame(fit);}}const
  button.addEventListener('keydown',e=>e.stopPropagation());
  button.addEventListener('click',async e=>{e.preventDefault();e.stopPropagation();try{const root=document.documentElement;if(root.requestFullscreen)await root.requestFullscreen();else if(root.webkitRequestFullscreen)await root.webkitRequestFullscreen();}catch(error){button.textContent='Riprova tutto schermo';}queue();});
  let pending=false;
- function fit(){pending=false;const active=tablet();document.body.classList.toggle('tabletFit560',active);const full=!!document.fullscreenElement||!!document.webkitFullscreenElement||document.querySelector('.wrap').classList.contains('fallbackFullscreen')||matchMedia('(display-mode: standalone)').matches||matchMedia('(display-mode: fullscreen)').matches;document.body.classList.toggle('tabletWideMenus562',active&&full);
+ function fit(){pending=false;const active=tablet();document.body.classList.toggle('tabletFit560',active);const full=!!document.fullscreenElement||!!document.webkitFullscreenElement||document.querySelector('.wrap').classList.contains('fallbackFullscreen')||matchMedia('(display-mode: standalone)').matches||matchMedia('(display-mode: fullscreen)').matches;document.body.classList.toggle('tabletWideMenus562',active);
   const root=document.documentElement,installed=matchMedia('(display-mode: standalone)').matches||matchMedia('(display-mode: fullscreen)').matches||navigator.standalone===true;
   button.hidden=!active||installed||!!document.fullscreenElement||!!document.webkitFullscreenElement||!(root.requestFullscreen||root.webkitRequestFullscreen);
   if(!active)return;
-  for(const{panel,card}of entries){if(panel.hidden||getComputedStyle(panel).display==='none')continue;const style=getComputedStyle(panel),w=panel.clientWidth-parseFloat(style.paddingLeft||0)-parseFloat(style.paddingRight||0),hh=panel.clientHeight-parseFloat(style.paddingTop||0)-parseFloat(style.paddingBottom||0);const value=Math.min(1,w/Math.max(1,card.offsetWidth),hh/Math.max(1,card.offsetHeight)).toFixed(4);if(card.style.getPropertyValue('--tablet-card-fit')!==value)card.style.setProperty('--tablet-card-fit',value);}
+  for(const{panel,card}of entries){if(panel.hidden||getComputedStyle(panel).display==='none')continue;const style=getComputedStyle(panel),w=panel.clientWidth-parseFloat(style.paddingLeft||0)-parseFloat(style.paddingRight||0),hh=panel.clientHeight-parseFloat(style.paddingTop||0)-parseFloat(style.paddingBottom||0);const value=Math.min(2.5,w/Math.max(1,card.offsetWidth),hh/Math.max(1,card.offsetHeight)).toFixed(4);if(card.style.getPropertyValue('--tablet-card-fit')!==value)card.style.setProperty('--tablet-card-fit',value);}
  }
  function queue(){if(!pending){pending=true;requestAnimationFrame(fit);}}
  const ro=new ResizeObserver(queue),mo=new MutationObserver(queue);for(const{panel,card}of entries){ro.observe(panel);ro.observe(card);mo.observe(panel,{attributes:true,attributeFilter:['hidden','style'],childList:true,subtree:true});}
