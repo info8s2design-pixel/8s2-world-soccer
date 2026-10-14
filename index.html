@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>8S2 World Soccer v2.56.556 Megacampione</title>
+<title>8S2 World Soccer v2.56.557 Megacampione</title>
 <style>
 html,body{position:relative;margin:0;background:#111;color:#eee;font-family:Arial,sans-serif}
 .wrap{position:relative;max-width:560px;margin:18px auto;padding:0 12px}
@@ -1283,7 +1283,7 @@ body #careerPanel{padding-bottom:98px!important}
     <img class="bootLogo" src="./asset488-8b683502551b.webp" alt="8S2 World Soccer">
     <div class="bootBall"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="100%" height="100%" aria-hidden="true"><circle cx="16" cy="16" r="14" fill="#fff" stroke="#000" stroke-width="1.5"/><g fill="#000"><path d="M16 10l6 4-2 7h-8l-2-7zM10 3l1 5-6 4-3-2zM22 3l8 7-3 2-6-4zM3 21l5-1 4 6-2 3zM29 21l-7-1-4 6 4 3z"/></g><g fill="none" stroke="#000" stroke-width=".8"><path d="M11 8l5 2 5-2M5 12l5 2M27 12l-5 2M8 20l4 1M22 20l-2 1M12 26h6"/></g></svg></div>
     <div class="bootTitle">8s2 World Soccer</div>
-    <div class="bootVersion">v2.56.556</div><div class="globalMatchCounter" aria-live="polite"><div class="counterReveal">PARTITE GIOCATE NEL MONDO: <span data-global-match-total>…</span></div><div class="counterReveal">GOL FATTI: <span data-global-goals-for>…</span> · GOL SUBITI: <span data-global-goals-against>…</span></div></div>
+    <div class="bootVersion">v2.56.557</div><div class="globalMatchCounter" aria-live="polite"><div class="counterReveal">PARTITE GIOCATE NEL MONDO: <span data-global-match-total>…</span></div><div class="counterReveal">GOL FATTI: <span data-global-goals-for>…</span> · GOL SUBITI: <span data-global-goals-against>…</span></div></div>
     <div class="bootControls bootControlPanels"><div class="bootTapBall" aria-hidden="true"><span class="bootTapBallRing"></span><div class="bootTapBallCrop"><img src="./asset488-8722caeb8f3b.webp" alt=""></div></div>
       <div class="bootComputerHelp bootControlPanel">
         <div class="bootControlLabel">COMPUTER</div>
@@ -6402,8 +6402,41 @@ function startBeachAmbience(){if(!audioEnabled)return;stopRealStadiumAudio();sto
 function stopBeachAmbience(){if(beachAmbienceAudio)beachAmbienceAudio.pause();}
 let streetAmbienceAudio=null;
 const STREET_AMBIENCE_AUDIO='./asset556-b3c576cd0ec9.mp3';
-function startStreetAmbience(){if(!audioEnabled)return;stopBeachAmbience();stopPenaltyAmbience();stopTrainingAmbience();stopRealStadiumAudio();stopGoalCrowdAudio();stopMenuMusic();if(!streetAmbienceAudio){streetAmbienceAudio=new Audio(STREET_AMBIENCE_AUDIO);streetAmbienceAudio.loop=true;streetAmbienceAudio.preload='none';}streetAmbienceAudio.volume=AMBIENCE_VOLUME;streetAmbienceAudio.play().catch(()=>{});}
-function stopStreetAmbience(){if(streetAmbienceAudio)streetAmbienceAudio.pause();}
+let streetLoopBuffer=null,streetLoopLoading=null,streetLoopSource=null,streetLoopGain=null,streetLoopWanted=false;
+function makeStreetSeamlessLoop(input){
+ const overlap=Math.min(Math.floor(input.sampleRate*2),Math.floor(input.length/4));
+ if(overlap<2)return input;
+ const length=input.length-overlap,result=audioCtx.createBuffer(input.numberOfChannels,length,input.sampleRate);
+ for(let c=0;c<input.numberOfChannels;c++){
+  const source=input.getChannelData(c),target=result.getChannelData(c);
+  target.set(source.subarray(0,length));
+  for(let i=0;i<overlap;i++){
+   const t=i/(overlap-1),blend=t*t*(3-2*t);
+   target[i]=source[length+i]*(1-blend)+source[i]*blend;
+  }
+ }
+ return result;
+}
+function startStreetAmbience(){
+ if(!audioEnabled||!ensureAudio())return;
+ stopBeachAmbience();stopPenaltyAmbience();stopTrainingAmbience();stopRealStadiumAudio();stopGoalCrowdAudio();stopMenuMusic();
+ streetLoopWanted=true;
+ const play=()=>{
+  if(!streetLoopWanted||!audioEnabled||!streetMode||streetLoopSource)return;
+  streetLoopSource=audioCtx.createBufferSource();streetLoopSource.buffer=streetLoopBuffer;streetLoopSource.loop=true;
+  streetLoopGain=audioCtx.createGain();streetLoopGain.gain.setValueAtTime(0,audioCtx.currentTime);streetLoopGain.gain.linearRampToValueAtTime(AMBIENCE_VOLUME,audioCtx.currentTime+.15);
+  streetLoopSource.connect(streetLoopGain);streetLoopGain.connect(audioCtx.destination);streetLoopSource.start();
+ };
+ if(streetLoopBuffer){play();return;}
+ if(!streetLoopLoading)streetLoopLoading=fetch(STREET_AMBIENCE_AUDIO).then(r=>r.arrayBuffer()).then(bytes=>audioCtx.decodeAudioData(bytes)).then(decoded=>{streetLoopBuffer=makeStreetSeamlessLoop(decoded);}).catch(()=>{streetLoopLoading=null;});
+ streetLoopLoading.then(()=>{if(streetLoopBuffer)play();});
+}
+function stopStreetAmbience(){
+ streetLoopWanted=false;
+ if(streetLoopSource){try{streetLoopSource.stop();}catch(e){}streetLoopSource.disconnect();streetLoopSource=null;}
+ if(streetLoopGain){streetLoopGain.disconnect();streetLoopGain=null;}
+ if(streetAmbienceAudio)streetAmbienceAudio.pause();
+}
 function startStadiumAmbience(){
  if(streetMode){startStreetAmbience();return;}stopStreetAmbience();
  if(futsalMode){startBeachAmbience();return;}stopBeachAmbience();
