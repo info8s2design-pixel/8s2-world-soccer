@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>8S2 World Soccer v2.56.559 Megacampione</title>
+<title>8S2 World Soccer v2.56.561 Megacampione</title>
 <style>
 html,body{position:relative;margin:0;background:#111;color:#eee;font-family:Arial,sans-serif}
 .wrap{position:relative;max-width:560px;margin:18px auto;padding:0 12px}
@@ -1245,7 +1245,22 @@ body #memoriesScroll{min-height:0;max-height:calc(100dvh - 150px)!important}
 body #careerPanel{padding-bottom:98px!important}
 }
 </style>
-<style id="installIntro559">body #bootIntro #installApp:not([hidden]){position:static!important;display:flex!important;margin:10px auto 2px!important;width:max-content!important;max-width:100%!important;min-height:38px!important;gap:10px!important}body #bootIntro #installApp[hidden]{display:none!important}</style></head>
+<style id="installIntro559">body #bootIntro #installApp:not([hidden]){position:static!important;display:flex!important;margin:10px auto 2px!important;width:max-content!important;max-width:100%!important;min-height:38px!important;gap:10px!important}body #bootIntro #installApp[hidden]{display:none!important}</style><style id="tabletCentered560">
+body.tabletFit560 .tabletMenu560{justify-content:center!important;align-items:center!important;overflow:hidden!important;top:var(--touch-menu-top,0px)!important;height:var(--touch-menu-height,100dvh)!important}
+body.tabletFit560 .tabletMenu560>.tabletCard560{margin:0 auto!important;align-self:center!important;flex-shrink:0!important;transform:scale(var(--tablet-card-fit,1))!important;transform-origin:center!important;max-width:100%!important}
+body.tabletFit560.initialScreenFit #teamSetup .teamCard{top:50%!important;transform:translate(-50%,-50%) scale(var(--initial-fit,1))!important;transform-origin:center!important}
+body #bootIntro #introFullscreen560{position:absolute!important;left:50%!important;top:158px!important;transform:translateX(-50%)!important;width:126px!important;min-height:26px!important;height:26px!important;max-height:26px!important;padding:3px 5px!important;font:bold 9px monospace!important;z-index:4;white-space:nowrap;pointer-events:auto!important}
+body #bootIntro #introFullscreen560[hidden]{display:none!important}
+@media(max-height:550px){body #bootIntro #introFullscreen560{top:98px!important}}
+</style><style id="tabletFullscreenControls561">
+body.tabletFullscreenControls561:not(.gameMenuOpen) .wrap{position:fixed!important;inset:0!important;width:100vw!important;max-width:none!important;height:100dvh!important;margin:0!important;padding:0!important;display:block!important;overflow:hidden!important}
+body.tabletFullscreenControls561:not(.gameMenuOpen) .wrap #game{position:absolute!important;left:50%!important;top:4px!important;transform:translateX(-50%)!important;width:var(--tablet-game-width)!important;height:var(--tablet-game-height)!important;max-height:none!important;max-width:none!important;min-height:0!important;margin:0!important;border:0!important;flex:none!important;object-fit:contain!important}
+body.tabletFullscreenControls561:not(.gameMenuOpen) .wrap #msg{position:fixed!important;top:var(--tablet-game-bottom)!important;bottom:auto!important;left:50%!important;transform:translateX(-50%)!important;width:var(--tablet-game-width)!important;max-width:none!important;height:24px!important;min-height:24px!important;padding:2px!important;margin:0!important;box-sizing:border-box!important;font-size:12px!important}
+body.tabletFullscreenControls561:not(.gameMenuOpen) .wrap .controls{position:fixed!important;left:0!important;right:0!important;bottom:4px!important;top:auto!important;transform:none!important;width:100%!important;max-width:none!important;height:var(--tablet-controls-height)!important;min-height:0!important;max-height:none!important;display:flex!important;justify-content:space-between!important;align-items:center!important;box-sizing:border-box!important;padding:0 10px!important;margin:0!important;pointer-events:none!important}
+body.tabletFullscreenControls561:not(.gameMenuOpen) .wrap .controls .directionPad{flex:0 0 var(--phone-joy)!important}
+body.tabletFullscreenControls561:not(.gameMenuOpen) .wrap .controls .joystickMenuGroup,body.tabletFullscreenControls561:not(.gameMenuOpen) .wrap .controls .shotControls{pointer-events:auto!important;margin:0!important;flex-shrink:0!important}
+@media(orientation:landscape){body.tabletFullscreenControls561:not(.gameMenuOpen) .wrap .controls{top:0!important;bottom:0!important;height:100dvh!important;padding:8px 10px!important}body.tabletFullscreenControls561:not(.gameMenuOpen) .wrap #msg{top:auto!important;bottom:0!important;background:rgba(0,0,0,.65)!important}}
+</style></head>
 <body class="gameMenuOpen">
 <div class="wrap"><section id="personalBoardPanel" hidden role="dialog" aria-modal="true" aria-labelledby="personalBoardTitle"><div class="personalBoardCard"><h1 id="personalBoardTitle">Palmarès</h1><div id="personalBoardBody"></div><button id="personalBoardBack" type="button">Torna al menu</button></div></section><section id="challengePicker" hidden role="dialog" aria-label="Sfida Steve8s2"><div class="challengeCard"><img id="challengeLogo" alt="8S2 World Soccer"><h1>Sfida Steve8s2</h1><p>Vinci una delle due sfide per sbloccare tutte le modalità!</p><div class="challengeTiles"><button data-challenge="beachchallenge"><span>BEACH SOCCER 5 VS 5</span><small>In caso di pareggio, chi segna vince!</small></button><button data-challenge="match"><span>CALCIO 11 VS 11</span><small>In caso di pareggio, si va ai rigori!</small></button><button data-challenge="streetchallenge"><span>STREET SOCCER 5 VS 5</span><small>In caso di pareggio, chi segna vince!</small></button></div><button id="challengeBack">Torna al menu</button><img class="challengeBrand" src="./asset459-98985cbbda62.jpg" alt="S8S2"></div></section><section id="beachHubPanel" hidden role="dialog" aria-modal="true" aria-label="Scegli modalità Beach Soccer"><div class="beachHubCard"><img id="beachHubLogo" alt="8S2 World Soccer"><h1>BEACH SOCCER</h1><h2>SCEGLI LA MODALITÀ</h2><div class="beachHubChoices"><button id="beachFriendlyChoice" type="button">AMICHEVOLE<small>Una partita sulla sabbia</small></button><button id="beachCupChoice" type="button">SUDAMERICA BEACH CUP<small>La tua squadra e 31 club sudamericani</small></button></div><button id="beachHubBack" type="button">TORNA AL MENU</button></div></section><section id="beachCupPanel" hidden role="dialog" aria-modal="true" aria-label="Sudamerica Beach Cup"><svg id="beachCupLogo" viewBox="0 0 64 64" role="img" aria-label="Stella della Sudamerica Beach Cup"><path d="M32 4 40 23 60 25 45 39 49 59 32 49 15 59 19 39 4 25 24 23Z" fill="#ffd54a" stroke="#fff0a0" stroke-width="2"/></svg><h1>SUDAMERICA BEACH CUP</h1><div id="beachCupBody"></div><div class="bcFooter"><button id="beachCupPlay" type="button">Gioca</button><button id="beachCupNew" type="button">Nuova Cup</button><button id="beachCupBack" type="button">Torna al menu</button></div></section>
 <section id="formationDialog" hidden role="dialog" aria-modal="true" aria-labelledby="formationTitle"><div class="formationCard"><img id="formationLogo" alt="8S2 World Soccer"><h2 id="formationTitle">SCEGLI IL MODULO</h2><label for="formationSelect">Modulo della tua squadra</label><select id="formationSelect" hidden></select><div id="formationChoices" role="group" aria-label="Moduli disponibili"></div><canvas id="formationPreview" width="200" height="230" role="img" aria-label="Posizioni iniziali del modulo scelto"></canvas><p id="formationDescription"></p><div><button id="formationContinue" type="button">INIZIA PARTITA</button><button id="formationBack" type="button">INDIETRO</button></div></div></section>
@@ -1283,7 +1298,7 @@ body #careerPanel{padding-bottom:98px!important}
     <img class="bootLogo" src="./asset488-8b683502551b.webp" alt="8S2 World Soccer">
     <div class="bootBall"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="100%" height="100%" aria-hidden="true"><circle cx="16" cy="16" r="14" fill="#fff" stroke="#000" stroke-width="1.5"/><g fill="#000"><path d="M16 10l6 4-2 7h-8l-2-7zM10 3l1 5-6 4-3-2zM22 3l8 7-3 2-6-4zM3 21l5-1 4 6-2 3zM29 21l-7-1-4 6 4 3z"/></g><g fill="none" stroke="#000" stroke-width=".8"><path d="M11 8l5 2 5-2M5 12l5 2M27 12l-5 2M8 20l4 1M22 20l-2 1M12 26h6"/></g></svg></div>
     <div class="bootTitle">8s2 World Soccer</div>
-    <div class="bootVersion">v2.56.559</div><div class="globalMatchCounter" aria-live="polite"><div class="counterReveal">PARTITE GIOCATE NEL MONDO: <span data-global-match-total>…</span></div><div class="counterReveal">GOL FATTI: <span data-global-goals-for>…</span> · GOL SUBITI: <span data-global-goals-against>…</span></div></div>
+    <div class="bootVersion">v2.56.561</div><div class="globalMatchCounter" aria-live="polite"><div class="counterReveal">PARTITE GIOCATE NEL MONDO: <span data-global-match-total>…</span></div><div class="counterReveal">GOL FATTI: <span data-global-goals-for>…</span> · GOL SUBITI: <span data-global-goals-against>…</span></div></div>
     <div class="bootControls bootControlPanels"><div class="bootTapBall" aria-hidden="true"><span class="bootTapBallRing"></span><div class="bootTapBallCrop"><img src="./asset488-8722caeb8f3b.webp" alt=""></div></div>
       <div class="bootComputerHelp bootControlPanel">
         <div class="bootControlLabel">COMPUTER</div>
@@ -5619,19 +5634,37 @@ function isTouchLargeMatchControls(){
  return /iPhone|iPod|iPad|Android|Tablet/i.test(ua)||(/Macintosh/i.test(ua)&&navigator.maxTouchPoints>1)||window.matchMedia('(pointer: coarse)').matches;
 }
 let phoneControlsGeometryKey='';
+function tabletFullscreenGeometry561(vw,vh,ratio){
+ const landscape=vw>vh;
+ const height=Math.floor(Math.min(landscape?vh-8:vh*.67,(landscape?vw*.48:vw-8)/ratio));
+ const width=Math.floor(height*ratio),bottom=height+4;
+ const space=landscape?(vw-width)/2-20:(vw-28)/2;
+ const available=landscape?vh-16:vh-bottom-28;
+ return{landscape,width,height,bottom,space,available,joy:Math.floor(Math.min(space,available)),curve:Math.floor(Math.min((space-10)/2,(available-10)/2.16))};
+}
+function fitTabletFullscreen561(){
+ const ua=navigator.userAgent,tablet=/iPad|Tablet/i.test(ua)||(/Macintosh/i.test(ua)&&navigator.maxTouchPoints>1)||(/Android/i.test(ua)&&!/Mobile/i.test(ua))||(navigator.maxTouchPoints>1&&Math.min(screen.width,screen.height)>=600);
+ const full=!!document.fullscreenElement||!!document.webkitFullscreenElement||document.querySelector('.wrap').classList.contains('fallbackFullscreen')||matchMedia('(display-mode: standalone)').matches||matchMedia('(display-mode: fullscreen)').matches;
+ const active=tablet&&full&&!document.body.classList.contains('gameMenuOpen');document.body.classList.toggle('tabletFullscreenControls561',active);
+ if(!active)return null;
+ const g=tabletFullscreenGeometry561(innerWidth,innerHeight,680/860),style=document.body.style;
+ for(const[name,value]of Object.entries({'--tablet-game-width':g.width,'--tablet-game-height':g.height,'--tablet-game-bottom':g.bottom,'--tablet-controls-height':g.available}))if(style.getPropertyValue(name)!==value+'px')style.setProperty(name,value+'px');
+ return g;
+}
 function fitSmartphoneControls(){
+ const tabletGeometry=fitTabletFullscreen561();
  const touch=isTouchLargeMatchControls();document.body.classList.toggle('touchLargeMatchControls',touch);
  const phone=touch&&!document.body.classList.contains('gameMenuOpen');
  if(!phone){document.body.classList.remove('phoneSideSpace');phoneControlsGeometryKey='';return;}
  const r=C.getBoundingClientRect(),vw=window.innerWidth,vh=window.innerHeight;
- const key=[vw,vh,Math.round(r.left),Math.round(r.right),Math.round(r.bottom)].join(':');
+ const key=[!!tabletGeometry,vw,vh,Math.round(r.left),Math.round(r.right),Math.round(r.bottom)].join(':');
  if(key===phoneControlsGeometryKey)return;phoneControlsGeometryKey=key;
  const side=Math.min(r.left,vw-r.right)-24,landscape=vw>vh&&side>=110;
  document.body.classList.toggle('phoneSideSpace',landscape);
  const space=landscape?side:(vw-36)/2;
  const availableHeight=landscape?vh-32:Math.max(150,vh-r.bottom-24);
- const joy=Math.floor(Math.min(space,availableHeight,270));
- const curve=Math.floor(Math.min((space-8)/2,(availableHeight-8)/2.16,124));
+ const joy=tabletGeometry?tabletGeometry.joy:Math.floor(Math.min(space,availableHeight,270));
+ const curve=tabletGeometry?tabletGeometry.curve:Math.floor(Math.min((space-8)/2,(availableHeight-8)/2.16,124));
  const action=Math.floor(curve*1.16);
  document.body.style.setProperty('--phone-joy',joy+'px');document.body.style.setProperty('--phone-curve',curve+'px');document.body.style.setProperty('--phone-action',action+'px');
 }
@@ -7231,4 +7264,23 @@ if('serviceWorker' in navigator&&location.protocol!=='file:')navigator.serviceWo
 (()=>{const panel=document.getElementById('careerPanel'),card=panel.querySelector('.careerCard'),form=document.getElementById('careerCreate');let pending=false;
 function fit(){pending=false;const creating=!panel.hidden&&!form.hidden;panel.classList.toggle('careerCreating',creating);if(!creating){card.style.removeProperty('--career-create-scale');return;}const style=getComputedStyle(panel),availableH=Math.max(1,panel.clientHeight-parseFloat(style.paddingTop||0)-parseFloat(style.paddingBottom||0)),availableW=Math.max(1,panel.clientWidth-parseFloat(style.paddingLeft||0)-parseFloat(style.paddingRight||0));const scale=Math.min(1,availableH/Math.max(1,card.offsetHeight),availableW/Math.max(1,card.offsetWidth)).toFixed(4);if(card.style.getPropertyValue('--career-create-scale')!==scale)card.style.setProperty('--career-create-scale',scale);}
 function schedule(){if(!pending){pending=true;requestAnimationFrame(fit);}}const observer=new MutationObserver(schedule);observer.observe(panel,{attributes:true,attributeFilter:['hidden']});observer.observe(form,{attributes:true,attributeFilter:['hidden'],childList:true,subtree:true});observer.observe(document.getElementById('careerBody'),{childList:true,subtree:true});observer.observe(document.getElementById('careerNote'),{childList:true,subtree:true});const resize=new ResizeObserver(schedule);resize.observe(panel);resize.observe(card);window.addEventListener('resize',schedule);window.addEventListener('orientationchange',schedule);window.visualViewport?.addEventListener('resize',schedule);document.fonts?.ready.then(schedule);schedule();})();
-</script><script>(()=>{const panel=document.getElementById('careerPanel'),body=document.getElementById('careerBody'),card=panel.querySelector('.careerCard');let pending=false;function fit(){pending=false;const line=body.querySelector('.careerSummaryLine'),home=!panel.hidden&&!!line&&!!body.querySelector('.careerLeagueBoxes');panel.classList.toggle('careerHomeFit',home);if(line){line.style.fontSize='11px';const size=Math.min(11,11*body.clientWidth/Math.max(1,line.scrollWidth));line.style.fontSize=size.toFixed(2)+'px';}if(!home){card.style.removeProperty('--career-home-scale');return;}const p=getComputedStyle(panel),height=panel.clientHeight-parseFloat(p.paddingTop)-parseFloat(p.paddingBottom);card.style.setProperty('--career-home-scale',Math.min(1,height/Math.max(1,card.offsetHeight)).toFixed(4));}function queue(){if(!pending){pending=true;requestAnimationFrame(fit);}}new MutationObserver(queue).observe(body,{childList:true,subtree:true});new MutationObserver(queue).observe(panel,{attributes:true,attributeFilter:['hidden']});const ro=new ResizeObserver(queue);ro.observe(panel);ro.observe(body);window.addEventListener('resize',queue);window.visualViewport?.addEventListener('resize',queue);document.fonts?.ready.then(queue);queue();})();</script></body></html>
+</script><script>(()=>{const panel=document.getElementById('careerPanel'),body=document.getElementById('careerBody'),card=panel.querySelector('.careerCard');let pending=false;function fit(){pending=false;const line=body.querySelector('.careerSummaryLine'),home=!panel.hidden&&!!line&&!!body.querySelector('.careerLeagueBoxes');panel.classList.toggle('careerHomeFit',home);if(line){line.style.fontSize='11px';const size=Math.min(11,11*body.clientWidth/Math.max(1,line.scrollWidth));line.style.fontSize=size.toFixed(2)+'px';}if(!home){card.style.removeProperty('--career-home-scale');return;}const p=getComputedStyle(panel),height=panel.clientHeight-parseFloat(p.paddingTop)-parseFloat(p.paddingBottom);card.style.setProperty('--career-home-scale',Math.min(1,height/Math.max(1,card.offsetHeight)).toFixed(4));}function queue(){if(!pending){pending=true;requestAnimationFrame(fit);}}new MutationObserver(queue).observe(body,{childList:true,subtree:true});new MutationObserver(queue).observe(panel,{attributes:true,attributeFilter:['hidden']});const ro=new ResizeObserver(queue);ro.observe(panel);ro.observe(body);window.addEventListener('resize',queue);window.visualViewport?.addEventListener('resize',queue);document.fonts?.ready.then(queue);queue();})();</script><script>(()=>{
+ const pairs=[['kitSetup','.kitCard'],['greatsMenu','.greatsCard'],['playAgain','.againCard'],['formationDialog','.formationCard'],['personalBoardPanel','.personalBoardCard'],['careerPanel','.careerCard'],['challengePicker','.challengeCard'],['beachHubPanel','.beachHubCard'],['worldCupPanel',':scope > div'],['serieAPanel',':scope > div'],['beachCupPanel',':scope > div']];
+ const entries=pairs.map(([id,selector])=>{const panel=document.getElementById(id),card=panel?.querySelector(selector);if(!card)return null;panel.classList.add('tabletMenu560');card.classList.add('tabletCard560');return{panel,card};}).filter(Boolean);
+ const button=document.createElement('button');button.id='introFullscreen560';button.type='button';button.textContent='⛶ Abilita tutto schermo';button.hidden=true;
+ document.querySelector('#bootIntro .bootControlPanels')?.appendChild(button);
+ const tablet=()=>{const ua=navigator.userAgent;return /iPad|Tablet/i.test(ua)||(/Macintosh/i.test(ua)&&navigator.maxTouchPoints>1)||(/Android/i.test(ua)&&!/Mobile/i.test(ua))||(navigator.maxTouchPoints>1&&Math.min(screen.width,screen.height)>=600);};
+ button.addEventListener('keydown',e=>e.stopPropagation());
+ button.addEventListener('click',async e=>{e.preventDefault();e.stopPropagation();try{const root=document.documentElement;if(root.requestFullscreen)await root.requestFullscreen();else if(root.webkitRequestFullscreen)await root.webkitRequestFullscreen();}catch(error){button.textContent='Riprova tutto schermo';}queue();});
+ let pending=false;
+ function fit(){pending=false;const active=tablet();document.body.classList.toggle('tabletFit560',active);
+  const root=document.documentElement,installed=matchMedia('(display-mode: standalone)').matches||matchMedia('(display-mode: fullscreen)').matches||navigator.standalone===true;
+  button.hidden=!active||installed||!!document.fullscreenElement||!!document.webkitFullscreenElement||!(root.requestFullscreen||root.webkitRequestFullscreen);
+  if(!active)return;
+  for(const{panel,card}of entries){if(panel.hidden||getComputedStyle(panel).display==='none')continue;const style=getComputedStyle(panel),w=panel.clientWidth-parseFloat(style.paddingLeft||0)-parseFloat(style.paddingRight||0),hh=panel.clientHeight-parseFloat(style.paddingTop||0)-parseFloat(style.paddingBottom||0);const value=Math.min(1,w/Math.max(1,card.offsetWidth),hh/Math.max(1,card.offsetHeight)).toFixed(4);if(card.style.getPropertyValue('--tablet-card-fit')!==value)card.style.setProperty('--tablet-card-fit',value);}
+ }
+ function queue(){if(!pending){pending=true;requestAnimationFrame(fit);}}
+ const ro=new ResizeObserver(queue),mo=new MutationObserver(queue);for(const{panel,card}of entries){ro.observe(panel);ro.observe(card);mo.observe(panel,{attributes:true,attributeFilter:['hidden','style'],childList:true,subtree:true});}
+ for(const name of ['resize','orientationchange','pageshow'])window.addEventListener(name,queue);
+ document.addEventListener('fullscreenchange',queue);document.addEventListener('webkitfullscreenchange',queue);window.visualViewport?.addEventListener('resize',queue);document.fonts?.ready.then(queue);queue();
+})();</script></body></html>
