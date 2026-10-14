@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>8S2 World Soccer v2.56.568 Megacampione</title>
+<title>8S2 World Soccer v2.56.570 Megacampione</title>
 <style>
 html,body{position:relative;margin:0;background:#111;color:#eee;font-family:Arial,sans-serif}
 .wrap{position:relative;max-width:560px;margin:18px auto;padding:0 12px}
@@ -1312,6 +1312,16 @@ body.tabletFit560 .tabletWholeMenu566 #greatsGrid,body.tabletFit560 .tabletWhole
 body.tabletFit560 .tabletWholeMenu566 #greatsBack,body.tabletFit560 .tabletWholeMenu566 #worldCupBack,body.tabletFit560 .tabletWholeMenu566 #clHome,body.tabletFit560 .tabletWholeMenu566 #formationBack{position:static!important;inset:auto!important;transform:none!important;flex:none!important;align-self:center!important;margin:8px auto!important}
 body.tabletFit560 .tabletWholeMenu566 #clHome{order:99!important}
 body.tabletFit560 .tabletWholeMenu566 .wcFooterButtons,body.tabletFit560 .tabletWholeMenu566 .bcFooter{display:flex!important;flex-direction:column!important;align-items:center!important;flex-wrap:nowrap!important;gap:8px!important}
+</style><style id="removeGreats569">#greatsMenu,#greatsInitial,#challengeGreats{display:none!important}</style><style id="careerTablet570">
+body.tabletFit560 #careerPanel.tabletWholePanel566,body.tabletFit560 #careerPanel.tabletWholePanel566:has(#careerChosenFace[hidden]){padding:16px 24px!important;justify-content:center!important;align-items:center!important;overflow:hidden!important}
+body.tabletFit560 #careerPanel.tabletWholePanel566>.tabletWholeMenu566{width:560px!important;max-width:calc(100vw - 48px)!important}
+body.tabletFit560 #careerPanel .tabletWholeMenu566>.careerCard{width:100%!important;max-width:100%!important;max-height:none!important;height:auto!important;flex:0 0 auto!important;transform:none!important;overflow:visible!important;gap:8px!important}
+body.tabletFit560 #careerPanel .careerCard #careerCreate{width:min(440px,100%)!important;max-width:100%!important;height:auto!important;max-height:none!important;overflow:visible!important;flex:none!important;margin:0 auto!important;box-sizing:border-box!important}
+body.tabletFit560 #careerPanel .careerCard #careerBody{width:100%!important;max-height:420px!important;min-height:0!important;overflow-y:auto!important;overflow-x:hidden!important;flex:0 0 auto!important;box-sizing:border-box!important}
+body.tabletFit560 #careerPanel.careerCreating .careerCard #careerBody{max-height:none!important;overflow:visible!important}
+body.tabletFit560 #careerPanel .careerCard #careerMigration{width:100%!important;box-sizing:border-box!important}
+body.tabletFit560 #careerPanel .careerCard #careerNote{max-width:100%!important;white-space:normal!important;overflow-wrap:anywhere!important}
+body.tabletFit560 #careerPanel .careerCard #careerFooterLogo{height:60px!important;max-width:180px!important}
 </style></head>
 <body class="gameMenuOpen">
 <div class="wrap"><section id="personalBoardPanel" hidden role="dialog" aria-modal="true" aria-labelledby="personalBoardTitle"><div class="personalBoardCard"><h1 id="personalBoardTitle">Palmarès</h1><div id="personalBoardBody"></div><button id="personalBoardBack" type="button">Torna al menu</button></div></section><section id="challengePicker" hidden role="dialog" aria-label="Sfida Steve8s2"><div class="challengeCard"><img id="challengeLogo" alt="8S2 World Soccer"><h1>Sfida Steve8s2</h1><p>Vinci una delle due sfide per sbloccare tutte le modalità!</p><div class="challengeTiles"><button data-challenge="beachchallenge"><span>BEACH SOCCER 5 VS 5</span><small>In caso di pareggio, chi segna vince!</small></button><button data-challenge="match"><span>CALCIO 11 VS 11</span><small>In caso di pareggio, si va ai rigori!</small></button><button data-challenge="streetchallenge"><span>STREET SOCCER 5 VS 5</span><small>In caso di pareggio, chi segna vince!</small></button></div><button id="challengeBack">Torna al menu</button><img class="challengeBrand" src="./asset459-98985cbbda62.jpg" alt="S8S2"></div></section><section id="beachHubPanel" hidden role="dialog" aria-modal="true" aria-label="Scegli modalità Beach Soccer"><div class="beachHubCard"><img id="beachHubLogo" alt="8S2 World Soccer"><h1>BEACH SOCCER</h1><h2>SCEGLI LA MODALITÀ</h2><div class="beachHubChoices"><button id="beachFriendlyChoice" type="button">AMICHEVOLE<small>Una partita sulla sabbia</small></button><button id="beachCupChoice" type="button">SUDAMERICA BEACH CUP<small>La tua squadra e 31 club sudamericani</small></button></div><button id="beachHubBack" type="button">TORNA AL MENU</button></div></section><section id="beachCupPanel" hidden role="dialog" aria-modal="true" aria-label="Sudamerica Beach Cup"><svg id="beachCupLogo" viewBox="0 0 64 64" role="img" aria-label="Stella della Sudamerica Beach Cup"><path d="M32 4 40 23 60 25 45 39 49 59 32 49 15 59 19 39 4 25 24 23Z" fill="#ffd54a" stroke="#fff0a0" stroke-width="2"/></svg><h1>SUDAMERICA BEACH CUP</h1><div id="beachCupBody"></div><div class="bcFooter"><button id="beachCupPlay" type="button">Gioca</button><button id="beachCupNew" type="button">Nuova Cup</button><button id="beachCupBack" type="button">Torna al menu</button></div></section>
@@ -1350,7 +1360,7 @@ body.tabletFit560 .tabletWholeMenu566 .wcFooterButtons,body.tabletFit560 .tablet
     <img class="bootLogo" src="./asset488-8b683502551b.webp" alt="8S2 World Soccer">
     <div class="bootBall"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="100%" height="100%" aria-hidden="true"><circle cx="16" cy="16" r="14" fill="#fff" stroke="#000" stroke-width="1.5"/><g fill="#000"><path d="M16 10l6 4-2 7h-8l-2-7zM10 3l1 5-6 4-3-2zM22 3l8 7-3 2-6-4zM3 21l5-1 4 6-2 3zM29 21l-7-1-4 6 4 3z"/></g><g fill="none" stroke="#000" stroke-width=".8"><path d="M11 8l5 2 5-2M5 12l5 2M27 12l-5 2M8 20l4 1M22 20l-2 1M12 26h6"/></g></svg></div>
     <div class="bootTitle">8s2 World Soccer</div>
-    <div class="bootVersion">v2.56.568</div><div class="globalMatchCounter" aria-live="polite"><div class="counterReveal">PARTITE GIOCATE NEL MONDO: <span data-global-match-total>…</span></div><div class="counterReveal">GOL FATTI: <span data-global-goals-for>…</span> · GOL SUBITI: <span data-global-goals-against>…</span></div></div>
+    <div class="bootVersion">v2.56.570</div><div class="globalMatchCounter" aria-live="polite"><div class="counterReveal">PARTITE GIOCATE NEL MONDO: <span data-global-match-total>…</span></div><div class="counterReveal">GOL FATTI: <span data-global-goals-for>…</span> · GOL SUBITI: <span data-global-goals-against>…</span></div></div>
     <div class="bootControls bootControlPanels"><div class="bootTapBall" aria-hidden="true"><span class="bootTapBallRing"></span><div class="bootTapBallCrop"><img src="./asset488-8722caeb8f3b.webp" alt=""></div></div>
       <div class="bootComputerHelp bootControlPanel">
         <div class="bootControlLabel">COMPUTER</div>
@@ -1405,7 +1415,7 @@ body.tabletFit560 .tabletWholeMenu566 .wcFooterButtons,body.tabletFit560 .tablet
  </div>
  <div class="setupChoice">
   <button id="challenge8s2" type="button">Sfida Steve8s2</button><button id="directTraining" type="button">Allenamento</button><label for="gameMode">MODALITÀ</label>
-  <select id="gameMode" aria-label="Scegli la modalità di gioco"><option value="" selected hidden>Scegli la modalità di gioco</option><option id="careerModeOption" value="playercareer" disabled>Carriera Giocatore — da sbloccare</option><option id="beachCupModeOption" value="futsal" disabled>SUDAMERICA BEACH CUP — DA SBLOCCARE</option><option id="serieAModeOption" value="championships" disabled>CAMPIONATI — DA SBLOCCARE</option><option id="championsModeOption" value="champions" disabled>Champions League — da sbloccare</option><option id="worldCupModeOption" value="worldcup" disabled>WORLD CUP — DA SBLOCCARE</option><option id="greatsModeOption" value="greats" disabled>SFIDA LE GRANDI — DA SBLOCCARE</option></select>
+  <select id="gameMode" aria-label="Scegli la modalità di gioco"><option value="" selected hidden>Scegli la modalità di gioco</option><option id="careerModeOption" value="playercareer" disabled>Carriera Giocatore — da sbloccare</option><option id="beachCupModeOption" value="futsal" disabled>SUDAMERICA BEACH CUP — DA SBLOCCARE</option><option id="serieAModeOption" value="championships" disabled>CAMPIONATI — DA SBLOCCARE</option><option id="championsModeOption" value="champions" disabled>Champions League — da sbloccare</option><option id="worldCupModeOption" value="worldcup" disabled>WORLD CUP — DA SBLOCCARE</option></select>
  </div>
 </div>
 <div id="trainingHint" hidden style="font-size:12px;margin:8px">Campo libero con compagni e portiere. Nessun limite di tempo.</div><button id="teamStart" type="button" disabled>INIZIA PARTITA</button><button id="greatsInitial" type="button" hidden>Sfida le grandi</button>
@@ -6804,9 +6814,9 @@ document.getElementById('directTraining').addEventListener('click',()=>launchDir
 document.querySelectorAll('#challengePicker [data-challenge]').forEach(button=>button.addEventListener('click',()=>launchDirectMode(button.dataset.challenge)));
 document.getElementById('challengeBack').addEventListener('click',returnToStartScreen);
 var directGameMode=null;
-function selectedGameMode(){return directGameMode||document.getElementById('gameMode').value;}
+function selectedGameMode(){const mode=directGameMode||document.getElementById('gameMode').value;return mode==='greats'?'':mode;}
 function updateModeDescription(){
- const descriptions={match:'Batti Steve8s2 e sblocca tutte le modalità di gioco!',training:'Campo libero con compagni e portiere. Nessun limite di tempo.',futsal:'Affronta 31 club sudamericani e conquista la Beach Cup.',beachchallenge:'Batti Steve8s2 sulla sabbia! In parità, chi segna vince.',streetchallenge:'Sfida Steve8s2 sul cemento! In parità, chi segna vince.',championships:'Scegli un campionato e guida la tua squadra fino al titolo.',champions:'Affronta i club europei e conquista la Champions League.',worldcup:'Scegli la tua nazionale e conquista la World Cup.',greats:'Sfida le grandi squadre e diventa megacampione!'};
+ const descriptions={match:'Batti Steve8s2 e sblocca tutte le modalità di gioco!',training:'Campo libero con compagni e portiere. Nessun limite di tempo.',futsal:'Affronta 31 club sudamericani e conquista la Beach Cup.',beachchallenge:'Batti Steve8s2 sulla sabbia! In parità, chi segna vince.',streetchallenge:'Sfida Steve8s2 sul cemento! In parità, chi segna vince.',championships:'Scegli un campionato e guida la tua squadra fino al titolo.',champions:'Affronta i club europei e conquista la Champions League.',worldcup:'Scegli la tua nazionale e conquista la World Cup.',greats:''};
  const mode=selectedGameMode();document.getElementById('teamStart').hidden=['','match','training','beachchallenge','streetchallenge'].includes(mode);const hint=document.getElementById('trainingHint');hint.textContent=descriptions[selectedGameMode()]||'';hint.hidden=!hint.textContent;
 }
 function validateTeamCode(){
@@ -6840,7 +6850,7 @@ teamStartEl.addEventListener('click',()=>{
  if(selectedGameMode()==='championships'){if(!greatsUnlocked)return;sfxTransition();saChampionships();return;}
  if(selectedGameMode()==='worldcup'){if(!greatsUnlocked)return;sfxTransition();startMenuMusic();wcTournament?wcDashboard():wcPicker();return;}
 
- if(selectedGameMode()==='greats'){if(!greatsUnlocked)return;campaignPending=true;testCampaign=false;}
+ 
  if(!campaignPending){campaignActive=false;testCampaign=false;}
  if(!validateTeamCode()) return;
  sfxTransition();
@@ -7076,7 +7086,7 @@ const GREAT_TEAMS=[
 ];
 let greatsReturn='kit';
 function setSteveOpponent(){campaignActive=false;cpuTeam='8S2';cpuKit={shirt:'#171717',shorts:'#171717',socks:'#171717'};}
-function refreshGreatsAccess(){const careerOption=document.getElementById('careerModeOption');careerOption.disabled=!greatsUnlocked;careerOption.textContent=greatsUnlocked?'Carriera Giocatore':'Carriera Giocatore — da sbloccare';const beachOption=document.getElementById('beachCupModeOption');beachOption.disabled=!greatsUnlocked;beachOption.textContent=greatsUnlocked?'SUDAMERICA BEACH CUP':'SUDAMERICA BEACH CUP — DA SBLOCCARE';const champions=document.getElementById('championsModeOption');champions.disabled=!greatsUnlocked;champions.textContent=greatsUnlocked?'Champions League':'Champions League — da sbloccare';document.getElementById('greatsInitial').hidden=true;const option=document.getElementById('greatsModeOption');option.disabled=!greatsUnlocked;option.textContent=greatsUnlocked?'SFIDA LE GRANDI':'SFIDA LE GRANDI — DA SBLOCCARE';const worldCup=document.getElementById('worldCupModeOption');worldCup.disabled=!greatsUnlocked;worldCup.textContent=greatsUnlocked?'WORLD CUP':'WORLD CUP — DA SBLOCCARE';const serieA=document.getElementById('serieAModeOption');serieA.disabled=!greatsUnlocked;serieA.textContent=greatsUnlocked?'CAMPIONATI':'CAMPIONATI — DA SBLOCCARE';}
+function refreshGreatsAccess(){const careerOption=document.getElementById('careerModeOption');careerOption.disabled=!greatsUnlocked;careerOption.textContent=greatsUnlocked?'Carriera Giocatore':'Carriera Giocatore — da sbloccare';const beachOption=document.getElementById('beachCupModeOption');beachOption.disabled=!greatsUnlocked;beachOption.textContent=greatsUnlocked?'SUDAMERICA BEACH CUP':'SUDAMERICA BEACH CUP — DA SBLOCCARE';const champions=document.getElementById('championsModeOption');champions.disabled=!greatsUnlocked;champions.textContent=greatsUnlocked?'Champions League':'Champions League — da sbloccare';document.getElementById('greatsInitial').hidden=true;const worldCup=document.getElementById('worldCupModeOption');worldCup.disabled=!greatsUnlocked;worldCup.textContent=greatsUnlocked?'WORLD CUP':'WORLD CUP — DA SBLOCCARE';const serieA=document.getElementById('serieAModeOption');serieA.disabled=!greatsUnlocked;serieA.textContent=greatsUnlocked?'CAMPIONATI':'CAMPIONATI — DA SBLOCCARE';}
 function configurePostMatchMenu(){
  if(bcActive){const card=document.querySelector('#playAgain .againCard');card.querySelector('h2').textContent=bcTournament.status==='won'?'CAMPIONI DELLA COPA BEACH!':bcTournament.status==='eliminated'?'ELIMINATI':'TURNO SUPERATO!';card.querySelector('p').textContent='Consulta risultati e prossimo incontro nel tabellone.';againYesEl.textContent='TABELLONE';againYesEl.hidden=false;againNoEl.hidden=true;for(const id of ['challengeGreats','postWorldCup','postExit'])document.getElementById(id).hidden=true;return;}
  const card=document.querySelector('#playAgain .againCard');
@@ -7086,7 +7096,7 @@ function configurePostMatchMenu(){
  againNoEl.textContent='Torna al Menu';againNoEl.hidden=false;
  for(const id of ['challengeGreats','postWorldCup','postExit'])document.getElementById(id).hidden=true;
 }
-function showGreatsMenu(from){if(!greatsUnlocked&&!testCampaign)return;greatsReturn=from;refreshGreatsGrid();teamSetupEl.style.display='none';document.getElementById('greatsMenu').hidden=false;kitSetupEl.style.display='none';playAgainEl.style.display='none';stopVictoryAudio();stopStadiumAmbience();if(audioEnabled)startMenuMusic();document.querySelector('#greatsMenu .greatsCard').scrollTop=0;document.getElementById('greatsGrid').scrollTop=0;document.getElementById('greatsBack').focus({preventScroll:true});}
+function showGreatsMenu(from){return;}
 
 document.getElementById('challengeGreats').onclick=()=>showGreatsMenu('post');
 document.getElementById('postExit').onclick=returnToStartScreen;
@@ -7127,8 +7137,8 @@ function showPersonalBoard(){
  syncPersonalTrophies();const body=document.getElementById('personalBoardBody');body.replaceChildren();
  const line=(title,value)=>{const row=document.createElement('div');row.className='boardRow';const a=document.createElement('span'),b=document.createElement('strong');a.textContent=title;b.textContent=value;row.append(a,b);body.append(row);};
  line('Vittorie registrate',personalBoard.wins);line('Partite registrate',personalBoard.matches);
- line('Grandi battute',beatenGreats.size+' / '+GREAT_TEAMS.length);
- const beaten=GREAT_TEAMS.filter(t=>beatenGreats.has(t[1])).map(t=>t[0]);const detail=document.createElement('p');detail.textContent=beaten.length?beaten.join(' · '):'Le grandi che batterai compariranno qui.';body.append(detail);
+ 
+ 
  const best=personalBoard.bestSteve;line('Miglior risultato contro Steve8s2',best?best.gf+' – '+best.ga+(best.ph||best.pa?' · rigori '+best.ph+' – '+best.pa:'')+(best.beach?' · Beach Soccer':''):'Da conquistare');
  const title=document.createElement('h2');title.textContent='Trofei vinti';body.append(title);line('Totale trofei',Object.values(personalBoard.trophies).reduce((n,v)=>n+(Number(v)||0),0));for(const [,name] of BOARD_COMPETITIONS)line(name,personalBoard.trophies[name]||0);
  const careerTitle=document.createElement('h2');careerTitle.textContent='Carriera Giocatore';body.append(careerTitle);const careerCounts=personalBoard.career||{matches:0,wins:0};line('Partite in carriera',careerCounts.matches);line('Vittorie in carriera',careerCounts.wins);line('Campionati vinti in carriera',careerLeagues().reduce((n,l)=>n+(personalBoard.trophies['Carriera · '+l.name]||0),0));for(const l of careerLeagues())line('Carriera · '+l.name,personalBoard.trophies['Carriera · '+l.name]||0);
@@ -7190,7 +7200,7 @@ button.onclick=async()=>{if(prompt){await prompt.prompt();prompt=null;}else aler
 window.addEventListener('appinstalled',()=>{installedThisSession=true;try{localStorage.setItem('8s2-installed-device','1');}catch(e){}prompt=null;syncInstallButton();});
 if('serviceWorker' in navigator&&location.protocol!=='file:'){
  let pendingUpdate=false,reloading=false,registration=null,lastCheck=0;
- const build='2.56.568';
+ const build='2.56.570';
  const safeToReload=()=>!document.hidden&&document.body.classList.contains('gameMenuOpen')&&!document.activeElement?.matches('input,textarea,select');
  function applyUpdate(){if(!pendingUpdate||reloading||!safeToReload())return;reloading=true;location.reload();}
  navigator.serviceWorker.addEventListener('message',event=>{if(event.data?.type==='GAME_VERSION'&&event.data.version!==build){pendingUpdate=true;applyUpdate();}});
