@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>8S2 World Soccer v2.56.589 Megacampione</title>
+<title>8S2 World Soccer v2.56.590 Megacampione</title>
 <style>
 html,body{position:relative;margin:0;background:#111;color:#eee;font-family:Arial,sans-serif}
 .wrap{position:relative;max-width:560px;margin:18px auto;padding:0 12px}
@@ -1482,7 +1482,7 @@ body.tabletControls589:not(.gameMenuOpen) .wrap .controls .shotControls #careerC
     <img class="bootLogo" src="./asset488-8b683502551b.webp" alt="8S2 World Soccer">
     <div class="bootBall"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="100%" height="100%" aria-hidden="true"><circle cx="16" cy="16" r="14" fill="#fff" stroke="#000" stroke-width="1.5"/><g fill="#000"><path d="M16 10l6 4-2 7h-8l-2-7zM10 3l1 5-6 4-3-2zM22 3l8 7-3 2-6-4zM3 21l5-1 4 6-2 3zM29 21l-7-1-4 6 4 3z"/></g><g fill="none" stroke="#000" stroke-width=".8"><path d="M11 8l5 2 5-2M5 12l5 2M27 12l-5 2M8 20l4 1M22 20l-2 1M12 26h6"/></g></svg></div>
     <div class="bootTitle">8s2 World Soccer</div>
-    <div class="bootVersion">v2.56.589</div><div class="globalMatchCounter" aria-live="polite"><div class="counterReveal">PARTITE GIOCATE NEL MONDO: <span data-global-match-total>…</span></div><div class="counterReveal">GOL FATTI: <span data-global-goals-for>…</span> · GOL SUBITI: <span data-global-goals-against>…</span></div></div>
+    <div class="bootVersion">v2.56.590</div><div class="globalMatchCounter" aria-live="polite"><div class="counterReveal">PARTITE GIOCATE NEL MONDO: <span data-global-match-total>…</span></div><div class="counterReveal">GOL FATTI: <span data-global-goals-for>…</span> · GOL SUBITI: <span data-global-goals-against>…</span></div></div>
     <div class="bootControls bootControlPanels"><div class="bootTapBall" aria-hidden="true"><span class="bootTapBallRing"></span><div class="bootTapBallCrop"><img src="./asset488-8722caeb8f3b.webp" alt=""></div></div>
       <div class="bootComputerHelp bootControlPanel">
         <div class="bootControlLabel">COMPUTER</div>
@@ -1867,6 +1867,23 @@ function careerKeyboardAllowed(target){
 }
 
 function careerCanAct(){return !careerActive||possession===careerPlayer;}
+let careerCallFitAt590=-Infinity;
+function fitCareerCall590(button){
+ const tablet=document.body.classList.contains('tabletFit560')||document.body.classList.contains('tabletControls589');
+ if(!tablet||button.hidden)return;
+ const now=performance.now();if(now-careerCallFitAt590<250)return;careerCallFitAt590=now;
+ const parent=button.parentElement,pr=parent.getBoundingClientRect(),action=document.getElementById('action').getBoundingClientRect();
+ if(!parent.offsetWidth||!pr.width||!action.width)return;
+ const scale=pr.width/parent.offsetWidth;
+ const visible=Math.max(76,Math.min(104,action.width*.62));
+ const size=visible/scale,font=Math.max(17,Math.min(23,visible*.23))/scale;
+ button.style.setProperty('--call-size',size+'px','important');
+ for(const key of ['width','height','min-width','min-height','max-width','max-height'])button.style.setProperty(key,size+'px','important');
+ button.style.setProperty('box-sizing','border-box','important');
+ button.style.setProperty('font-size',font+'px','important');
+ button.style.setProperty('line-height','1','important');
+ button.style.setProperty('justify-content','center','important');button.style.setProperty('align-items','center','important');
+}
 function careerCall(){if(!careerActive||state!=='play'||possession===careerPlayer||performance.now()<careerCallCooldown)return;careerCallUntil=performance.now()+2500;careerCallCooldown=performance.now()+1000;sfxMove();MSG.textContent='CHIEDI PALLA — SMARCATI!';}
 function careerTouch(p){if(careerActive&&careerGame)careerGame.lastTouch=p;}
 function careerCapture(p){careerTouch(p);if(!careerActive||!careerGame||state!=='play')return;const previous=possession;if(p===careerPlayer&&((previous&&previous.team==='a')||(!previous&&ball.lastTeam==='a')))careerGame.recoveries++;
@@ -1906,7 +1923,7 @@ function careerTeammates(dt){careerChaser=null;if(!careerActive)return;
 }
 function careerDrawIndicator(){if(!careerActive||!careerPlayer||state==='postmatch')return;G.save();G.fillStyle='#ffd54a';G.beginPath();G.moveTo(careerPlayer.x-7,careerPlayer.y-43);G.lineTo(careerPlayer.x+7,careerPlayer.y-43);G.lineTo(careerPlayer.x,careerPlayer.y-35);G.closePath();G.fill();G.fillStyle='#fff';G.font='bold 10px monospace';G.textAlign='center';G.fillText(String(career.number),careerPlayer.x,careerPlayer.y-49);G.restore();}
 function careerUI(){
- const callControl=document.getElementById('careerCallControl');callControl.hidden=!careerActive||state!=='play';callControl.disabled=possession===careerPlayer||performance.now()<careerCallCooldown;
+ const callControl=document.getElementById('careerCallControl');callControl.hidden=!careerActive||state!=='play';callControl.disabled=possession===careerPlayer||performance.now()<careerCallCooldown;fitCareerCall590(callControl);
 
  document.getElementById('careerCall').hidden=true;
  document.getElementById('careerLive').hidden=true;
@@ -5812,6 +5829,7 @@ function drawFinalStats(){
  G.textAlign='left';
 }
 const skipEntranceButton=document.createElement('button');
+skipEntranceButton.id='skipEntranceButton';
 skipEntranceButton.textContent='Entra in campo';skipEntranceButton.type='button';skipEntranceButton.style.cssText='display:none;position:absolute;z-index:90;background:linear-gradient(#292929,#151515);border:1px solid #858585;border-radius:9px;color:#ffd329;font:bold 13px monospace;padding:12px 14px;min-height:44px;cursor:pointer;transform:translate(-50%,-50%);animation:entranceButtonBlink 1.3s ease-in-out infinite;';C.closest('.wrap').appendChild(skipEntranceButton);
 const entranceButtonStyle=document.createElement('style');entranceButtonStyle.textContent='@keyframes entranceButtonBlink{0%,100%{color:#ffd329;box-shadow:0 0 0 rgba(255,211,41,0)}50%{color:#fff1a0;box-shadow:0 0 9px rgba(255,211,41,.35)}}';document.head.appendChild(entranceButtonStyle);
 skipEntranceButton.onclick=e=>{e.preventDefault();e.stopPropagation();if(state==='beach_golden_wait'){beginBeachGoldenGoal();skipEntranceButton.style.display='none';C.focus();return;}if(state==='halftime_wait'||state==='beach_halftime'){startSecondHalf();skipEntranceButton.style.display='none';C.focus();return;}if(state!=='bench_entrance')return;if(cinematicMode==='intro_in'&&benchPhase!=='to_pitch')playEntranceHorn();benchPhase='to_pitch';benchPhaseTimer=10;updateBenchEntrance(0);skipEntranceButton.style.display='none';C.focus();};
@@ -5821,14 +5839,21 @@ function positionSkipEntranceButton(){
  if(key!==skipEntranceUiKey){skipEntranceUiKey=key;if(skipEntranceButton.textContent!==label)skipEntranceButton.textContent=label;skipEntranceButton.style.display=show?'block':'none';skipEntrancePositionAt=-Infinity;}
  if(!show)return;const now=performance.now();if(now-skipEntrancePositionAt<250)return;skipEntrancePositionAt=now;
  const r=C.getBoundingClientRect(),parent=C.closest('.wrap'),p=parent.getBoundingClientRect(),sx=p.width/parent.offsetWidth||1,sy=p.height/parent.offsetHeight||1;
+ const large590=document.body.classList.contains('tabletFit560')||document.body.classList.contains('tabletControls589');
+ if(large590){
+  const width=Math.min(420,innerWidth-32,r.width-16)/sx,height=(innerHeight<=600?64:78)/sy,font=(innerHeight<=600?26:32)/sy;
+  skipEntranceButton.style.setProperty('width',Math.max(100,width)+'px','important');
+  skipEntranceButton.style.setProperty('min-height',height+'px','important');
+  skipEntranceButton.style.setProperty('font-size',font+'px','important');
+ }
  const centre=['beach_halftime','beach_golden_wait'].includes(state);let x=r.left+r.width*(centre?OX+W/2:180)/SW,y=r.top+r.height*(centre?OY+MID:752)/SH;
- if(document.body.classList.contains('tabletFit560')){
+ if(large590){
   skipEntranceButton.style.setProperty('--tablet-entrance-width',Math.max(100,Math.min(380,(r.width-24)/sx))+'px');
   const size=skipEntranceButton.getBoundingClientRect();
   x=Math.max(r.left+size.width/2+8,Math.min(r.right-size.width/2-8,x));
   y=Math.max(r.top+size.height/2+8,Math.min(r.bottom-size.height/2-8,y));
  }
- skipEntranceButton.style.left=((x-p.left)/sx+(parent.scrollLeft||0)-(parent.clientLeft||0))+'px';skipEntranceButton.style.top=((y-p.top)/sy+(parent.scrollTop||0)-(parent.clientTop||0))+'px';skipEntranceButton.style.fontSize=Math.max(10,Math.min(13,r.width/SW*15))+'px';
+ skipEntranceButton.style.left=((x-p.left)/sx+(parent.scrollLeft||0)-(parent.clientLeft||0))+'px';skipEntranceButton.style.top=((y-p.top)/sy+(parent.scrollTop||0)-(parent.clientTop||0))+'px';if(!large590)skipEntranceButton.style.fontSize=Math.max(10,Math.min(13,r.width/SW*15))+'px';
 }
 function isSmartphoneControls412(){
  const ua=navigator.userAgent;
@@ -7383,7 +7408,7 @@ button.onclick=async()=>{if(prompt){await prompt.prompt();prompt=null;}else aler
 window.addEventListener('appinstalled',()=>{installedThisSession=true;try{localStorage.setItem('8s2-installed-device','1');}catch(e){}prompt=null;syncInstallButton();});
 if('serviceWorker' in navigator&&location.protocol!=='file:'){
  let pendingUpdate=false,reloading=false,registration=null,lastCheck=0;
- const build='2.56.589';
+ const build='2.56.590';
  const safeToReload=()=>!document.hidden&&document.body.classList.contains('gameMenuOpen')&&!document.activeElement?.matches('input,textarea,select');
  function applyUpdate(){if(!pendingUpdate||reloading||!safeToReload())return;reloading=true;location.reload();}
  navigator.serviceWorker.addEventListener('message',event=>{if(event.data?.type==='GAME_VERSION'&&event.data.version!==build){pendingUpdate=true;applyUpdate();}});
