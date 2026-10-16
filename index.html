@@ -1504,7 +1504,13 @@ body.tabletFit560.careerStatsBar:not(.gameMenuOpen) #msg::after,body.tabletContr
     </div>
     <div class="bootChallenge">RIUSCIRAI A BATTERE <strong>STEVE8S2?</strong></div>
     <div class="bootPress">TOCCA LO SCHERMO / PREMI S</div>
-    <button id="memoriesOpen" type="button">RICORDI A 16 BIT</button>
+    <div class="bootIntroActions">
+      <button id="memoriesOpen" type="button">RICORDI A 16 BIT</button>
+      <a id="supportButton" class="support-button" href="https://www.paypal.com/paypalme/8s2design" target="_blank" rel="noopener noreferrer" aria-label="Sostieni 8S2 World Soccer con PayPal" onclick="event.stopPropagation()" onkeydown="event.stopPropagation()">
+        <span class="support-button__text">SOSTIENI 8S2 WORLD SOCCER</span>
+      </a>
+    </div>
+    <div id="bootActions" class="bootInstallRow"></div>
   </div>
 
 </div>
@@ -1646,7 +1652,7 @@ BOOT.addEventListener('keydown',e=>{
  if(e.key.toLowerCase()==='s'||e.key==='Enter'){e.preventDefault();finishBootIntro()}
 });
 document.addEventListener('keydown',e=>{
- if(bootActive&&e.target.id!=='memoriesOpen'&&document.getElementById('memoriesPanel').hidden&&(e.key.toLowerCase()==='s'||e.key==='Enter')){e.preventDefault();finishBootIntro()}
+ if(bootActive&&e.target.id!=='memoriesOpen'&&e.target.id!=='supportButton'&&document.getElementById('memoriesPanel').hidden&&(e.key.toLowerCase()==='s'||e.key==='Enter')){e.preventDefault();finishBootIntro()}
 },{capture:true});
 
 G.imageSmoothingEnabled=false;
@@ -7392,7 +7398,7 @@ const appFullscreen=window.matchMedia('(display-mode: fullscreen)');
 let installedThisSession=false;
 const isApp=()=>appDisplay.matches||appFullscreen.matches||window.navigator.standalone===true;
 try{installedThisSession=localStorage.getItem('8s2-installed-device')==='1';}catch(e){}
-const installCenter=document.querySelector('#bootIntro .bootCenter');
+const installCenter=document.getElementById('bootActions')||document.querySelector('#bootIntro .bootCenter');
 if(installCenter)installCenter.appendChild(button);
 button.addEventListener('click',e=>e.stopPropagation());
 button.addEventListener('keydown',e=>e.stopPropagation());
@@ -7645,6 +7651,16 @@ window.addEventListener('pagehide',close);
  function tablet589(){const ua=navigator.userAgent,touch=navigator.maxTouchPoints>1||matchMedia('(pointer:coarse)').matches;const short=Math.min(screen.width,screen.height),long=Math.max(screen.width,screen.height),ratio=long/Math.max(1,short);return /iPad|Tablet/i.test(ua)||(/Macintosh/i.test(ua)&&navigator.maxTouchPoints>1)||(/Android/i.test(ua)&&(!/Mobile/i.test(ua)||short>=480||(touch&&short>=440&&ratio<=1.7)))||(touch&&short>=600);}
  function sync(){document.body.classList.toggle('tabletControls589',tablet589());}
  sync();addEventListener('resize',sync);addEventListener('orientationchange',sync);document.addEventListener('fullscreenchange',sync);document.addEventListener('webkitfullscreenchange',sync);
-})();</script></body></html>
+})();</script><style>
+#bootIntro .bootIntroActions{display:flex;flex-wrap:nowrap!important;align-items:stretch;justify-content:center;gap:6px;width:100%;max-width:100%;margin:14px auto 0;box-sizing:border-box}
+#bootIntro .bootIntroActions #memoriesOpen{position:static!important;left:auto!important;bottom:auto!important;transform:none!important;display:inline-flex!important;align-items:center;justify-content:center;flex:0 1 auto;min-width:0;margin:0!important;height:34px!important;min-height:34px!important;max-height:34px!important;box-sizing:border-box}
+#bootIntro .bootIntroActions .support-button{display:inline-flex;align-items:center;justify-content:center;gap:0;flex:0 1 auto;min-width:0;max-width:100%;margin:0;height:34px!important;min-height:34px!important;max-height:34px!important;padding:8px 12px;box-sizing:border-box;color:#ffd54a;background:#222;border:1px solid #777;border-radius:8px;box-shadow:none;font:bold 12px/1 monospace;text-align:center;text-decoration:none;cursor:pointer;touch-action:manipulation;white-space:nowrap;transition:background .12s,border-color .12s}
+#bootIntro .bootIntroActions .support-button:hover{background:#303030;border-color:#ffd54a}
+#bootIntro .bootIntroActions .support-button:focus-visible{outline:2px solid #ffd54a;outline-offset:3px}
+#bootIntro .bootInstallRow{display:flex;align-items:center;justify-content:center;width:100%;margin:8px auto 0}
+#bootIntro #bootActions #installApp{margin:0!important}
+@media(max-width:420px){#bootIntro .bootIntroActions #memoriesOpen,#bootIntro .bootIntroActions .support-button{font-size:clamp(7px,2.3vw,10px)!important;padding-left:clamp(4px,1.7vw,8px)!important;padding-right:clamp(4px,1.7vw,8px)!important}}
+</style>
+</body></html>
 
 
