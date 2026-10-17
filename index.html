@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>8S2 World Soccer v2.56.612</title>
+<title>8S2 World Soccer v2.56.613</title>
 <style>
 html,body{position:relative;margin:0;background:#111;color:#eee;font-family:Arial,sans-serif}
 .wrap{position:relative;max-width:560px;margin:18px auto;padding:0 12px}
@@ -1487,7 +1487,7 @@ body.tabletFit560.careerStatsBar:not(.gameMenuOpen) #msg::after,body.tabletContr
     <img class="bootLogo" src="./asset488-8b683502551b.webp" alt="8S2 World Soccer">
     <div class="bootBall"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="100%" height="100%" aria-hidden="true"><circle cx="16" cy="16" r="14" fill="#fff" stroke="#000" stroke-width="1.5"/><g fill="#000"><path d="M16 10l6 4-2 7h-8l-2-7zM10 3l1 5-6 4-3-2zM22 3l8 7-3 2-6-4zM3 21l5-1 4 6-2 3zM29 21l-7-1-4 6 4 3z"/></g><g fill="none" stroke="#000" stroke-width=".8"><path d="M11 8l5 2 5-2M5 12l5 2M27 12l-5 2M8 20l4 1M22 20l-2 1M12 26h6"/></g></svg></div>
     <div class="bootTitle">8s2 World Soccer</div>
-    <div class="bootVersion">v2.56.612</div><div class="globalMatchCounter" aria-live="polite"><div class="counterReveal">PARTITE GIOCATE NEL MONDO: <span data-global-match-total>…</span></div><div class="counterReveal">GOL FATTI: <span data-global-goals-for>…</span> · GOL SUBITI: <span data-global-goals-against>…</span></div></div>
+    <div class="bootVersion">v2.56.613</div><div class="globalMatchCounter" aria-live="polite"><div class="counterReveal">PARTITE GIOCATE NEL MONDO: <span data-global-match-total>…</span></div><div class="counterReveal">GOL FATTI: <span data-global-goals-for>…</span> · GOL SUBITI: <span data-global-goals-against>…</span></div></div>
     <div class="bootControls bootControlPanels"><div class="bootTapBall" aria-hidden="true"><span class="bootTapBallRing"></span><div class="bootTapBallCrop"><img src="./asset488-8722caeb8f3b.webp" alt=""></div></div>
       <a id="telegramGroup596" href="https://t.me/game8s2ws" target="_blank" rel="noopener noreferrer" aria-label="Apri il gruppo Telegram di 8S2 World Soccer" title="Gruppo Telegram" onclick="event.stopPropagation()" onkeydown="event.stopPropagation()">
         <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false"><path fill="currentColor" d="M21.7 3.2 18.4 20c-.2 1-1 1.2-1.8.7l-5-3.7-2.4 2.3c-.3.3-.5.5-1 .5l.4-5.1L18 6.2c.4-.4-.1-.6-.6-.3L5.8 13.2.9 11.7c-1.1-.3-1.1-1 .2-1.5L20.3 2.8c.9-.3 1.6.2 1.4.4Z"/></svg>
@@ -7491,7 +7491,7 @@ button.onclick=async()=>{if(prompt){await prompt.prompt();prompt=null;}else if(!
 window.addEventListener('appinstalled',()=>{installedThisSession=true;try{localStorage.setItem('8s2-installed-device','1');}catch(e){}prompt=null;syncInstallButton();});
 if('serviceWorker' in navigator&&location.protocol!=='file:'){
  let pendingUpdate=false,reloading=false,registration=null,lastCheck=0;
- const build='2.56.612';
+ const build='2.56.613';
  const safeToReload=()=>!document.hidden&&document.body.classList.contains('gameMenuOpen')&&!document.activeElement?.matches('input,textarea,select');
  function applyUpdate(){if(!pendingUpdate||reloading||!safeToReload())return;reloading=true;location.reload();}
  navigator.serviceWorker.addEventListener('message',event=>{if(event.data?.type==='GAME_VERSION'&&event.data.version!==build){pendingUpdate=true;applyUpdate();}});
@@ -7878,6 +7878,11 @@ body #serieAPanel#serieAPanel.clPanel .clPickerFooter{padding-top:3px!important;
 body #serieAPanel#serieAPanel.clPanel .clPickerFooter button,body #serieAPanel#serieAPanel.clPanel:has(.clWorldCupPicker) #saBack{font-size:clamp(9px,2.5vw,12px)!important;height:34px!important;min-height:34px!important;max-height:34px!important;padding:4px 6px!important;white-space:normal!important}
 </style><script>(()=>{const panel=document.getElementById('serieAPanel');let pending=false;function fit(){pending=false;const grid=panel.querySelector('.clWorldCupPicker .clTeams');if(!grid||panel.hidden)return;const row=(grid.clientHeight-21)/8;grid.style.setProperty('--cl-crest610',Math.max(8,Math.min(30,row-24))+'px');}function queue(){if(!pending){pending=true;requestAnimationFrame(fit);}}new ResizeObserver(queue).observe(panel);new MutationObserver(queue).observe(document.getElementById('serieABody'),{childList:true});window.addEventListener('resize',queue);window.visualViewport?.addEventListener('resize',queue);queue();})();</script><script>(()=>{const pc=!/Android|iPhone|iPad|iPod|Tablet/i.test(navigator.userAgent)&&!(navigator.maxTouchPoints>1&&/Macintosh/i.test(navigator.userAgent));if(!pc)return;const button=document.getElementById('installApp');button.setAttribute('aria-label','Installa come app sul PC');const label=button.querySelector('span');if(label)label.textContent='INSTALLA COME APP SUL PC';button.querySelectorAll('svg').forEach(svg=>svg.style.display='none');const actions=document.querySelector('#bootIntro .bootIntroActions');if(actions)actions.appendChild(button);})();</script><style id="pcInstallRow612">
 @media(hover:hover) and (pointer:fine){#bootIntro .bootIntroActions:has(#installApp){flex-wrap:wrap!important;gap:6px!important}#bootIntro .bootIntroActions #installApp{position:static!important;inset:auto!important;transform:none!important;display:inline-flex;align-items:center;justify-content:center;min-width:0!important;width:auto!important;height:34px!important;min-height:34px!important;max-height:34px!important;margin:0!important;padding:6px 10px!important;font:bold 11px monospace!important;box-sizing:border-box!important}#bootIntro .bootIntroActions #installApp[hidden]{display:none!important}}
+</style><style id="installCentered613">
+body.pcLayout602 #bootIntro .bootIntroActions{display:flex!important;flex-direction:row!important;flex-wrap:nowrap!important;align-items:center!important;justify-content:center!important;gap:6px!important;width:max-content!important;max-width:100%!important;margin:14px auto 0!important;position:relative!important;inset:auto!important;transform:none!important}
+body.pcLayout602 #bootIntro .bootIntroActions>#memoriesOpen,body.pcLayout602 #bootIntro .bootIntroActions>#supportButton,body.pcLayout602 #bootIntro .bootIntroActions>#installApp{position:static!important;inset:auto!important;float:none!important;transform:none!important;flex:0 1 auto!important;align-self:center!important;width:auto!important;min-width:0!important;margin:0!important;height:34px!important;min-height:34px!important;max-height:34px!important;padding:6px 10px!important;box-sizing:border-box!important;font:bold 11px monospace!important;white-space:nowrap!important}
+body.pcLayout602 #bootIntro .bootIntroActions>#installApp[hidden]{display:none!important}
+@media(max-width:620px){body.pcLayout602 #bootIntro .bootIntroActions{flex-wrap:wrap!important;width:100%!important}}
 </style></body></html>
 
 
