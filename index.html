@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>8S2 World Soccer v2.56.598 Megacampione</title>
+<title>8S2 World Soccer v2.56.601 Megacampione</title>
 <style>
 html,body{position:relative;margin:0;background:#111;color:#eee;font-family:Arial,sans-serif}
 .wrap{position:relative;max-width:560px;margin:18px auto;padding:0 12px}
@@ -1487,7 +1487,7 @@ body.tabletFit560.careerStatsBar:not(.gameMenuOpen) #msg::after,body.tabletContr
     <img class="bootLogo" src="./asset488-8b683502551b.webp" alt="8S2 World Soccer">
     <div class="bootBall"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="100%" height="100%" aria-hidden="true"><circle cx="16" cy="16" r="14" fill="#fff" stroke="#000" stroke-width="1.5"/><g fill="#000"><path d="M16 10l6 4-2 7h-8l-2-7zM10 3l1 5-6 4-3-2zM22 3l8 7-3 2-6-4zM3 21l5-1 4 6-2 3zM29 21l-7-1-4 6 4 3z"/></g><g fill="none" stroke="#000" stroke-width=".8"><path d="M11 8l5 2 5-2M5 12l5 2M27 12l-5 2M8 20l4 1M22 20l-2 1M12 26h6"/></g></svg></div>
     <div class="bootTitle">8s2 World Soccer</div>
-    <div class="bootVersion">v2.56.598</div><div class="globalMatchCounter" aria-live="polite"><div class="counterReveal">PARTITE GIOCATE NEL MONDO: <span data-global-match-total>…</span></div><div class="counterReveal">GOL FATTI: <span data-global-goals-for>…</span> · GOL SUBITI: <span data-global-goals-against>…</span></div></div>
+    <div class="bootVersion">v2.56.601</div><div class="globalMatchCounter" aria-live="polite"><div class="counterReveal">PARTITE GIOCATE NEL MONDO: <span data-global-match-total>…</span></div><div class="counterReveal">GOL FATTI: <span data-global-goals-for>…</span> · GOL SUBITI: <span data-global-goals-against>…</span></div></div>
     <div class="bootControls bootControlPanels"><div class="bootTapBall" aria-hidden="true"><span class="bootTapBallRing"></span><div class="bootTapBallCrop"><img src="./asset488-8722caeb8f3b.webp" alt=""></div></div>
       <a id="telegramGroup596" href="https://t.me/game8s2ws" target="_blank" rel="noopener noreferrer" aria-label="Apri il gruppo Telegram di 8S2 World Soccer" title="Gruppo Telegram" onclick="event.stopPropagation()" onkeydown="event.stopPropagation()">
         <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false"><path fill="currentColor" d="M21.7 3.2 18.4 20c-.2 1-1 1.2-1.8.7l-5-3.7-2.4 2.3c-.3.3-.5.5-1 .5l.4-5.1L18 6.2c.4-.4-.1-.6-.6-.3L5.8 13.2.9 11.7c-1.1-.3-1.1-1 .2-1.5L20.3 2.8c.9-.3 1.6.2 1.4.4Z"/></svg>
@@ -7491,7 +7491,7 @@ button.onclick=async()=>{if(prompt){await prompt.prompt();prompt=null;}else aler
 window.addEventListener('appinstalled',()=>{installedThisSession=true;try{localStorage.setItem('8s2-installed-device','1');}catch(e){}prompt=null;syncInstallButton();});
 if('serviceWorker' in navigator&&location.protocol!=='file:'){
  let pendingUpdate=false,reloading=false,registration=null,lastCheck=0;
- const build='2.56.598';
+ const build='2.56.601';
  const safeToReload=()=>!document.hidden&&document.body.classList.contains('gameMenuOpen')&&!document.activeElement?.matches('input,textarea,select');
  function applyUpdate(){if(!pendingUpdate||reloading||!safeToReload())return;reloading=true;location.reload();}
  navigator.serviceWorker.addEventListener('message',event=>{if(event.data?.type==='GAME_VERSION'&&event.data.version!==build){pendingUpdate=true;applyUpdate();}});
@@ -7630,7 +7630,7 @@ if('serviceWorker' in navigator&&location.protocol!=='file:'){
 (()=>{const panel=document.getElementById('careerPanel'),card=panel.querySelector('.careerCard'),form=document.getElementById('careerCreate');let pending=false;
 function fit(){pending=false;const creating=!panel.hidden&&!form.hidden;panel.classList.toggle('careerCreating',creating);if(!creating){card.style.removeProperty('--career-create-scale');return;}const style=getComputedStyle(panel),availableH=Math.max(1,panel.clientHeight-parseFloat(style.paddingTop||0)-parseFloat(style.paddingBottom||0)),availableW=Math.max(1,panel.clientWidth-parseFloat(style.paddingLeft||0)-parseFloat(style.paddingRight||0));const scale=Math.min(1,availableH/Math.max(1,card.offsetHeight),availableW/Math.max(1,card.offsetWidth)).toFixed(4);if(card.style.getPropertyValue('--career-create-scale')!==scale)card.style.setProperty('--career-create-scale',scale);}
 function schedule(){if(!pending){pending=true;requestAnimationFrame(fit);}}const observer=new MutationObserver(schedule);observer.observe(panel,{attributes:true,attributeFilter:['hidden']});observer.observe(form,{attributes:true,attributeFilter:['hidden'],childList:true,subtree:true});observer.observe(document.getElementById('careerBody'),{childList:true,subtree:true});observer.observe(document.getElementById('careerNote'),{childList:true,subtree:true});const resize=new ResizeObserver(schedule);resize.observe(panel);resize.observe(card);window.addEventListener('resize',schedule);window.addEventListener('orientationchange',schedule);window.visualViewport?.addEventListener('resize',schedule);document.fonts?.ready.then(schedule);schedule();})();
-</script><script>(()=>{const panel=document.getElementById('careerPanel'),body=document.getElementById('careerBody'),card=panel.querySelector('.careerCard');let pending=false;function fit(){pending=false;const line=body.querySelector('.careerSummaryLine'),home=!panel.hidden&&!!line&&!!body.querySelector('.careerLeagueBoxes');panel.classList.toggle('careerHomeFit',home);if(line){line.style.fontSize='11px';const size=Math.min(11,11*body.clientWidth/Math.max(1,line.scrollWidth));line.style.fontSize=size.toFixed(2)+'px';}if(!home){card.style.removeProperty('--career-home-scale');return;}const p=getComputedStyle(panel),height=panel.clientHeight-parseFloat(p.paddingTop)-parseFloat(p.paddingBottom);card.style.setProperty('--career-home-scale',Math.min(1,height/Math.max(1,card.offsetHeight)).toFixed(4));}function queue(){if(!pending){pending=true;requestAnimationFrame(fit);}}new MutationObserver(queue).observe(body,{childList:true,subtree:true});new MutationObserver(queue).observe(panel,{attributes:true,attributeFilter:['hidden']});const ro=new ResizeObserver(queue);ro.observe(panel);ro.observe(body);window.addEventListener('resize',queue);window.visualViewport?.addEventListener('resize',queue);document.fonts?.ready.then(queue);queue();})();</script><script>(()=>{
+</script><script>(()=>{const panel=document.getElementById('careerPanel'),body=document.getElementById('careerBody'),card=panel.querySelector('.careerCard');let pending=false;function fit(){pending=false;const line=body.querySelector('.careerSummaryLine'),home=!panel.hidden&&!!line&&!!body.querySelector('.careerLeagueBoxes');panel.classList.toggle('careerHomeFit',home);const list=!panel.hidden&&!home&&!!body.querySelector('.careerStandings,.careerFixture');panel.classList.toggle('careerListFit',list);if(list){const style=getComputedStyle(panel);panel.style.setProperty('--career-list-height',Math.max(100,panel.clientHeight-parseFloat(style.paddingTop)-parseFloat(style.paddingBottom)-4)+'px');}if(line){line.style.fontSize='11px';const size=Math.min(11,11*body.clientWidth/Math.max(1,line.scrollWidth));line.style.fontSize=size.toFixed(2)+'px';}if(!home){card.style.removeProperty('--career-home-scale');return;}const p=getComputedStyle(panel),height=panel.clientHeight-parseFloat(p.paddingTop)-parseFloat(p.paddingBottom);card.style.setProperty('--career-home-scale',Math.max(.1,Math.min(1,(height-2)/Math.max(1,card.offsetHeight),(panel.clientWidth-parseFloat(p.paddingLeft)-parseFloat(p.paddingRight)-2)/Math.max(1,card.offsetWidth))).toFixed(4));}function queue(){if(!pending){pending=true;requestAnimationFrame(fit);}}new MutationObserver(queue).observe(body,{childList:true,subtree:true});new MutationObserver(queue).observe(panel,{attributes:true,attributeFilter:['hidden']});const ro=new ResizeObserver(queue);ro.observe(panel);ro.observe(body);window.addEventListener('resize',queue);window.visualViewport?.addEventListener('resize',queue);document.fonts?.ready.then(queue);queue();})();</script><script>(()=>{
  const pairs=[['kitSetup','.kitCard'],['greatsMenu','.greatsCard'],['playAgain','.againCard'],['formationDialog','.formationCard'],['personalBoardPanel','.personalBoardCard'],['careerPanel','.careerCard'],['challengePicker','.challengeCard'],['beachHubPanel','.beachHubCard'],['worldCupPanel',':scope > div'],['serieAPanel',':scope > div'],['beachCupPanel',':scope > div']];
  const tabletAtStart566=(()=>{const ua=navigator.userAgent;return /iPad|Tablet/i.test(ua)||(/Macintosh/i.test(ua)&&navigator.maxTouchPoints>1)||(/Android/i.test(ua)&&(!/Mobile/i.test(ua)||Math.min(screen.width,screen.height)>=540))||(navigator.maxTouchPoints>1&&Math.min(screen.width,screen.height)>=600);})();
  if(tabletAtStart566)pairs.push(['memoriesPanel','.memoriesHeading']);
@@ -7737,6 +7737,73 @@ window.addEventListener('pagehide',close);
 #bootIntro #telegramGroup596:focus-visible{outline:2px solid #fff;outline-offset:2px}
 @media(max-height:550px){#bootIntro #telegramGroup596{top:97px}}
 </style>
-</body></html>
+<style id="careerHome599">
+body:not(.tabletFit560) #careerPanel.careerHomeFit .careerCard{max-height:none!important;height:auto!important;overflow:visible!important;flex:0 0 auto!important;margin:0 auto!important;transform:scale(var(--career-home-scale,1))!important;transform-origin:top center!important}
+body:not(.tabletFit560) #careerPanel.careerHomeFit #careerBody{max-height:none!important;overflow:visible!important;flex:0 0 auto!important}
+#careerPanel.careerHomeFit #careerBody p{line-height:1.35;margin:4px 0}
+#careerPanel.careerHomeFit #careerBody h3{margin:6px 0}
+body:not(.tabletFit560) #careerPanel.careerHomeFit .careerCard{gap:5px!important;padding:10px!important}
+body:not(.tabletFit560) #careerPanel.careerHomeFit .careerCard button{height:34px!important;min-height:34px!important;max-height:34px!important;margin-top:3px!important;margin-bottom:3px!important}
+</style><style id="careerLists600">
+body #careerPanel.careerListFit{overflow:hidden!important}
+body #careerPanel.careerListFit .tabletWholeMenu566{max-height:var(--career-list-height)!important;overflow:hidden!important}
+body #careerPanel.careerListFit .careerCard,body.tabletFit560 #careerPanel.careerListFit .tabletWholeMenu566>.careerCard{display:flex!important;flex-direction:column!important;height:var(--career-list-height)!important;max-height:var(--career-list-height)!important;min-height:0!important;overflow:hidden!important;flex:0 1 auto!important;box-sizing:border-box!important;gap:5px!important;padding:10px!important}
+body #careerPanel.careerListFit .careerCard #careerBody{flex:1 1 auto!important;min-height:0!important;max-height:none!important;overflow-y:auto!important;overflow-x:hidden!important;overscroll-behavior:contain;scrollbar-gutter:stable both-edges}
+body #careerPanel.careerListFit .careerCard>h2,body #careerPanel.careerListFit .careerCard>button,body #careerPanel.careerListFit #careerNote{flex-shrink:0!important}
+</style><style id="singleScroll601">body #kitSetup#kitSetup{overflow:hidden!important;}
+body #kitSetup#kitSetup .tabletWholeMenu566{overflow:visible!important;max-height:100%!important;min-height:0!important;}
+body #greatsMenu#greatsMenu{overflow:hidden!important;}
+body #greatsMenu#greatsMenu .tabletWholeMenu566{overflow:visible!important;max-height:100%!important;min-height:0!important;}
+body #worldCupPanel#worldCupPanel{overflow:hidden!important;}
+body #worldCupPanel#worldCupPanel .tabletWholeMenu566{overflow:visible!important;max-height:100%!important;min-height:0!important;}
+body #serieAPanel#serieAPanel{overflow:hidden!important;}
+body #serieAPanel#serieAPanel .tabletWholeMenu566{overflow:visible!important;max-height:100%!important;min-height:0!important;}
+body #beachCupPanel#beachCupPanel{overflow:hidden!important;}
+body #beachCupPanel#beachCupPanel .tabletWholeMenu566{overflow:visible!important;max-height:100%!important;min-height:0!important;}
+body #personalBoardPanel#personalBoardPanel{overflow:hidden!important;}
+body #personalBoardPanel#personalBoardPanel .tabletWholeMenu566{overflow:visible!important;max-height:100%!important;min-height:0!important;}
+body #memoriesPanel#memoriesPanel{overflow:hidden!important;}
+body #memoriesPanel#memoriesPanel .tabletWholeMenu566{overflow:visible!important;max-height:100%!important;min-height:0!important;}
+body #kitSetup#kitSetup .kitCard{display:flex!important;flex-direction:column!important;max-height:calc(100dvh - 40px)!important;min-height:0!important;overflow:hidden!important;box-sizing:border-box!important;}
+body #kitSetup#kitSetup .kitGrid{flex:1 1 auto!important;min-height:0!important;max-height:none!important;overflow-y:auto!important;overflow-x:hidden!important;overscroll-behavior:contain;}
+body #kitSetup#kitSetup .kitCard>button,body #kitSetup#kitSetup .kitCard>h1,body #kitSetup#kitSetup .kitCard>h2{flex-shrink:0!important;}
+body #greatsMenu#greatsMenu .greatsCard{display:flex!important;flex-direction:column!important;max-height:calc(100dvh - 40px)!important;min-height:0!important;overflow:hidden!important;box-sizing:border-box!important;}
+body #greatsMenu#greatsMenu #greatsGrid{flex:1 1 auto!important;min-height:0!important;max-height:none!important;overflow-y:auto!important;overflow-x:hidden!important;overscroll-behavior:contain;}
+body #greatsMenu#greatsMenu .greatsCard>button,body #greatsMenu#greatsMenu .greatsCard>h1,body #greatsMenu#greatsMenu .greatsCard>h2{flex-shrink:0!important;}
+body #personalBoardPanel#personalBoardPanel .personalBoardCard{display:flex!important;flex-direction:column!important;max-height:calc(100dvh - 40px)!important;min-height:0!important;overflow:hidden!important;box-sizing:border-box!important;}
+body #personalBoardPanel#personalBoardPanel #personalBoardBody{flex:1 1 auto!important;min-height:0!important;max-height:none!important;overflow-y:auto!important;overflow-x:hidden!important;overscroll-behavior:contain;}
+body #personalBoardPanel#personalBoardPanel .personalBoardCard>button,body #personalBoardPanel#personalBoardPanel .personalBoardCard>h1,body #personalBoardPanel#personalBoardPanel .personalBoardCard>h2{flex-shrink:0!important;}
+body #worldCupPanel#worldCupPanel #worldCupBody{min-height:0!important;overflow-y:auto!important;overflow-x:hidden!important;overscroll-behavior:contain;}
+body #worldCupPanel#worldCupPanel #worldCupBody .wcNations{overflow:visible!important;max-height:none!important;flex-shrink:0!important;}
+body #worldCupPanel#worldCupPanel #worldCupBody .clTeams{overflow:visible!important;max-height:none!important;flex-shrink:0!important;}
+body #worldCupPanel#worldCupPanel #worldCupBody .clCalendarBox{overflow:visible!important;max-height:none!important;flex-shrink:0!important;}
+body #worldCupPanel#worldCupPanel #worldCupBody .saTableWrap{overflow:visible!important;max-height:none!important;flex-shrink:0!important;}
+body #serieAPanel#serieAPanel #serieABody{min-height:0!important;overflow-y:auto!important;overflow-x:hidden!important;overscroll-behavior:contain;}
+body #serieAPanel#serieAPanel #serieABody .wcNations{overflow:visible!important;max-height:none!important;flex-shrink:0!important;}
+body #serieAPanel#serieAPanel #serieABody .clTeams{overflow:visible!important;max-height:none!important;flex-shrink:0!important;}
+body #serieAPanel#serieAPanel #serieABody .clCalendarBox{overflow:visible!important;max-height:none!important;flex-shrink:0!important;}
+body #serieAPanel#serieAPanel #serieABody .saTableWrap{overflow:visible!important;max-height:none!important;flex-shrink:0!important;}
+body #beachCupPanel#beachCupPanel #beachCupBody{min-height:0!important;overflow-y:auto!important;overflow-x:hidden!important;overscroll-behavior:contain;}
+body #beachCupPanel#beachCupPanel #beachCupBody .wcNations{overflow:visible!important;max-height:none!important;flex-shrink:0!important;}
+body #beachCupPanel#beachCupPanel #beachCupBody .clTeams{overflow:visible!important;max-height:none!important;flex-shrink:0!important;}
+body #beachCupPanel#beachCupPanel #beachCupBody .clCalendarBox{overflow:visible!important;max-height:none!important;flex-shrink:0!important;}
+body #beachCupPanel#beachCupPanel #beachCupBody .saTableWrap{overflow:visible!important;max-height:none!important;flex-shrink:0!important;}
+body #teamSetup#teamSetup{overflow:hidden!important;}
+body #teamSetup#teamSetup .tabletWholeMenu566{overflow:hidden!important;max-height:calc(100dvh - 32px)!important;}
+body #teamSetup#teamSetup .teamCard{max-height:calc(100dvh - 48px)!important;overflow-y:auto!important;min-height:0!important;}
+body #playAgain#playAgain{overflow:hidden!important;}
+body #playAgain#playAgain .tabletWholeMenu566{overflow:hidden!important;max-height:calc(100dvh - 32px)!important;}
+body #playAgain#playAgain .againCard{max-height:calc(100dvh - 48px)!important;overflow-y:auto!important;min-height:0!important;}
+body #formationDialog#formationDialog{overflow:hidden!important;}
+body #formationDialog#formationDialog .tabletWholeMenu566{overflow:hidden!important;max-height:calc(100dvh - 32px)!important;}
+body #formationDialog#formationDialog .formationCard{max-height:calc(100dvh - 48px)!important;overflow-y:auto!important;min-height:0!important;}
+body #beachHubPanel#beachHubPanel{overflow:hidden!important;}
+body #beachHubPanel#beachHubPanel .tabletWholeMenu566{overflow:hidden!important;max-height:calc(100dvh - 32px)!important;}
+body #beachHubPanel#beachHubPanel .beachHubCard{max-height:calc(100dvh - 48px)!important;overflow-y:auto!important;min-height:0!important;}
+body #challengePicker#challengePicker{overflow:hidden!important;}
+body #challengePicker#challengePicker .tabletWholeMenu566{overflow:hidden!important;max-height:calc(100dvh - 32px)!important;}
+body #challengePicker#challengePicker .challengeCard{max-height:calc(100dvh - 48px)!important;overflow-y:auto!important;min-height:0!important;}
+body:not(.tabletFit560) #careerPanel#careerPanel #careerChosenFace{top:-60px!important;}
+@media(max-height:520px){body:not(.tabletFit560) #careerPanel#careerPanel #careerChosenFace{top:-48px!important}}</style></body></html>
 
 
