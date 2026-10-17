@@ -1,4 +1,4 @@
-const CACHE='8s2-mobile-v261060';
+const CACHE='8s2-mobile-v261061';
 self.addEventListener('install',event=>{event.waitUntil(caches.open(CACHE).then(cache=>Promise.all(['./','./index.html','./manifest.webmanifest','./app-icon-180.png','./app-icon-32.png'].map(async url=>{const response=await fetch(new Request(url,{cache:'reload'}));if(!response.ok)throw Error('Offline preparation failed');await cache.put(url,response);}))).then(()=>self.skipWaiting()));});
 self.addEventListener('activate',event=>event.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(k=>k.startsWith('8s2-mobile-')&&k!==CACHE).map(k=>caches.delete(k)))).then(()=>self.clients.claim())));
 self.addEventListener('message',event=>{if(event.data&&event.data.type==='GET_GAME_VERSION'&&event.source)event.source.postMessage({type:'GAME_VERSION',version:'2.56.610'});});
