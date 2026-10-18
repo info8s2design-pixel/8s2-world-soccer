@@ -3,7 +3,7 @@
 <head><style>html.introLoading628 body{background:#000!important}html.introLoading628 .wrap{visibility:hidden!important}html.introLoading628::before{content:'';position:fixed;inset:0;background:#000;z-index:199999}</style><script>document.documentElement.classList.add('introLoading628');</script>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>8S2 World Soccer v2.56.643</title>
+<title>8S2 World Soccer v2.56.644</title>
 <style>
 html,body{position:relative;margin:0;background:#111;color:#eee;font-family:Arial,sans-serif}
 .wrap{position:relative;max-width:560px;margin:18px auto;padding:0 12px}
@@ -1491,7 +1491,7 @@ body.tabletFit560.careerStatsBar:not(.gameMenuOpen) #msg::after,body.tabletContr
     <img class="bootLogo" src="./asset488-8b683502551b.webp" alt="8S2 World Soccer">
     <div class="bootBall"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="100%" height="100%" aria-hidden="true"><circle cx="16" cy="16" r="14" fill="#fff" stroke="#000" stroke-width="1.5"/><g fill="#000"><path d="M16 10l6 4-2 7h-8l-2-7zM10 3l1 5-6 4-3-2zM22 3l8 7-3 2-6-4zM3 21l5-1 4 6-2 3zM29 21l-7-1-4 6 4 3z"/></g><g fill="none" stroke="#000" stroke-width=".8"><path d="M11 8l5 2 5-2M5 12l5 2M27 12l-5 2M8 20l4 1M22 20l-2 1M12 26h6"/></g></svg></div>
     <div class="bootTitle">8s2 World Soccer</div>
-    <div class="bootVersion">v2.56.643</div><div class="globalMatchCounter" aria-live="polite"><div class="counterReveal">PARTITE GIOCATE NEL MONDO: <span data-global-match-total>…</span></div><div class="counterReveal">GOL FATTI: <span data-global-goals-for>…</span> · GOL SUBITI: <span data-global-goals-against>…</span></div></div>
+    <div class="bootVersion">v2.56.644</div><div class="globalMatchCounter" aria-live="polite"><div class="counterReveal">PARTITE GIOCATE NEL MONDO: <span data-global-match-total>…</span></div><div class="counterReveal">GOL FATTI: <span data-global-goals-for>…</span> · GOL SUBITI: <span data-global-goals-against>…</span></div></div>
     <div class="bootControls bootControlPanels"><div class="bootTapBall" aria-hidden="true"><span class="bootTapBallRing"></span><div class="bootTapBallCrop"><img src="./asset488-8722caeb8f3b.webp" alt=""></div></div>
       <a id="telegramGroup596" href="https://t.me/game8s2ws" target="_blank" rel="noopener noreferrer" aria-label="Apri il gruppo Telegram di 8S2 World Soccer" title="Gruppo Telegram" onclick="event.stopPropagation()" onkeydown="event.stopPropagation()">
         <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false"><path fill="currentColor" d="M21.7 3.2 18.4 20c-.2 1-1 1.2-1.8.7l-5-3.7-2.4 2.3c-.3.3-.5.5-1 .5l.4-5.1L18 6.2c.4-.4-.1-.6-.6-.3L5.8 13.2.9 11.7c-1.1-.3-1.1-1 .2-1.5L20.3 2.8c.9-.3 1.6.2 1.4.4Z"/></svg>
@@ -7522,7 +7522,7 @@ syncPersonalTrophies();
   ensureAudio();if(!audioCtx)return;
   try{if(audioCtx.state!=='running')await audioCtx.resume();}catch(e){return;}
   if(closed)return;
-  if(audioCtx.state==='running'){soundButton630.textContent='🔊';soundButton630.title='Suoni attivi';soundButton630.setAttribute('aria-label','Suoni dell’intro attivi');if(!audioRestart630){audioRestart630=true;elapsed=0;last=null;lastTouch629=-1;kicked629=false;stopIntroMusic631();}}
+  if(audioCtx.state==='running'){soundButton630.textContent='🔊';soundButton630.title='Suoni attivi';soundButton630.setAttribute('aria-label','Suoni dell’intro attivi');audioRestart630=true;}
  }
  soundButton630.onclick=e=>{e.stopPropagation();unlockIntroEffects629();};
  function introImpact630(shot=false){
@@ -7640,7 +7640,7 @@ syncPersonalTrophies();
   frame=requestAnimationFrame(tick);
  }
  // Wait for the actual game textures before capturing the two pitch scenes.
- const realisticStadium636=new Image();realisticStadium636.src='./asset643-c6aa407ccf4c.png';
+ const realisticStadium636=new Image();realisticStadium636.src='./asset644-c6aa407ccf4c.png';
  const resources=[realisticStadium636,streetConcreteImage,championsGrassImage,clStadiumLogo,...sideSupporterImages];
  Promise.race([Promise.all(resources.map(img=>img.decode?img.decode().catch(()=>{}):Promise.resolve())),new Promise(resolve=>setTimeout(resolve,5000))]).then(()=>{
   if(closed)return;try{streetLayer=layer(true);championsLayer=layer(false);if(reduced){elapsed=12;}frame=requestAnimationFrame(tick);}catch(error){console.error('Opening scene:',error);finish();}
@@ -7684,7 +7684,7 @@ button.onclick=async()=>{if(prompt){await prompt.prompt();prompt=null;}else if(!
 window.addEventListener('appinstalled',()=>{installedThisSession=true;try{localStorage.setItem('8s2-installed-device','1');}catch(e){}prompt=null;syncInstallButton();});
 if('serviceWorker' in navigator&&location.protocol!=='file:'){
  let pendingUpdate=false,reloading=false,registration=null,lastCheck=0;
- const build='2.56.643';
+ const build='2.56.644';
  const safeToReload=()=>!document.hidden&&document.body.classList.contains('gameMenuOpen')&&!document.activeElement?.matches('input,textarea,select');
  function applyUpdate(){if(!pendingUpdate||reloading||!safeToReload())return;reloading=true;location.reload();}
  navigator.serviceWorker.addEventListener('message',event=>{if(event.data?.type==='GAME_VERSION'&&event.data.version!==build){pendingUpdate=true;applyUpdate();}});
