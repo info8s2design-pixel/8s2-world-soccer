@@ -3,7 +3,7 @@
 <head><style>html.introLoading628 body{background:#000!important}html.introLoading628 .wrap{visibility:hidden!important}html.introLoading628::before{content:'';position:fixed;inset:0;background:#000;z-index:199999}</style><script>document.documentElement.classList.add('introLoading628');</script>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>8S2 World Soccer v2.56.645</title>
+<title>8S2 World Soccer v2.56.650</title>
 <style>
 html,body{position:relative;margin:0;background:#111;color:#eee;font-family:Arial,sans-serif}
 .wrap{position:relative;max-width:560px;margin:18px auto;padding:0 12px}
@@ -1491,7 +1491,7 @@ body.tabletFit560.careerStatsBar:not(.gameMenuOpen) #msg::after,body.tabletContr
     <img class="bootLogo" src="./asset488-8b683502551b.webp" alt="8S2 World Soccer">
     <div class="bootBall"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="100%" height="100%" aria-hidden="true"><circle cx="16" cy="16" r="14" fill="#fff" stroke="#000" stroke-width="1.5"/><g fill="#000"><path d="M16 10l6 4-2 7h-8l-2-7zM10 3l1 5-6 4-3-2zM22 3l8 7-3 2-6-4zM3 21l5-1 4 6-2 3zM29 21l-7-1-4 6 4 3z"/></g><g fill="none" stroke="#000" stroke-width=".8"><path d="M11 8l5 2 5-2M5 12l5 2M27 12l-5 2M8 20l4 1M22 20l-2 1M12 26h6"/></g></svg></div>
     <div class="bootTitle">8s2 World Soccer</div>
-    <div class="bootVersion">v2.56.645</div><div class="globalMatchCounter" aria-live="polite"><div class="counterReveal">PARTITE GIOCATE NEL MONDO: <span data-global-match-total>…</span></div><div class="counterReveal">GOL FATTI: <span data-global-goals-for>…</span> · GOL SUBITI: <span data-global-goals-against>…</span></div></div>
+    <div class="bootVersion">v2.56.650</div><div class="globalMatchCounter" aria-live="polite"><div class="counterReveal">PARTITE GIOCATE NEL MONDO: <span data-global-match-total>…</span></div><div class="counterReveal">GOL FATTI: <span data-global-goals-for>…</span> · GOL SUBITI: <span data-global-goals-against>…</span></div></div>
     <div class="bootControls bootControlPanels"><div class="bootTapBall" aria-hidden="true"><span class="bootTapBallRing"></span><div class="bootTapBallCrop"><img src="./asset488-8722caeb8f3b.webp" alt=""></div></div>
       <a id="telegramGroup596" href="https://t.me/game8s2ws" target="_blank" rel="noopener noreferrer" aria-label="Apri il gruppo Telegram di 8S2 World Soccer" title="Gruppo Telegram" onclick="event.stopPropagation()" onkeydown="event.stopPropagation()">
         <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false"><path fill="currentColor" d="M21.7 3.2 18.4 20c-.2 1-1 1.2-1.8.7l-5-3.7-2.4 2.3c-.3.3-.5.5-1 .5l.4-5.1L18 6.2c.4-.4-.1-.6-.6-.3L5.8 13.2.9 11.7c-1.1-.3-1.1-1 .2-1.5L20.3 2.8c.9-.3 1.6.2 1.4.4Z"/></svg>
@@ -7493,7 +7493,21 @@ syncPersonalTrophies();
  const cv=document.createElement('canvas');cv.width=680;cv.height=860;cv.setAttribute('aria-hidden','true');
  cv.style.cssText='opacity:0;display:block;width:min(100vw,calc(100dvh * 680 / 860));height:min(100dvh,calc(100vw * 860 / 680));object-fit:contain';
  const skip=document.createElement('button');skip.type='button';skip.textContent='SALTA INTRO';skip.style.cssText='position:absolute;right:16px;bottom:16px;z-index:2;height:38px;padding:8px 14px;background:#111c;color:white;border:1px solid #aaa;border-radius:7px;font:12px monospace;cursor:pointer';
- overlay.append(cv,skip);document.body.appendChild(overlay);window.openingFilm622Active=true;stopMenuMusic();
+ overlay.append(cv,skip);document.body.appendChild(overlay);
+ const logoBackdrop648=document.createElement('canvas');logoBackdrop648.width=170;logoBackdrop648.height=95;
+ const logoImage648=document.querySelector('#bootIntro .bootLogo');
+ function paintLogoBackdrop648(){
+  if(!logoImage648||!logoImage648.complete||!logoImage648.naturalWidth)return;
+  const patternCtx648=logoBackdrop648.getContext('2d');patternCtx648.clearRect(0,0,170,95);
+  patternCtx648.filter='grayscale(1)';patternCtx648.globalAlpha=.14;
+  const scale648=Math.min(150/logoImage648.naturalWidth,78/logoImage648.naturalHeight);
+  const w648=logoImage648.naturalWidth*scale648,h648=logoImage648.naturalHeight*scale648;
+  patternCtx648.drawImage(logoImage648,(170-w648)/2,(95-h648)/2,w648,h648);
+  overlay.style.backgroundImage='url('+logoBackdrop648.toDataURL('image/png')+')';
+  overlay.style.backgroundRepeat='repeat';overlay.style.backgroundSize='170px 95px';
+ }
+
+ paintLogoBackdrop648();if(logoImage648)logoImage648.addEventListener('load',paintLogoBackdrop648,{once:true});window.openingFilm622Active=true;stopMenuMusic();
  function resumeMenuAudio632(){if(window.openingFilm622Active||!audioEnabled||!document.body.classList.contains('gameMenuOpen'))return;ensureAudio();startMenuMusic();}
  document.addEventListener('pointerdown',resumeMenuAudio632,true);document.addEventListener('keydown',resumeMenuAudio632,true);
  const ctx=cv.getContext('2d');ctx.imageSmoothingEnabled=false;
@@ -7642,7 +7656,7 @@ syncPersonalTrophies();
   frame=requestAnimationFrame(tick);
  }
  // Wait for the actual game textures before capturing the two pitch scenes.
- const realisticStadium636=new Image();realisticStadium636.src='./asset645-c6aa407ccf4c.png';
+ const realisticStadium636=new Image();realisticStadium636.src='./asset650-c6aa407ccf4c.png';
  const resources=[realisticStadium636,streetConcreteImage,championsGrassImage,clStadiumLogo,...sideSupporterImages];
  Promise.race([Promise.all(resources.map(img=>img.decode?img.decode().catch(()=>{}):Promise.resolve())),new Promise(resolve=>setTimeout(resolve,5000))]).then(()=>{
   if(closed)return;try{streetLayer=layer(true);championsLayer=layer(false);if(reduced){elapsed=12;}frame=requestAnimationFrame(tick);}catch(error){console.error('Opening scene:',error);finish();}
@@ -7686,7 +7700,7 @@ button.onclick=async()=>{if(prompt){await prompt.prompt();prompt=null;}else if(!
 window.addEventListener('appinstalled',()=>{installedThisSession=true;try{localStorage.setItem('8s2-installed-device','1');}catch(e){}prompt=null;syncInstallButton();});
 if('serviceWorker' in navigator&&location.protocol!=='file:'){
  let pendingUpdate=false,reloading=false,registration=null,lastCheck=0;
- const build='2.56.645';
+ const build='2.56.650';
  const safeToReload=()=>!window.openingFilm622Active&&!document.hidden&&document.body.classList.contains('gameMenuOpen')&&!document.activeElement?.matches('input,textarea,select');
  function applyUpdate(){if(!pendingUpdate||reloading||!safeToReload())return;reloading=true;try{sessionStorage.setItem('8s2-update-skip-intro',String(Date.now()));}catch(e){}location.reload();}
  navigator.serviceWorker.addEventListener('message',event=>{if(event.data?.type==='GAME_VERSION'&&event.data.version!==build){pendingUpdate=true;applyUpdate();}});
@@ -7927,10 +7941,10 @@ window.addEventListener('pagehide',close);
 @media(max-width:420px){#bootIntro .bootIntroActions #memoriesOpen,#bootIntro .bootIntroActions .support-button{font-size:clamp(7px,2.3vw,10px)!important;padding-left:clamp(4px,1.7vw,8px)!important;padding-right:clamp(4px,1.7vw,8px)!important}}
 </style>
 <style id="telegramGroup596Style">
-#bootIntro #telegramGroup596{position:absolute;left:50%;top:calc(44px + clamp(58px,16vw,90px) + 20px);transform:translateX(-50%);display:flex;align-items:center;justify-content:center;width:36px;height:36px;margin:0;padding:0;box-sizing:border-box;color:#fff;background:transparent;border:0;border-radius:50%;text-decoration:none;cursor:pointer;touch-action:manipulation;z-index:3}
+#bootIntro #telegramGroup596{position:absolute;left:50%;top:calc(44px + clamp(58px,16vw,90px) + 32px);transform:translateX(-50%);display:flex;align-items:center;justify-content:center;width:36px;height:36px;margin:0;padding:0;box-sizing:border-box;color:#fff;background:transparent;border:0;border-radius:50%;text-decoration:none;cursor:pointer;touch-action:manipulation;z-index:3}
 #bootIntro #telegramGroup596 svg{display:block;width:18px;height:18px;pointer-events:none}
 #bootIntro #telegramGroup596:focus-visible{outline:2px solid #fff;outline-offset:2px}
-@media(max-height:550px){#bootIntro #telegramGroup596{top:97px}}
+@media(max-height:550px){#bootIntro #telegramGroup596{top:109px}}
 </style>
 <style id="careerHome599">
 body:not(.tabletFit560) #careerPanel.careerHomeFit .careerCard{max-height:none!important;height:auto!important;overflow:visible!important;flex:0 0 auto!important;margin:0 auto!important;transform:scale(var(--career-home-scale,1))!important;transform-origin:top center!important}
