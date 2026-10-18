@@ -1,9 +1,9 @@
 <!doctype html>
 <html lang="it">
-<head><style>html.introLoading628 body{background:#000!important}html.introLoading628 .wrap{visibility:hidden!important}html.introLoading628::before{content:'';position:fixed;inset:0;background:#000;z-index:199999}</style><script>document.documentElement.classList.add('introLoading628');</script>
+<head><style>html.introLoading628 body{background:#000!important}html.introLoading628 .wrap{visibility:hidden!important}html.introLoading628::before{content:'';position:fixed;inset:0;background:#000;z-index:199999}</style><script>document.documentElement.classList.add('introLoading628');window.addEventListener('load',()=>{setTimeout(()=>{if(!document.getElementById('openingFilm622'))document.documentElement.classList.remove('introLoading628');},6000);},{once:true});</script>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>8S2 World Soccer v2.56.650</title>
+<title>8S2 World Soccer v2.56.651</title>
 <style>
 html,body{position:relative;margin:0;background:#111;color:#eee;font-family:Arial,sans-serif}
 .wrap{position:relative;max-width:560px;margin:18px auto;padding:0 12px}
@@ -1453,7 +1453,7 @@ body.tabletFit560.careerStatsBar:not(.gameMenuOpen) #msg::after,body.tabletContr
 #bootIntro.logoArrival639 .bootLogo{transform-origin:center center;animation:logoArrival639 1.15s cubic-bezier(.16,.7,.25,1) both,bootGlow 1.1s steps(2,end) 1.15s infinite alternate!important}
 @keyframes logoArrival639{0%{opacity:0;transform:scale(.06)}18%{opacity:1}82%{opacity:1;transform:scale(1.04)}100%{opacity:1;transform:scale(1)}}
 @media(prefers-reduced-motion:reduce){#bootIntro.logoArrival639 .bootLogo{animation:none!important;opacity:1!important;transform:scale(1)!important}}
-</style></head>
+</style><style id="tabletIntroButtons651">#openingFilm622.introTablet651 button{height:58px!important;min-height:58px!important;max-height:none!important;min-width:64px!important;padding:12px 22px!important;font-size:19px!important;line-height:1.2!important;bottom:max(22px,env(safe-area-inset-bottom))!important}#openingFilm622.introTablet651 button[aria-label]{width:68px!important;font-size:28px!important;padding:8px!important}</style></head>
 <body class="gameMenuOpen">
 <div class="wrap"><section id="personalBoardPanel" hidden role="dialog" aria-modal="true" aria-labelledby="personalBoardTitle"><div class="personalBoardCard"><h1 id="personalBoardTitle">Palmarès</h1><div id="personalBoardBody"></div><button id="personalBoardBack" type="button">Torna al menu</button></div></section><section id="challengePicker" hidden role="dialog" aria-label="Sfida Steve8s2"><div class="challengeCard"><img id="challengeLogo" alt="8S2 World Soccer"><h1>Sfida Steve8s2</h1><p>Vinci una delle tre sfide per sbloccare tutte le modalità!</p><div class="challengeTiles"><button data-challenge="beachchallenge"><span>BEACH SOCCER 5 VS 5</span><small>In caso di pareggio, chi segna vince!</small></button><button data-challenge="match"><span>CALCIO 11 VS 11</span><small>In caso di pareggio, si va ai rigori!</small></button><button data-challenge="streetchallenge"><span>STREET SOCCER 5 VS 5</span><small>In caso di pareggio, chi segna vince!</small></button></div><button id="challengeBack">Torna al menu</button><img class="challengeBrand" src="./asset459-98985cbbda62.jpg" alt="S8S2"></div></section><section id="beachHubPanel" hidden role="dialog" aria-modal="true" aria-label="Scegli modalità Beach Soccer"><div class="beachHubCard"><img id="beachHubLogo" alt="8S2 World Soccer"><h1>BEACH SOCCER</h1><h2>SCEGLI LA MODALITÀ</h2><div class="beachHubChoices"><button id="beachFriendlyChoice" type="button">AMICHEVOLE<small>Una partita sulla sabbia</small></button><button id="beachCupChoice" type="button">SUDAMERICA BEACH CUP<small>La tua squadra e 31 club sudamericani</small></button></div><button id="beachHubBack" type="button">TORNA AL MENU</button></div></section><section id="beachCupPanel" hidden role="dialog" aria-modal="true" aria-label="Sudamerica Beach Cup"><svg id="beachCupLogo" viewBox="0 0 64 64" role="img" aria-label="Stella della Sudamerica Beach Cup"><path d="M32 4 40 23 60 25 45 39 49 59 32 49 15 59 19 39 4 25 24 23Z" fill="#ffd54a" stroke="#fff0a0" stroke-width="2"/></svg><h1>SUDAMERICA BEACH CUP</h1><div id="beachCupBody"></div><div class="bcFooter"><button id="beachCupPlay" type="button">Gioca</button><button id="beachCupNew" type="button">Nuova Cup</button><button id="beachCupBack" type="button">Torna al menu</button></div></section>
 <section id="formationDialog" hidden role="dialog" aria-modal="true" aria-labelledby="formationTitle"><div class="formationCard"><img id="formationLogo" alt="8S2 World Soccer"><h2 id="formationTitle">SCEGLI IL MODULO</h2><label for="formationSelect">Modulo della tua squadra</label><select id="formationSelect" hidden></select><div id="formationChoices" role="group" aria-label="Moduli disponibili"></div><canvas id="formationPreview" width="200" height="230" role="img" aria-label="Posizioni iniziali del modulo scelto"></canvas><p id="formationDescription"></p><div><button id="formationContinue" type="button">INIZIA PARTITA</button><button id="formationBack" type="button">INDIETRO</button></div></div></section>
@@ -1491,7 +1491,7 @@ body.tabletFit560.careerStatsBar:not(.gameMenuOpen) #msg::after,body.tabletContr
     <img class="bootLogo" src="./asset488-8b683502551b.webp" alt="8S2 World Soccer">
     <div class="bootBall"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="100%" height="100%" aria-hidden="true"><circle cx="16" cy="16" r="14" fill="#fff" stroke="#000" stroke-width="1.5"/><g fill="#000"><path d="M16 10l6 4-2 7h-8l-2-7zM10 3l1 5-6 4-3-2zM22 3l8 7-3 2-6-4zM3 21l5-1 4 6-2 3zM29 21l-7-1-4 6 4 3z"/></g><g fill="none" stroke="#000" stroke-width=".8"><path d="M11 8l5 2 5-2M5 12l5 2M27 12l-5 2M8 20l4 1M22 20l-2 1M12 26h6"/></g></svg></div>
     <div class="bootTitle">8s2 World Soccer</div>
-    <div class="bootVersion">v2.56.650</div><div class="globalMatchCounter" aria-live="polite"><div class="counterReveal">PARTITE GIOCATE NEL MONDO: <span data-global-match-total>…</span></div><div class="counterReveal">GOL FATTI: <span data-global-goals-for>…</span> · GOL SUBITI: <span data-global-goals-against>…</span></div></div>
+    <div class="bootVersion">v2.56.651</div><div class="globalMatchCounter" aria-live="polite"><div class="counterReveal">PARTITE GIOCATE NEL MONDO: <span data-global-match-total>…</span></div><div class="counterReveal">GOL FATTI: <span data-global-goals-for>…</span> · GOL SUBITI: <span data-global-goals-against>…</span></div></div>
     <div class="bootControls bootControlPanels"><div class="bootTapBall" aria-hidden="true"><span class="bootTapBallRing"></span><div class="bootTapBallCrop"><img src="./asset488-8722caeb8f3b.webp" alt=""></div></div>
       <a id="telegramGroup596" href="https://t.me/game8s2ws" target="_blank" rel="noopener noreferrer" aria-label="Apri il gruppo Telegram di 8S2 World Soccer" title="Gruppo Telegram" onclick="event.stopPropagation()" onkeydown="event.stopPropagation()">
         <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false"><path fill="currentColor" d="M21.7 3.2 18.4 20c-.2 1-1 1.2-1.8.7l-5-3.7-2.4 2.3c-.3.3-.5.5-1 .5l.4-5.1L18 6.2c.4-.4-.1-.6-.6-.3L5.8 13.2.9 11.7c-1.1-.3-1.1-1 .2-1.5L20.3 2.8c.9-.3 1.6.2 1.4.4Z"/></svg>
@@ -7497,6 +7497,11 @@ syncPersonalTrophies();
  const logoBackdrop648=document.createElement('canvas');logoBackdrop648.width=170;logoBackdrop648.height=95;
  const logoImage648=document.querySelector('#bootIntro .bootLogo');
  function paintLogoBackdrop648(){
+  const touch651=matchMedia('(pointer:coarse)').matches;
+  const shortest651=Math.min(screen.width||innerWidth,screen.height||innerHeight);
+  const phone651=touch651&&shortest651<600;
+  overlay.classList.toggle('introTablet651',touch651&&!phone651);
+  if(phone651){overlay.style.backgroundImage='none';return;}
   if(!logoImage648||!logoImage648.complete||!logoImage648.naturalWidth)return;
   const patternCtx648=logoBackdrop648.getContext('2d');patternCtx648.clearRect(0,0,170,95);
   patternCtx648.filter='grayscale(1)';patternCtx648.globalAlpha=.14;
@@ -7507,7 +7512,7 @@ syncPersonalTrophies();
   overlay.style.backgroundRepeat='repeat';overlay.style.backgroundSize='170px 95px';
  }
 
- paintLogoBackdrop648();if(logoImage648)logoImage648.addEventListener('load',paintLogoBackdrop648,{once:true});window.openingFilm622Active=true;stopMenuMusic();
+ window.addEventListener('resize',paintLogoBackdrop648);paintLogoBackdrop648();if(logoImage648)logoImage648.addEventListener('load',paintLogoBackdrop648,{once:true});window.openingFilm622Active=true;stopMenuMusic();
  function resumeMenuAudio632(){if(window.openingFilm622Active||!audioEnabled||!document.body.classList.contains('gameMenuOpen'))return;ensureAudio();startMenuMusic();}
  document.addEventListener('pointerdown',resumeMenuAudio632,true);document.addEventListener('keydown',resumeMenuAudio632,true);
  const ctx=cv.getContext('2d');ctx.imageSmoothingEnabled=false;
@@ -7637,7 +7642,7 @@ syncPersonalTrophies();
   ballAt(OX+260,y,6+(1-fall)*15,t*4);ctx.restore();
   caption(t<11.1?'...AL GRANDE PALCOSCENICO':'8S2 WORLD SOCCER');
  }
- function finish(){if(closed)return;closed=true;window.openingFilm622Active=false;document.documentElement.classList.remove('introLoading628');try{stopIntroMusic631();}catch(e){}document.removeEventListener('pointerdown',unlockIntroEffects629,true);document.removeEventListener('keydown',unlockIntroEffects629,true);cancelAnimationFrame(frame);const bootLogoPanel639=document.getElementById('bootIntro');if(bootLogoPanel639)bootLogoPanel639.classList.add('logoArrival639');overlay.remove();document.documentElement.classList.remove('introLoading628');window.openingFilm622Active=false;last=null;if(audioEnabled){ensureAudio();startMenuMusic();}try{document.getElementById('bootIntro').focus({preventScroll:true});}catch(e){}}
+ function finish(){if(closed)return;closed=true;window.removeEventListener('resize',paintLogoBackdrop648);window.openingFilm622Active=false;document.documentElement.classList.remove('introLoading628');try{stopIntroMusic631();}catch(e){}document.removeEventListener('pointerdown',unlockIntroEffects629,true);document.removeEventListener('keydown',unlockIntroEffects629,true);cancelAnimationFrame(frame);const bootLogoPanel639=document.getElementById('bootIntro');if(bootLogoPanel639)bootLogoPanel639.classList.add('logoArrival639');overlay.remove();document.documentElement.classList.remove('introLoading628');window.openingFilm622Active=false;last=null;if(audioEnabled){ensureAudio();startMenuMusic();}try{document.getElementById('bootIntro').focus({preventScroll:true});}catch(e){}}
  skip.onclick=e=>{e.preventDefault();e.stopPropagation();finish();};
  overlay.addEventListener('keydown',e=>{e.stopPropagation();if(e.key==='Escape'){e.preventDefault();finish();}});
  function tick(now){
@@ -7656,7 +7661,7 @@ syncPersonalTrophies();
   frame=requestAnimationFrame(tick);
  }
  // Wait for the actual game textures before capturing the two pitch scenes.
- const realisticStadium636=new Image();realisticStadium636.src='./asset650-c6aa407ccf4c.png';
+ const realisticStadium636=new Image();realisticStadium636.src='./asset651-c6aa407ccf4c.png';
  const resources=[realisticStadium636,streetConcreteImage,championsGrassImage,clStadiumLogo,...sideSupporterImages];
  Promise.race([Promise.all(resources.map(img=>img.decode?img.decode().catch(()=>{}):Promise.resolve())),new Promise(resolve=>setTimeout(resolve,5000))]).then(()=>{
   if(closed)return;try{streetLayer=layer(true);championsLayer=layer(false);if(reduced){elapsed=12;}frame=requestAnimationFrame(tick);}catch(error){console.error('Opening scene:',error);finish();}
@@ -7700,7 +7705,7 @@ button.onclick=async()=>{if(prompt){await prompt.prompt();prompt=null;}else if(!
 window.addEventListener('appinstalled',()=>{installedThisSession=true;try{localStorage.setItem('8s2-installed-device','1');}catch(e){}prompt=null;syncInstallButton();});
 if('serviceWorker' in navigator&&location.protocol!=='file:'){
  let pendingUpdate=false,reloading=false,registration=null,lastCheck=0;
- const build='2.56.650';
+ const build='2.56.651';
  const safeToReload=()=>!window.openingFilm622Active&&!document.hidden&&document.body.classList.contains('gameMenuOpen')&&!document.activeElement?.matches('input,textarea,select');
  function applyUpdate(){if(!pendingUpdate||reloading||!safeToReload())return;reloading=true;try{sessionStorage.setItem('8s2-update-skip-intro',String(Date.now()));}catch(e){}location.reload();}
  navigator.serviceWorker.addEventListener('message',event=>{if(event.data?.type==='GAME_VERSION'&&event.data.version!==build){pendingUpdate=true;applyUpdate();}});
