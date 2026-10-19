@@ -3,7 +3,7 @@
 <head><style>html.introLoading628 body{background:#000!important}html.introLoading628 .wrap{visibility:hidden!important}html.introLoading628::before{content:'';position:fixed;inset:0;background:#000;z-index:199999}</style><script>document.documentElement.classList.add('introLoading628');window.addEventListener('load',()=>{setTimeout(()=>{if(!document.getElementById('openingFilm622'))document.documentElement.classList.remove('introLoading628');},6000);},{once:true});</script>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>8S2 World Soccer v2.56.655</title>
+<title>8S2 World Soccer v2.56.656</title>
 <style>
 html,body{position:relative;margin:0;background:#111;color:#eee;font-family:Arial,sans-serif}
 .wrap{position:relative;max-width:560px;margin:18px auto;padding:0 12px}
@@ -1491,7 +1491,7 @@ body.tabletFit560.careerStatsBar:not(.gameMenuOpen) #msg::after,body.tabletContr
     <img class="bootLogo" src="./asset488-8b683502551b.webp" alt="8S2 World Soccer">
     <div class="bootBall"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="100%" height="100%" aria-hidden="true"><circle cx="16" cy="16" r="14" fill="#fff" stroke="#000" stroke-width="1.5"/><g fill="#000"><path d="M16 10l6 4-2 7h-8l-2-7zM10 3l1 5-6 4-3-2zM22 3l8 7-3 2-6-4zM3 21l5-1 4 6-2 3zM29 21l-7-1-4 6 4 3z"/></g><g fill="none" stroke="#000" stroke-width=".8"><path d="M11 8l5 2 5-2M5 12l5 2M27 12l-5 2M8 20l4 1M22 20l-2 1M12 26h6"/></g></svg></div>
     <div class="bootTitle">8s2 World Soccer</div>
-    <div class="bootVersion">v2.56.655</div><div class="globalMatchCounter" aria-live="polite"><div class="counterReveal">PARTITE GIOCATE NEL MONDO: <span data-global-match-total>…</span></div><div class="counterReveal">GOL FATTI: <span data-global-goals-for>…</span> · GOL SUBITI: <span data-global-goals-against>…</span></div></div>
+    <div class="bootVersion">v2.56.656</div><div class="globalMatchCounter" aria-live="polite"><div class="counterReveal">PARTITE GIOCATE NEL MONDO: <span data-global-match-total>…</span></div><div class="counterReveal">GOL FATTI: <span data-global-goals-for>…</span> · GOL SUBITI: <span data-global-goals-against>…</span></div></div>
     <div class="bootControls bootControlPanels"><div class="bootTapBall" aria-hidden="true"><span class="bootTapBallRing"></span><div class="bootTapBallCrop"><img src="./asset488-8722caeb8f3b.webp" alt=""></div></div>
       <a id="telegramGroup596" href="https://t.me/game8s2ws" target="_blank" rel="noopener noreferrer" aria-label="Apri il gruppo Telegram di 8S2 World Soccer" title="Gruppo Telegram" onclick="event.stopPropagation()" onkeydown="event.stopPropagation()">
         <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false"><path fill="currentColor" d="M21.7 3.2 18.4 20c-.2 1-1 1.2-1.8.7l-5-3.7-2.4 2.3c-.3.3-.5.5-1 .5l.4-5.1L18 6.2c.4-.4-.1-.6-.6-.3L5.8 13.2.9 11.7c-1.1-.3-1.1-1 .2-1.5L20.3 2.8c.9-.3 1.6.2 1.4.4Z"/></svg>
@@ -3192,7 +3192,9 @@ async function syncGlobalMatchCounter(){
  }catch(e){document.querySelectorAll('[data-global-match-total],[data-global-goals-for],[data-global-goals-against]').forEach(el=>{if(el.textContent==='…')el.textContent='NON DISPONIBILE';});}
  finally{globalCountBusy=false;}
 }
+function analyticsMode656(){return careerActive?'career':trainingMode?'training':clActive?'champions':saActive?'league':wcActive?'worldcup':bcActive?'beachcup':streetMode?'street':futsalMode?'beach':'challenge';}
 function beginGlobalMatch(){
+ if(window.soccerAnalytics656)window.soccerAnalytics656(trainingMode?'training_start':'match_start',{game_mode:analyticsMode656(),difficulty});
  personalMatchLogged=false;
  if(trainingMode)return;
  currentGlobalMatchId='match-'+(typeof crypto.randomUUID==='function'?crypto.randomUUID():Date.now().toString(36)+'-'+Math.random().toString(36).slice(2)+'-'+Math.random().toString(36).slice(2));
@@ -3201,6 +3203,7 @@ function beginGlobalMatch(){
 function countCompletedGlobalMatch(){
  if(trainingMode||!currentGlobalMatchId||currentGlobalMatchCounted)return;
  currentGlobalMatchCounted=true;
+ if(window.soccerAnalytics656)window.soccerAnalytics656('match_complete',{game_mode:analyticsMode656(),goals_for:scoreH,goals_against:scoreA});
  completedMatchQueue.push({id:currentGlobalMatchId,goalsFor:scoreH,goalsAgainst:scoreA});saveCompletedMatchQueue();syncGlobalMatchCounter();
 }
 window.addEventListener('online',syncGlobalMatchCounter);
@@ -7669,7 +7672,7 @@ syncPersonalTrophies();
   frame=requestAnimationFrame(tick);
  }
  // Wait for the actual game textures before capturing the two pitch scenes.
- const realisticStadium636=new Image();realisticStadium636.src='./asset655-c6aa407ccf4c.png';
+ const realisticStadium636=new Image();realisticStadium636.src='./asset656-c6aa407ccf4c.png';
  const resources=[realisticStadium636,streetConcreteImage,championsGrassImage,clStadiumLogo,...sideSupporterImages];
  Promise.race([Promise.all(resources.map(img=>img.decode?img.decode().catch(()=>{}):Promise.resolve())),new Promise(resolve=>setTimeout(resolve,5000))]).then(()=>{
   if(closed)return;try{streetLayer=layer(true);championsLayer=layer(false);if(reduced){elapsed=12;}frame=requestAnimationFrame(tick);}catch(error){console.error('Opening scene:',error);finish();}
@@ -7713,7 +7716,7 @@ button.onclick=async()=>{if(prompt){await prompt.prompt();prompt=null;}else if(!
 window.addEventListener('appinstalled',()=>{installedThisSession=true;try{localStorage.setItem('8s2-installed-device','1');}catch(e){}prompt=null;syncInstallButton();});
 if('serviceWorker' in navigator&&location.protocol!=='file:'){
  let pendingUpdate=false,reloading=false,registration=null,lastCheck=0;
- const build='2.56.655';
+ const build='2.56.656';
  const safeToReload=()=>!window.openingFilm622Active&&!document.hidden&&document.body.classList.contains('gameMenuOpen')&&!document.activeElement?.matches('input,textarea,select');
  function applyUpdate(){if(!pendingUpdate||reloading||!safeToReload())return;reloading=true;try{sessionStorage.setItem('8s2-update-skip-intro',String(Date.now()));}catch(e){}location.reload();}
  navigator.serviceWorker.addEventListener('message',event=>{if(event.data?.type==='GAME_VERSION'&&event.data.version!==build){pendingUpdate=true;applyUpdate();}});
@@ -8123,7 +8126,63 @@ body #tabletSelectOverlay578#tabletSelectOverlay578[data-select-source="gameMode
 </style><style id="uniformModes621">
 body #tabletSelectOverlay578#tabletSelectOverlay578[data-select-source="gameMode"] .tabletSelectList{display:flex!important;align-items:stretch!important;width:100%!important}
 body #tabletSelectOverlay578#tabletSelectOverlay578[data-select-source="gameMode"] .tabletSelectList button{width:100%!important;align-self:stretch!important;height:var(--mode-box-height621,72px)!important;min-height:var(--mode-box-height621,72px)!important;max-height:var(--mode-box-height621,72px)!important;flex:0 0 var(--mode-box-height621,72px)!important;display:flex!important;align-items:center!important;justify-content:center!important}
-</style><script>(()=>{let pending=false;function fit(){pending=false;const list=document.querySelector('#tabletSelectOverlay578[data-select-source="gameMode"] .tabletSelectList');if(!list)return;const buttons=Array.from(list.children);if(!buttons.length)return;let height=52;for(const button of buttons){const style=getComputedStyle(button),line=parseFloat(style.lineHeight)||32,padding=parseFloat(style.paddingTop)+parseFloat(style.paddingBottom)+parseFloat(style.borderTopWidth)+parseFloat(style.borderBottomWidth);const range=document.createRange();range.selectNodeContents(button);height=Math.max(height,Math.ceil(range.getBoundingClientRect().height+padding),Math.ceil(line+padding));}list.style.setProperty('--mode-box-height621',height+'px');}function queue(){if(!pending){pending=true;requestAnimationFrame(fit);}}new MutationObserver(queue).observe(document.body,{childList:true,subtree:true});window.addEventListener('resize',queue);window.visualViewport?.addEventListener('resize',queue);document.fonts?.ready.then(queue);})();</script></body></html>
-
+</style><script>(()=>{let pending=false;function fit(){pending=false;const list=document.querySelector('#tabletSelectOverlay578[data-select-source="gameMode"] .tabletSelectList');if(!list)return;const buttons=Array.from(list.children);if(!buttons.length)return;let height=52;for(const button of buttons){const style=getComputedStyle(button),line=parseFloat(style.lineHeight)||32,padding=parseFloat(style.paddingTop)+parseFloat(style.paddingBottom)+parseFloat(style.borderTopWidth)+parseFloat(style.borderBottomWidth);const range=document.createRange();range.selectNodeContents(button);height=Math.max(height,Math.ceil(range.getBoundingClientRect().height+padding),Math.ceil(line+padding));}list.style.setProperty('--mode-box-height621',height+'px');}function queue(){if(!pending){pending=true;requestAnimationFrame(fit);}}new MutationObserver(queue).observe(document.body,{childList:true,subtree:true});window.addEventListener('resize',queue);window.visualViewport?.addEventListener('resize',queue);document.fonts?.ready.then(queue);})();</script><style>
+#analyticsChoice656{position:fixed;z-index:210000;left:50%;bottom:max(14px,env(safe-area-inset-bottom));transform:translateX(-50%);width:min(480px,calc(100vw - 28px));box-sizing:border-box;padding:16px;background:#161616;color:#fff;border:1px solid #888;border-radius:10px;font:14px/1.45 Arial,sans-serif;box-shadow:0 4px 30px #000b}
+#analyticsChoice656[hidden]{display:none!important}
+#analyticsChoice656 p{margin:0 0 12px}
+#analyticsChoice656 .analyticsButtons656{display:flex;gap:10px}
+#analyticsChoice656 button{flex:1;min-height:44px!important;height:auto!important;max-height:none!important;padding:10px!important;font:600 14px Arial,sans-serif!important}
+#analyticsPreferences656{position:fixed;z-index:100001;right:10px;top:max(10px,env(safe-area-inset-top));font:12px Arial,sans-serif!important;padding:6px 10px!important;min-height:32px!important;height:32px!important;max-height:32px!important;display:none!important}
+body.gameMenuOpen #analyticsPreferences656{display:block!important}
+</style>
+<section id="analyticsChoice656" role="region" aria-label="Statistiche facoltative" hidden>
+ <p><strong>Statistiche facoltative</strong><br>Con il tuo consenso usiamo Google Analytics e i suoi cookie per capire quante persone giocano, quali modalità usano e su quali dispositivi. Non inviamo il nome del calciatore o della squadra. Puoi rifiutare e giocare comunque, o cambiare scelta da “Privacy”. <a href="https://policies.google.com/privacy?hl=it" target="_blank" rel="noopener" style="color:#ffd54a">Privacy Google</a></p>
+ <div class="analyticsButtons656"><button id="analyticsReject656" type="button">Rifiuta</button><button id="analyticsAccept656" type="button">Accetta statistiche</button></div>
+</section>
+<button id="analyticsPreferences656" type="button">Privacy</button>
+<script>
+(()=>{
+ const ID='G-9G3X1FETG6',KEY='8s2-analytics-consent-v1';
+ let choice=null,loaded=false;
+ try{choice=localStorage.getItem(KEY);}catch(e){}
+ const panel=document.getElementById('analyticsChoice656');
+ window['ga-disable-'+ID]=choice!=='granted';
+ function enable(){
+  if(choice!=='granted'||location.protocol==='file:')return;
+  window['ga-disable-'+ID]=false;
+  window.dataLayer=window.dataLayer||[];
+  window.gtag=window.gtag||function(){window.dataLayer.push(arguments);};
+  if(loaded){window.gtag('consent','update',{analytics_storage:'granted'});return;}
+  loaded=true;
+  window.gtag('consent','default',{analytics_storage:'granted',ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied'});
+  window.gtag('js',new Date());
+  window.gtag('config',ID,{allow_google_signals:false,allow_ad_personalization_signals:false,page_location:location.origin+location.pathname,app_version:'2.56.656',game_surface:matchMedia('(display-mode: standalone)').matches||navigator.standalone?'installed':'browser'});
+  const script=document.createElement('script');script.async=true;script.src='https://www.googletagmanager.com/gtag/js?id='+ID;
+  script.onerror=()=>{};document.head.appendChild(script);
+ }
+ window.soccerAnalytics656=(event,params={})=>{
+  if(choice!=='granted'||!loaded)return;
+  try{window.gtag('event',event,{...params,app_version:'2.56.656'});}catch(e){}
+ };
+ function decide(value){
+  choice=value;try{localStorage.setItem(KEY,value);}catch(e){}
+  panel.hidden=true;
+  if(value==='granted')enable();else{
+   window['ga-disable-'+ID]=true;
+   if(loaded)window.gtag('consent','update',{analytics_storage:'denied'});
+   for(const item of document.cookie.split(';')){const name=item.trim().split('=')[0];if(!/^_ga(?:_|$)/.test(name))continue;for(const path of ['/',location.pathname])for(const domain of ['', ';domain='+location.hostname])document.cookie=name+'=;Max-Age=0;path='+path+domain+';SameSite=Lax';}
+  }
+ }
+ document.getElementById('analyticsAccept656').onclick=()=>decide('granted');
+ document.getElementById('analyticsReject656').onclick=()=>decide('denied');
+ document.getElementById('analyticsPreferences656').onclick=()=>{panel.hidden=false;};
+ function reveal(){if(window.openingFilm622Active||document.documentElement.classList.contains('introLoading628'))return;if(choice===null)panel.hidden=false;}
+ new MutationObserver(reveal).observe(document.documentElement,{attributes:true,attributeFilter:['class']});
+ new MutationObserver(reveal).observe(document.body,{childList:true});
+ window.addEventListener('error',e=>{if(e.error)window.soccerAnalytics656('game_error',{error_type:e.error.name||'Error'});});
+ enable();reveal();
+})();
+</script>
+</body></html>
 
 

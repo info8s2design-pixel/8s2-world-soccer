@@ -1,5 +1,5 @@
-const CACHE='8s2-mobile-v265560';
-const VERSION='2.56.655';
+const CACHE='8s2-mobile-v265660';
+const VERSION='2.56.656';
 self.addEventListener('install',event=>event.waitUntil((async()=>{
  const cache=await caches.open(CACHE);
  for(const url of ['./index.html','./manifest.webmanifest','./app-icon-180.png','./app-icon-32.png']){
