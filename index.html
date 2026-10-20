@@ -2764,7 +2764,7 @@ function crowdReaction(type){
 }
 function startSecondHalf(djExited=false){
  if(futsalMode&&!streetMode&&!djExited&&beachDJPhase!=='off'){if(beachDJPhase!=='exit'){beachDJPhase='exit';stopBeachHalftimeMusic();MSG.textContent='';}return;}
- if(careerActive){resetTouchJoystick();cancelTouchAction();keyboardDirections.clear();for(const k of Object.keys(K))K[k]=false;}
+ resetTouchJoystick();cancelTouchAction();keyboardDirections.clear();for(const k of Object.keys(K))K[k]=false;
  stopBeachHalftimeMusic();
  const beachPositions=futsalMode?{h:home.map(p=>({x:p.x,y:p.y})),a:away.map(p=>({x:p.x,y:p.y}))}:null;
  currentHalf=2;matchTime=halfDuration;halfTimePause=false;halftimePhase='';sidesSwapped=true;
@@ -3981,7 +3981,10 @@ function receive(){if(possession||lock>0)return;let best=null,bd=999;for(const p
 if(careerActive&&p===careerReleasedPlayer&&performance.now()<careerReleasedUntil)continue;
 let catchRadius=p.keeper?receiveKeeperDist:(careerActive?17:23);
 if(ok&&d<catchRadius&&d<bd){best=p;bd=d}}if(best&&(best.keeper||Math.hypot(ball.vx,ball.vy)<355))capture(best)}
-function startCelebration(scorer,team){if(streetMode)streetHeadlightUntil=performance.now()+3000;
+function startCelebration(scorer,team){
+ resetTouchJoystick();
+ cancelTouchAction();
+ if(streetMode)streetHeadlightUntil=performance.now()+3000;
  if((bcActive||steveBeachChallenge)&&bcGolden){startPostMatch();return;}
  if(!trainingMode&&!futsalMode){animatedCrowdTeam=team;animatedCrowdUntil=performance.now()+4500;}
  state='celebration'; possession=null; ball.vx=ball.vy=0;
@@ -7672,7 +7675,7 @@ syncPersonalTrophies();
   frame=requestAnimationFrame(tick);
  }
  // Wait for the actual game textures before capturing the two pitch scenes.
- const realisticStadium636=new Image();realisticStadium636.src='./asset656-c6aa407ccf4c.png';
+ const realisticStadium636=new Image();realisticStadium636.src='./asset657-c6aa407ccf4c.png';
  const resources=[realisticStadium636,streetConcreteImage,championsGrassImage,clStadiumLogo,...sideSupporterImages];
  Promise.race([Promise.all(resources.map(img=>img.decode?img.decode().catch(()=>{}):Promise.resolve())),new Promise(resolve=>setTimeout(resolve,5000))]).then(()=>{
   if(closed)return;try{streetLayer=layer(true);championsLayer=layer(false);if(reduced){elapsed=12;}frame=requestAnimationFrame(tick);}catch(error){console.error('Opening scene:',error);finish();}
