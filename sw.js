@@ -1,4 +1,4 @@
-const CACHE='8s2-mobile-v265657';
+const CACHE='8s2-mobile-v265657-credit';
 const VERSION='2.56.657';
 self.addEventListener('install',event=>event.waitUntil((async()=>{
  const cache=await caches.open(CACHE);

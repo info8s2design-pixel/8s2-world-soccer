@@ -1518,6 +1518,7 @@ body.tabletFit560.careerStatsBar:not(.gameMenuOpen) #msg::after,body.tabletContr
       </a>
     </div>
     <div id="bootActions" class="bootInstallRow"></div>
+    <div class="bootCreatorCredit">Un gioco di <a id="creatorSiteLink" href="https://8s2design.wixsite.com/home" target="_blank" rel="noopener noreferrer" aria-label="8S2 Design: visita il sito, si apre in una nuova scheda" onclick="event.stopPropagation()" onkeydown="event.stopPropagation()">8S2 Design <span aria-hidden="true">↗</span></a></div>
   </div>
 
 </div>
@@ -1668,7 +1669,7 @@ BOOT.addEventListener('keydown',e=>{
  if(e.key.toLowerCase()==='s'||e.key==='Enter'){e.preventDefault();finishBootIntro()}
 });
 document.addEventListener('keydown',e=>{
- if(bootActive&&e.target.id!=='memoriesOpen'&&e.target.id!=='supportButton'&&!e.target.closest('#telegramGroup596')&&document.getElementById('memoriesPanel').hidden&&(e.key.toLowerCase()==='s'||e.key==='Enter')){e.preventDefault();finishBootIntro()}
+ if(bootActive&&e.target.id!=='memoriesOpen'&&e.target.id!=='supportButton'&&!e.target.closest('#creatorSiteLink')&&!e.target.closest('#telegramGroup596')&&document.getElementById('memoriesPanel').hidden&&(e.key.toLowerCase()==='s'||e.key==='Enter')){e.preventDefault();finishBootIntro()}
 },{capture:true});
 
 G.imageSmoothingEnabled=false;
@@ -8186,6 +8187,12 @@ body.gameMenuOpen #analyticsPreferences656{display:block!important}
  enable();reveal();
 })();
 </script>
+<style id="creatorCreditStyle">
+#bootIntro .bootCreatorCredit{margin:12px auto 0;padding:0 8px 4px;color:#ccc;font:12px/1.5 monospace;text-align:center;letter-spacing:.2px}
+#bootIntro .bootCreatorCredit a{display:inline-block;padding:5px 2px;color:#ffd54a;font-weight:bold;text-decoration:underline;text-underline-offset:3px}
+#bootIntro .bootCreatorCredit a:hover{color:#fff0a0}
+#bootIntro .bootCreatorCredit a:focus-visible{outline:2px solid #ffd54a;outline-offset:3px;border-radius:2px}
+</style>
 </body></html>
 
 
