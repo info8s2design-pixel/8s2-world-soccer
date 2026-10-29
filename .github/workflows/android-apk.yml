@@ -28,6 +28,8 @@ jobs:
         run: npm run prepare:web
       - name: Add Android project
         run: npx cap add android
+      - name: Configure native Android experience
+        run: node scripts/prepare-native.mjs
       - name: Build debug APK
         run: cd android && chmod +x gradlew && ./gradlew assembleDebug --no-daemon
       - uses: actions/upload-artifact@v4
