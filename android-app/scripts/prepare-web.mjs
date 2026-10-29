@@ -20,17 +20,20 @@ let html=await readFile(htmlPath,'utf8');
 const androidOnly=`<script>
 (function(){
   function hideInstall(){
-    document.querySelectorAll('button,a,[role="button"]').forEach(function(el){
-      var label=(el.textContent||'').trim().replace(/\\s+/g,' ').toLowerCase();
-      if(label==='installa il gioco'||label==='installa gioco'){
-        el.style.setProperty('display','none','important');
-        el.setAttribute('aria-hidden','true');
+    document.querySelectorAll('button,a,[role="button"],input[type="button"],input[type="submit"]').forEach(function(el){
+      var label=(el.innerText||el.textContent||el.value||el.getAttribute('aria-label')||'').replace(/\\s+/g,' ').trim().toLowerCase();
+      if(label.includes('installa il gioco') || label.includes('installa gioco')){
+        if(el.style.display!=='none'){
+          el.style.setProperty('display','none','important');
+          el.setAttribute('aria-hidden','true');
+        }
       }
     });
   }
   if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',hideInstall);
   else hideInstall();
-  new MutationObserver(hideInstall).observe(document.documentElement,{childList:true,subtree:true});
+  new MutationObserver(hideInstall).observe(document.documentElement,{childList:true,subtree:true,characterData:true});
+  setInterval(hideInstall,750);
 })();
 </script>`;
 html=html.replace('</body>',androidOnly+'\n</body>');
