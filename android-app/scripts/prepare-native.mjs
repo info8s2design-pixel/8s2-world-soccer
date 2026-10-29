@@ -44,6 +44,6 @@ const injected=`<script>
   });
 })();
 </script>`;
-html=html.replace(/<\/body>/i,injected+'</body>');
+html=html.replace(/<\/body>/i,`<style id="androidNativeHideInstall">html.android-native-app body #installApp,html.android-native-app body #bootIntro #installApp,html.android-native-app body #installApp:not([hidden]){display:none!important;visibility:hidden!important;pointer-events:none!important}</style>`+injected+'</body>');
 await writeFile(file,html);
 console.log('Android fullscreen and native install-button adjustment prepared');
