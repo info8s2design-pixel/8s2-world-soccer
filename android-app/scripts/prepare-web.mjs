@@ -1,4 +1,4 @@
-import { cp, mkdir, readdir, rm, stat } from 'node:fs/promises';
+import { cp, mkdir, readdir, rm, stat, readFile, writeFile } from 'node:fs/promises';
 import { resolve, join } from 'node:path';
 const root=resolve('..');
 const out=resolve('www');
@@ -12,3 +12,27 @@ for(const entry of await readdir(root,{withFileTypes:true})){
 }
 try { await stat(join(out,'index.html')); } catch { throw new Error('index.html non trovato nella radice del repository'); }
 console.log('Risorse web copiate in android-app/www');
+
+
+// Android-only: remove the web installation CTA without changing the PWA.
+const htmlPath=join(out,'index.html');
+let html=await readFile(htmlPath,'utf8');
+const androidOnly=`<script>
+(function(){
+  function hideInstall(){
+    document.querySelectorAll('button,a,[role="button"]').forEach(function(el){
+      var label=(el.textContent||'').trim().replace(/\\s+/g,' ').toLowerCase();
+      if(label==='installa il gioco'||label==='installa gioco'){
+        el.style.setProperty('display','none','important');
+        el.setAttribute('aria-hidden','true');
+      }
+    });
+  }
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',hideInstall);
+  else hideInstall();
+  new MutationObserver(hideInstall).observe(document.documentElement,{childList:true,subtree:true});
+})();
+</script>`;
+html=html.replace(/<\\/body>/i,androidOnly+'\\n</body>');
+await writeFile(htmlPath,html);
+console.log('Pulsante installazione nascosto nella build Android');
