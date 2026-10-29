@@ -35,6 +35,10 @@ jobs:
         run: npx cap add android
       - name: Configure Android native experience
         run: node scripts/prepare-native.mjs
+      - name: Generate official launcher icons
+        run: |
+          python3 -m pip install --quiet --break-system-packages Pillow
+          python3 scripts/generate-icons.py
       - name: Restore signing key
         env:
           KEYSTORE_B64: ${{ secrets.ANDROID_KEYSTORE_BASE64 }}
