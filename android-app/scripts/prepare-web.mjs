@@ -33,6 +33,6 @@ const androidOnly=`<script>
   new MutationObserver(hideInstall).observe(document.documentElement,{childList:true,subtree:true});
 })();
 </script>`;
-html=html.replace(/<\\/body>/i,androidOnly+'\\n</body>');
+html=html.replace('</body>',androidOnly+'\n</body>');
 await writeFile(htmlPath,html);
 console.log('Pulsante installazione nascosto nella build Android');
