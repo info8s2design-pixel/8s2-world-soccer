@@ -1,0 +1,53 @@
+name: Android APK aggiornabile
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: android-app
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: android-capacitor
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '21'
+      - name: Verify signing secrets
+        env:
+          KEYSTORE_B64: ${{ secrets.ANDROID_KEYSTORE_BASE64 }}
+          KEYSTORE_PASS: ${{ secrets.ANDROID_KEYSTORE_PASSWORD }}
+        run: |
+          test -n "$KEYSTORE_B64" || (echo "Missing ANDROID_KEYSTORE_BASE64 secret" && exit 1)
+          test -n "$KEYSTORE_PASS" || (echo "Missing ANDROID_KEYSTORE_PASSWORD secret" && exit 1)
+      - name: Install dependencies
+        run: npm install
+      - name: Prepare web assets
+        run: npm run prepare:web
+      - name: Add Android project
+        run: npx cap add android
+      - name: Configure Android native experience
+        run: node scripts/prepare-native.mjs
+      - name: Restore signing key
+        env:
+          KEYSTORE_B64: ${{ secrets.ANDROID_KEYSTORE_BASE64 }}
+        run: printf '%s' "$KEYSTORE_B64" | base64 --decode > android/app/8s2-upload.jks
+      - name: Configure release build
+        run: node scripts/prepare-release.mjs
+      - name: Build signed release APK
+        env:
+          ANDROID_KEYSTORE_PATH: 8s2-upload.jks
+          ANDROID_KEYSTORE_PASSWORD: ${{ secrets.ANDROID_KEYSTORE_PASSWORD }}
+        run: cd android && chmod +x gradlew && ./gradlew assembleRelease --no-daemon
+      - uses: actions/upload-artifact@v4
+        with:
+          name: 8s2-world-soccer-android-signed
+          path: android-app/android/app/build/outputs/apk/release/app-release.apk
+          if-no-files-found: error
