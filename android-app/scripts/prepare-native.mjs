@@ -30,9 +30,9 @@ const injected=`<script>
 (function(){
   document.documentElement.classList.add('android-native-app');
   function hideInstall(){
-    document.querySelectorAll('button,a,[role="button"]').forEach(function(el){
+    document.querySelectorAll('button,a,[role="button"],[id*="install" i],[class*="install-btn" i],[class*="install-button" i]').forEach(function(el){
       const label=(el.textContent||'').trim().replace(/\\s+/g,' ').toLowerCase();
-      if (/^installa (il )?gioco$/.test(label)) {
+      if (/installa\\s+(il\\s+)?gioco/.test(label) || /install/i.test(el.id || '') || /install-(btn|button)/i.test(el.className || '')) {
         el.style.setProperty('display','none','important');
         el.setAttribute('aria-hidden','true');
       }
